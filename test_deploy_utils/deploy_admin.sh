@@ -54,7 +54,7 @@ echo "Path to ISO: ${ISO_PATH}"
 "$VBOX_M" storageattach "${VM}" --storagectl "IDE Controller" --medium "${ISO_PATH}" --port 1 --device 0 --type dvddrive
 
 # restart th VM, with vengance
-"$VBOX_M" controlvm "${VM}" reset --type || "$VBOX_M" startvm "${VM}" --type 
+"$VBOX_M" controlvm "${VM}" reset || "$VBOX_M" startvm "${VM}" 
 
 
 
