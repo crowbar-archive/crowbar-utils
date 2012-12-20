@@ -38,7 +38,7 @@ end
 	#action :run
 #end
 
-%w{git rubygems molly-guard vim vim-rails curl polipo}.each do |p|
+%w{git rubygems molly-guard vim vim-rails curl polipo openssl build-essential debootstrap mkisofs binutils rpm ruby genisoimage}.each do |p|
 	package "#{p}" do
 		action :install
 	end
