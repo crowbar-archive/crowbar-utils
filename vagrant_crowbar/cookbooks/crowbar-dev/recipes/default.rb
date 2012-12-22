@@ -1,13 +1,9 @@
 
-# a shortcut to save typing
-p = node.props
 
-Chef::Log.warn(p.username)
 # environment for executes:
-
 my_env = {
-	#'HOME' => "/home/#{p.username}/",
-	'http_proxy' => node['props']['http_proxy'],
+	'HOME' => "/home/#{node.props.username}/",
+	'http_proxy' => node.props.http_proxy,
 	'https_proxy' => node.props.https_proxy,
 	'no_proxy' => "127.0.0.0/8,192.168.124.0/24,10.0.0.0/8,143.166.0.0/16"	
 }
@@ -18,16 +14,17 @@ execute "check env" do
 	action :run
 end
 
-user "#{p.username}" do
+
+user node.props.username do
 	action :create	
-	home "/home/#{p.username}"
+	home "/home/#{node.props.username}"
 	shell "/bin/bash"
 	supports :manage_home=>true
 	gid "admin" 
 end
 
-directory "/home/#{p.username}/.ssh" do
-	owner "#{p.username}"
+directory "/home/#{node.props.username}/.ssh" do
+	owner node.props.username
 	mode "0700"
 	action :create
 end
@@ -35,8 +32,8 @@ end
 
 execute "add_key" do
 	environment my_env
-	command "echo \"ssh-rsa #{p.user_sshpubkey} #{p.user_sshpubkey_host}\" >> /home/#{p.username}/.ssh/authorized_keys"
-	creates "/home/#{p.username}/.ssh/authorized_keys"
+	command "echo \"ssh-rsa #{node.props.user_sshpubkey} #{node.props.user_sshpubkey_host}\" >> /home/#{node.props.username}/.ssh/authorized_keys"
+	creates "/home/#{node.props.username}/.ssh/authorized_keys"
 	action :run
 end	
 
@@ -47,13 +44,13 @@ end
 
 # setup useful http_proxy scripts
 %w{proxy_on.sh proxy_off.sh}.each do |pf|
-	template "/home/#{p.username}/#{pf}" do
+	template "/home/#{node.props.username}/#{pf}" do
 		source "#{pf}.erb"
 		mode 0644
-		owner p.username
+		owner node.props.username
 		variables ({
-			:proxy_host => p.http_proxy,
-			:proxy_ssl_host => p.https_proxy
+			:proxy_host => node.props.http_proxy,
+			:proxy_ssl_host => node.props.https_proxy
 		})
 	end
 end
@@ -77,49 +74,49 @@ execute "json gem" do
 	action :run
 end	
 
-template "/home/#{p.username}/.netrc" do
+template "/home/#{node.props.username}/.netrc" do
 	source "netrc.erb"
 	mode 0400
-	owner "#{p.username}"
+	owner node.props.username
 	variables ({ 
-		:github_id => p.github_id,
-		:github_password => p.github_password
+		:github_id => node.props.github_id,
+		:github_password => node.props.github_password
  	})
 end
 
 execute "git clone crowbar" do
-	user p.username
+	user node.props.username
 	environment my_env
-	cwd "/home/#{p.username}/"
-	command "git clone #{p.github_repo}"
-	creates "/home/#{p.username}/crowbar/"
+	cwd "/home/#{node.props.username}/"
+	command "git clone #{node.props.github_repo}"
+	creates "/home/#{node.props.username}/crowbar/"
 end
 
-template "/home/#{p.username}/.gitconfig" do
+template "/home/#{node.props.username}/.gitconfig" do
 	source "gitconfig.erb"
 	mode 0400
-	owner "#{p.username}"
+	owner node.props.username
 	variables ({ 
-		:username => p.username,
-		:user_email => p.user_email
+		:username => node.props.username,
+		:user_email => node.props.user_email
  	})
 end
 
-template "/home/#{p.username}/.build-crowbar.conf" do
+template "/home/#{node.props.username}/.build-crowbar.conf" do
 	source "buildcrowbarconf.erb"
 	mode 0777
-	owner "#{p.username}"
+	owner node.props.username
 	variables ({
-		:github_id => p.github_id,
-		:iso_library => p.iso_library,
-		:iso_dest => p.iso_dest
+		:github_id => node.props.github_id,
+		:iso_library => node.props.iso_library,
+		:iso_dest => node.props.iso_dest
 	})
 end
 
 execute "dev setup fetch and sync" do
-	user p.username
+	user node.props.username
 	environment my_env
-	cwd "/home/#{p.username}/crowbar/"
+	cwd "/home/#{node.props.username}/crowbar/"
 	command "./dev setup; ./dev fetch; ./dev sync "
 	action :run
 end
@@ -127,16 +124,16 @@ end
 # setup timezone
 execute "timezone setup" do
 	environment my_env
-	command "echo \"#{timezone}\" > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata"
+	command "echo \"#{node.props.timezone}\" > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata"
 	action :run
 end
 
 # install lots of vim stuff:
 execute "vim installs pathogen" do
-	user p.username
+	user node.props.username
 	environment my_env
 	command "mkdir -p ~/.vim/autoload ~/.vim/bundle; curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim"
-	creates "/home/#{p.username}/.vim/autoload/pathogen.vim"
+	creates "/home/#{node.props.username}/.vim/autoload/pathogen.vim"
 	action :run
 end
 
@@ -145,20 +142,20 @@ end
 	'nerdtree' => 'https://github.com/scrooloose/nerdtree.git'
 }.each_pair do | name, repo |
 	execute "vim install #{name}" do
-		user p.username
+		user node.props.username
 		environment my_env
 		command "cd ~/.vim/bundle; git clone #{repo}"
 		action :run
-		creates "/home/#{p.username}/.vim/bundle/#{name}"
+		creates "/home/#{node.props.username}/.vim/bundle/#{name}"
 	end
 end
 
-template "/home/#{p.username}/.vimrc" do
+template "/home/#{node.props.username}/.vimrc" do
 	source "vimrc"
 	mode 0777
-	owner "#{p.username}"
+	owner "#{node.props.username}"
 	variables ({
-		:username => p.username
+		:username => node.props.username
 	})
 end
 
