@@ -1,150 +1,185 @@
-username = 'judd'
-user_email = 'judd_maltin@dell.com'
-user_sshpubkey = ''
-user_sshpubkey_host = 'judd-m6600'
-github_id = "juddmaltin-dell"
-github_password = ""
-iso_library = '/mnt/VMSharedDir'
-iso_dest = '/mnt/VMSharedDir/ISOs'
-use_proxy = '1'
-proxy_host = 'http://127.0.0.1:8123'
-timezone = 'America/New_York'
 
+# a shortcut to save typing
+p = node.props
 
+Chef::Log.warn(p.username)
+# environment for executes:
 
-user "#{username}" do
+my_env = {
+	#'HOME' => "/home/#{p.username}/",
+	'http_proxy' => node['props']['http_proxy'],
+	'https_proxy' => node.props.https_proxy,
+	'no_proxy' => "127.0.0.0/8,192.168.124.0/24,10.0.0.0/8,143.166.0.0/16"	
+}
+
+execute "check env" do
+	command "env > /tmp/env"
+	environment my_env
+	action :run
+end
+
+user "#{p.username}" do
 	action :create	
-	home "/home/#{username}"
+	home "/home/#{p.username}"
 	shell "/bin/bash"
 	supports :manage_home=>true
 	gid "admin" 
 end
 
-directory "/home/#{username}/.ssh" do
-	owner "#{username}"
+directory "/home/#{p.username}/.ssh" do
+	owner "#{p.username}"
 	mode "0700"
 	action :create
 end
 
 
 execute "add_key" do
-	command "echo \"ssh-rsa #{user_sshpubkey} #{user_sshpubkey_host}\" >> /home/#{username}/.ssh/authorized_keys"
-	creates "/home/#{username}/.ssh/authorized_keys"
+	environment my_env
+	command "echo \"ssh-rsa #{p.user_sshpubkey} #{p.user_sshpubkey_host}\" >> /home/#{p.username}/.ssh/authorized_keys"
+	creates "/home/#{p.username}/.ssh/authorized_keys"
 	action :run
 end	
 
 #execute "sudo hack" do
-	#command "echo \"#{username} ALL=(ALL:ALL) NOPASSWD: ALL\" >> /etc/sudoers"
+	#command "echo \"#{p.username} ALL=(ALL:ALL) NOPASSWD: ALL\" >> /etc/sudoers"
 	#action :run
 #end
 
-%w{git rubygems molly-guard vim vim-rails curl polipo openssl build-essential debootstrap mkisofs binutils rpm ruby genisoimage}.each do |p|
+# setup useful http_proxy scripts
+%w{proxy_on.sh proxy_off.sh}.each do |pf|
+	template "/home/#{p.username}/#{pf}" do
+		source "#{pf}.erb"
+		mode 0644
+		owner p.username
+		variables ({
+			:proxy_host => p.http_proxy,
+			:proxy_ssl_host => p.https_proxy
+		})
+	end
+end
+
+execute "apt-get update" do
+	environment my_env
+	command "apt-get update"
+	action :run
+end
+
+%w{git rubygems molly-guard vim vim-rails curl polipo openssl build-essential 
+	debootstrap mkisofs binutils rpm ruby genisoimage}.each do |p|
 	package "#{p}" do
 		action :install
 	end
 end
 
-#gem_package 'json' do
-#	action :install
-#end
-
 execute "json gem" do
+	environment my_env
 	command "gem install json"
 	action :run
 end	
 
-template "/home/#{username}/.netrc" do
+template "/home/#{p.username}/.netrc" do
 	source "netrc.erb"
 	mode 0400
-	owner "#{username}"
-	group "#{username}"
+	owner "#{p.username}"
 	variables ({ 
-		:github_id => github_id,
-		:github_password => github_password
+		:github_id => p.github_id,
+		:github_password => p.github_password
  	})
 end
 
 execute "git clone crowbar" do
-	user username
-	environment ({'HOME' => "/home/#{username}/"})
-	cwd "/home/#{username}/"
-	command "git clone https://github.com/dellcloudedge/crowbar.git"
-	creates "/home/#{username}/crowbar/"
+	user p.username
+	environment my_env
+	cwd "/home/#{p.username}/"
+	command "git clone #{p.github_repo}"
+	creates "/home/#{p.username}/crowbar/"
 end
 
-template "/home/#{username}/.gitconfig" do
+template "/home/#{p.username}/.gitconfig" do
 	source "gitconfig.erb"
 	mode 0400
-	owner "#{username}"
-	group "#{username}"
+	owner "#{p.username}"
 	variables ({ 
-		:username => username,
-		:user_email => user_email
+		:username => p.username,
+		:user_email => p.user_email
  	})
 end
 
-template "/home/#{username}/.build-crowbar.conf" do
+template "/home/#{p.username}/.build-crowbar.conf" do
 	source "buildcrowbarconf.erb"
 	mode 0777
-	owner "#{username}"
-	group "#{username}"
+	owner "#{p.username}"
 	variables ({
-		:github_id => github_id,
-		:iso_library => iso_library,
-		:iso_dest => iso_dest,
-		:use_proxy => use_proxy,
-		:proxy_host => proxy_host
+		:github_id => p.github_id,
+		:iso_library => p.iso_library,
+		:iso_dest => p.iso_dest
 	})
 end
-#Chef::Log.fatal( 'Something bad happened and I want to stop' )
 
 execute "dev setup fetch and sync" do
-	user username
-	environment ({'HOME' => "/home/#{username}/"})
-	cwd "/home/#{username}/crowbar/"
+	user p.username
+	environment my_env
+	cwd "/home/#{p.username}/crowbar/"
 	command "./dev setup; ./dev fetch; ./dev sync "
 	action :run
 end
 
-
 # setup timezone
 execute "timezone setup" do
+	environment my_env
 	command "echo \"#{timezone}\" > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata"
 	action :run
 end
 
-
-#beyond this, borken
-
+# install lots of vim stuff:
 execute "vim installs pathogen" do
-	user username
-	environment ({'HOME' => "/home/#{username}/"})
+	user p.username
+	environment my_env
 	command "mkdir -p ~/.vim/autoload ~/.vim/bundle; curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim"
-	creates "/home/#{username}/.vim/autoload/pathogen.vim"
+	creates "/home/#{p.username}/.vim/autoload/pathogen.vim"
 	action :run
 end
 
-# install lots of vim stuff:
 {
 	'vim-fugitive' => 'git://github.com/tpope/vim-fugitive.git',
 	'nerdtree' => 'https://github.com/scrooloose/nerdtree.git'
 }.each_pair do | name, repo |
 	execute "vim install #{name}" do
-		user username
-		environment ({'HOME' => "/home/#{username}/"})
+		user p.username
+		environment my_env
 		command "cd ~/.vim/bundle; git clone #{repo}"
 		action :run
-		creates "/home/#{username}/.vim/bundle/#{name}"
+		creates "/home/#{p.username}/.vim/bundle/#{name}"
 	end
 end
 
-template "/home/#{username}/.vimrc" do
+template "/home/#{p.username}/.vimrc" do
 	source "vimrc"
 	mode 0777
-	owner "#{username}"
-	group "#{username}"
+	owner "#{p.username}"
 	variables ({
-		:username => username
+		:username => p.username
 	})
 end
 
+# grab bits we need
+
+#{  #hash of bits "local" => "remote"
+#"#{sharedir}/ISOs/#{distro_iso_name}" => "#{distro_iso_url}",
+## add sledgehammer stuff here if necessary
+#}.each_pair do |local,remote|
+	#remote_file "#{local}" do
+		#source "#{remote}"
+		#action :nothing
+	#end
+ #
+	#http_request "HEAD #{remote}" do
+		#message ""
+		#url remote
+		#action :head
+		#if File.exists?("#{local}")
+			#headers "If-Modified-Since" => File.mtime("#{local}").httpdate
+		#end
+		#notifies :create, resources(:remote_file => "#{local}"), :immediately
+	#end
+#end
