@@ -32,4 +32,12 @@ The box will install and the chef-solo cookbooks will run.
 
 Once it's all installed, you can login to the box by running: vagrant ssh  OR you can ssh as your user to the IP addresses that you setup in the personal.json file.
 
-Profit!
+If you logged in as user vagrant, sudo -i to root, and then su - <username>
+
+You should have ~/crowbar all setup for you!  Switch to a release and branch, and have at it!
+
+Please let me know what you find: submit bug reports, email me, find me on IRC, or best of all, fork the code and submit pull-requests!
+
+I hope it helps you get up and developing Crowbar quickly.
+
+-judd
