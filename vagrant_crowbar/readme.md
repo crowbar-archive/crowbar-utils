@@ -9,11 +9,20 @@ This is NOT the an attempt to deploy the Crowbar Admin node through Vagrant.  Fo
 How To:
 =======
 
+
+Install a web proxy on your Host box, and make sure it's listening on 0.0.0.0:8123
+  Ubuntu: 
+    apt-get install polipo
+    edit /etc/polipo/config to listen on 0.0.0.0
+
 Download and install the latest VirtualBox: https://www.virtualbox.org/wiki/Downloads  
   Do not use stock Ubuntu packages.  They're old.
 
 Download and install the latest Vagrant: http://downloads.vagrantup.com/tags/v1.0.5
   Do not use stock Ubuntu packages.  They're old.
+  Oracle's Ubuntu packages put vagrant in opt:
+    export PATH=/opt/vagrant/bin/:$PATH
+
 
 Clone/download this repo: https://github.com/dellcloudedge/crowbar-utils
 
