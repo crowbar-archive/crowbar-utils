@@ -9,6 +9,7 @@ This is NOT the an attempt to deploy the Crowbar Admin node through Vagrant.  Fo
 How To:
 =======
 
+You must be running all OSes at 64-bit.  Host and all guests.  Can't build Crowbar without it.
 
 Install a web proxy on your Host box, and make sure it's listening on 0.0.0.0:8123
   Ubuntu: 
