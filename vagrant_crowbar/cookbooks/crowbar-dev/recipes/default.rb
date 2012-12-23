@@ -56,15 +56,14 @@ end
 end
 
 execute "apt-get update" do
-	environment my_env
+	#environment my_env
 	command "apt-get update"
 	action :run
 end
 
-%w{git rubygems molly-guard vim vim-rails curl polipo openssl build-essential 
-	debootstrap mkisofs binutils rpm ruby genisoimage}.each do |p|
+%w{tmux byobu debootstrap git rubygems molly-guard vim vim-rails curl polipo openssl build-essential mkisofs binutils rpm ruby genisoimage}.each do |p|
 	package "#{p}" do
-		action :install
+		action :upgrade
 	end
 end
 
