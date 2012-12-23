@@ -10,8 +10,10 @@ How To:
 =======
 
 Download and install the latest VirtualBox: https://www.virtualbox.org/wiki/Downloads  
+  Do not use stock Ubuntu packages.  They're old.
 
 Download and install the latest Vagrant: http://downloads.vagrantup.com/tags/v1.0.5
+  Do not use stock Ubuntu packages.  They're old.
 
 Clone/download this repo: https://github.com/dellcloudedge/crowbar-utils
 
