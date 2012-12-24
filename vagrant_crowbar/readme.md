@@ -11,10 +11,11 @@ How To:
 
 You must be running all OSes at 64-bit.  Host and all guests.  Can't build Crowbar without it.
 
-Install a web proxy on your Host box, and make sure it's listening on 0.0.0.0:8123
+If you want, install a web proxy on your Host box, and make sure it's listening on 0.0.0.0:8123
   Ubuntu: 
     apt-get install polipo
     edit /etc/polipo/config to listen on 0.0.0.0
+If you don't want a proxy - leave the values blank in personal.json, but do not remove them.
 
 Download and install the latest VirtualBox: https://www.virtualbox.org/wiki/Downloads  
   Do not use stock Ubuntu packages.  They're old.
