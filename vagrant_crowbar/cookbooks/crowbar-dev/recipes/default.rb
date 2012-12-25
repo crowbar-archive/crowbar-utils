@@ -1,10 +1,11 @@
 
-
 # environment for executes:
+node.attribute?('http_proxy') && http_proxy = node.props.http_proxy
+node.attribute?('https_proxy') && https_proxy = node.props.https_proxy
 my_env = {
 	'HOME' => "/home/#{node.props.username}/",
-	'http_proxy' => node.props.http_proxy,
-	'https_proxy' => node.props.https_proxy,
+	'http_proxy' => http_proxy,
+	'https_proxy' => https_proxy,
 	'no_proxy' => "127.0.0.0/8,192.168.124.0/24,10.0.0.0/8,143.166.0.0/16"	
 }
 
@@ -14,6 +15,7 @@ execute "check env" do
 	action :run
 end
 
+# create a user on the OS:
 
 user node.props.username do
 	action :create	
@@ -23,12 +25,12 @@ user node.props.username do
 	gid "admin" 
 end
 
+# give the user some ssh public keys
 directory "/home/#{node.props.username}/.ssh" do
 	owner node.props.username
 	mode "0700"
 	action :create
 end
-
 
 execute "add_key" do
 	environment my_env
@@ -37,6 +39,8 @@ execute "add_key" do
 	action :run
 end	
 
+# I don't need to add him to sudoers, because "admin" group above in Ubuntu 
+# gives sudo with NOPASSWD.  ftw
 #execute "sudo hack" do
 	#command "echo \"#{p.username} ALL=(ALL:ALL) NOPASSWD: ALL\" >> /etc/sudoers"
 	#action :run
@@ -49,10 +53,17 @@ end
 		mode 0644
 		owner node.props.username
 		variables ({
-			:proxy_host => node.props.http_proxy,
-			:proxy_ssl_host => node.props.https_proxy
+			:proxy_host => http_proxy,
+			:proxy_ssl_host => https_proxy
 		})
 	end
+end
+
+# append proxy_on.sh to .bashrc
+execute "proxy on by default" do
+	environment my_env
+	command " echo \". ~/proxy_on.sh\n\" >> ~/.bashrc"
+	action :run
 end
 
 execute "apt-get update" do
