@@ -40,7 +40,8 @@ Host Prerequisites:
   * You may also use your own group's repo.
   * *Note:* We are moving to another repo really soon.  It will likely be: `https://github.com/crowbar/crowbar-utils`
 
-### Prepare the Vagrant Environment
+Prepare the Vagrant Environment
+-------------------------------
 
   * Change directory to crowbar-utils/vagrant_crowbar
   * Edit the file personal.json
@@ -48,6 +49,9 @@ Host Prerequisites:
   point there from the guest you're creating.
     * Ensure that the shared folders you're planning on using exist on the Host OS.
   * Drop the ISO of the OSes you're planning to build with into the ISO library.
+
+Make It So
+----------
 
 ### You should be all ready.  Type: `vagrant up`
 
@@ -59,6 +63,9 @@ Host Prerequisites:
   * You should have ~/crowbar all setup for you!  Switch to a release and branch, and have at it!
     * ./dev switch development/master
     * ./dev build --os ubuntu-12.04 --update-cache
+
+Epilogue
+--------
 
 Please let me know what you find: submit bug reports, email me, find me on IRC, or best of all, fork the code and submit pull-requests!
 
