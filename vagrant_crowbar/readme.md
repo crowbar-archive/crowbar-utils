@@ -57,7 +57,7 @@ Make It So
 ### You should be all ready.  Type: `vagrant up`
 
   * The box will install and the chef-solo cookbooks will run.
-    * Report errors on Github, to IRC (judd7) the crowbar@lists.us.dell.com or find me on skype: juddmaltin-dell
+    * Report errors on Github, to IRC (judd7) the crowbar@lists.us.dell.com or find me on skype: juddmaltin-dell  I'm in New York, Eastern Time.
   * Once it's all installed, you can login to the box by running: `vagrant ssh`  
     * OR you can ssh as your user to the IP addresses that you setup in the personal.json file.
   * If you logged in as user `vagrant`, `sudo -i` to root, and then `su - "your username"`
