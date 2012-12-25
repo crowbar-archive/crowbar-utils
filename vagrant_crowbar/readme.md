@@ -9,45 +9,56 @@ This is NOT the an attempt to deploy the Crowbar Admin node through Vagrant.  Fo
 How To:
 =======
 
-You must be running all OSes at 64-bit.  Host and all guests.  Can't build Crowbar without it.
+Host Prerequisites:
+-------------------
 
-If you want, install a web proxy on your Host box, and make sure it's listening on 0.0.0.0:8123
-  Ubuntu: 
-    apt-get install polipo
-    edit /etc/polipo/config to listen on 0.0.0.0
-If you don't want a proxy - leave the values blank in personal.json, but do not remove them.
+### 64 Bit
+  * You must be running all OSes at *64-bit.*  Host and all guests.  Can't build Crowbar without it.
 
-Download and install the latest VirtualBox: https://www.virtualbox.org/wiki/Downloads  
-  Do not use stock Ubuntu packages.  They're old.
+### Web Proxy
+  * It's best practice to have a web proxy running somewhere.  Crowbar downloads a lot of stuff.
+    * Guest proxy: gets installed by default.  You should set the http_proxy variables to your guest IP.
+    * Host proxy: For greater awesomeness, install a web proxy on your Host box, so you can destroy your
+      guest boxes and you won't lose everything youv'e downloaded.
+      * Ubuntu: 
+        `apt-get install polipo`
+        edit `/etc/polipo/config` to listen on 0.0.0.0
 
-Download and install the latest Vagrant: http://downloads.vagrantup.com/tags/v1.0.5
-  Do not use stock Ubuntu packages.  They're old.
-  Oracle's Ubuntu packages put vagrant in opt:
-    export PATH=/opt/vagrant/bin/:$PATH
+### Virtual Box
+  * Download and install the latest VirtualBox: https://www.virtualbox.org/wiki/Downloads  
+  * Do not use stock Ubuntu packages.  They're old.
 
+### Vagrant
+  * Download and install the latest Vagrant: http://downloads.vagrantup.com/tags/v1.0.5
+  * Do not use stock Ubuntu packages.  They're old.
+  * Ubuntu:
+    Oracle's Ubuntu packages put vagrant in opt:
+    `export PATH=/opt/vagrant/bin/:$PATH`
 
-Clone/download this repo: https://github.com/dellcloudedge/crowbar-utils
+### Clone the Repo
+  * Clone/download this repo: `git clone https://github.com/dellcloudedge/crowbar-utils`
+  * You may also use your own group's repo.
+  * *Note:* We are moving to another repo really soon.  It will likely be: `https://github.com/crowbar/crowbar-utils`
 
-Change directory to crowbar-utils/vagrant_crowbar
+### Prepare the Vagrant Environment
 
-Edit the file personal.json
-
-I recommend making sure your proxy is running on the Host OS and that your http_proxy settings
+  * Change directory to crowbar-utils/vagrant_crowbar
+  * Edit the file personal.json
+    * I recommend making sure your proxy is running on the Host OS and that your http_proxy settings
   point there from the guest you're creating.
+    * Ensure that the shared folders you're planning on using exist on the Host OS.
+  * Drop the ISO of the OSes you're planning to build with into the ISO library.
 
-Ensure that the shared folders you're planning on using exist on the Host OS.
+### You should be all ready.  Type: `vagrant up`
 
-Drop the ISO of the OSes you're planning to build with into the ISO library.
-
-You should be all ready.  Type: vagrant up
-
-The box will install and the chef-solo cookbooks will run.
-
-Once it's all installed, you can login to the box by running: vagrant ssh  OR you can ssh as your user to the IP addresses that you setup in the personal.json file.
-
-If you logged in as user vagrant, sudo -i to root, and then su - "your username"
-
-You should have ~/crowbar all setup for you!  Switch to a release and branch, and have at it!
+  * The box will install and the chef-solo cookbooks will run.
+    * Report errors to IRC (judd7) the crowbar@lists.us.dell.com or find me on skype: juddmaltin-dell
+  * Once it's all installed, you can login to the box by running: `vagrant ssh`  
+    * OR you can ssh as your user to the IP addresses that you setup in the personal.json file.
+  * If you logged in as user `vagrant`, `sudo -i` to root, and then `su - "your username"`
+  * You should have ~/crowbar all setup for you!  Switch to a release and branch, and have at it!
+    * ./dev switch development/master
+    * ./dev build --os ubuntu-12.04 --update-cache
 
 Please let me know what you find: submit bug reports, email me, find me on IRC, or best of all, fork the code and submit pull-requests!
 
