@@ -28,7 +28,8 @@ Host Prerequisites:
       guest boxes and you won't lose everything youv'e downloaded.
       * Ubuntu: 
         `apt-get install polipo`
-        edit `/etc/polipo/config` to listen on 0.0.0.0
+        edit `/etc/polipo/config` to listen on 0.0.0.0 and restart polipo to pick up the changes
+        verify with `netstat -lntp | grep polipo`
 
 ### Virtual Box
   * Download and install the latest VirtualBox: https://www.virtualbox.org/wiki/Downloads  
