@@ -5,6 +5,12 @@ This is to setup a dev and build environment for developer/tester use.
 
 This is NOT the an attempt to deploy the Crowbar Admin node through Vagrant.  For that, have a look at https://github.com/dellcloudedge/crowbar-utils/tree/master/test_deploy_utils
 
+Tested OK on:
+=============
+
+  * Mac OS Lion, VirtualBox 4.2.6, Vagrant 1.0.5
+  * Ubuntu 12.04.2, VirtualBox 4.2.6, Vagrant 1.0.5
+ 
 
 How To:
 =======
