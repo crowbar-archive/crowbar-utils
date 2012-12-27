@@ -1,10 +1,11 @@
 {
 "box_name": "precise64",
 "box_url": "http://files.vagrantup.com/precise64.box",
-"username": "judd",
-"user_email": "judd_maltin@dell.com",
+"guest_username": "judd",
 "user_sshpubkey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCx2NI5S5YTIhZNsWyrglaVqEubJ4Zt14z80ge6Awa/vDq95asRzuCVqxt4nSQ+3WfSBfGaXBHCXFNx7WwX8NbfpDXrE2HPZRKaMwUVjMteEe2GQ3ycR/SjNWk6XhjUPWCRp9sgDgrs8aqJIankTCtnbKaA3dEnP9dd67la1oHHoc2n4Q6x2CU7IfqY29ZzOXBuThq49RPB6xr5Qp4bXAhddkMvaSnGpMmPduM8fO/iua/v0sNGjUstEN7yP77O5TJXcRijBD1ymW+MJs1ZbPSIMSMQo/OYkPFio7sRgmDg+AjhFSbcmyH+1pl1vR844AE/qoT/Yq+5Ot05B6D8YPPj judd@judd-m6600",
 "user_sshpubkey_host": "judd-m6600",
+"git_user_name": "judd_maltin@dell.com",
+"git_user_email": "judd_maltin@dell.com",
 "github_id": "juddmaltin-dell",
 "github_password": "",
 "github_repo": "https://github.com/dellcloudedge/crowbar.git",
@@ -12,13 +13,15 @@
 "shared_dir_host": "/VMs/VMSharedDir/",
 "iso_library": "/mnt/VMSharedDir/",
 "iso_dest": "/mnt/VMSharedDir/ISOs",
-"timezone": "America/New_York",
+"guest_timezone": "America/New_York",
 "distro_iso_name": "",
 "distro_iso_url": "",
-"hostname": "crowbar-dev",
-"devbox_ip": "192.168.124.5",
-"network_bridge": "eth0",
-"cpus": "1",
-"ram": "1024"
+"guest_hostname": "crowbar-dev",
+"guest_hostonly_ip": "192.168.124.5",
+"host_network_bridge_interface": "eth0",
+"guest_cpus": "1",
+"guest_http_proxy": "",
+"guest_https_proxy": "",
+"guest_ram": "1024"
 }
 
