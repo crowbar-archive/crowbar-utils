@@ -37,15 +37,14 @@ Host Prerequisites:
 
 ### Vagrant
   * Download and install the latest Vagrant: http://downloads.vagrantup.com/tags/v1.0.5
-  * Do not use stock Ubuntu packages.  They're old.
-  * Ubuntu:
-    Oracle's Ubuntu packages put vagrant in opt:
-    `export PATH=/opt/vagrant/bin/:$PATH`
+  * Do not use stock Ubuntu packages.  They're old. 
+    * Ubuntu:
+      Vagrant's Ubuntu packages put vagrant in opt:
+      `export PATH=/opt/vagrant/bin/:$PATH`
 
 ### Clone the Repo
-  * Clone/download this repo: `git clone https://github.com/dellcloudedge/crowbar-utils`
+  * Clone/download this repo: `git clone https://github.com/crowbar/crowbar-utils`
   * You may also use your own group's repo.
-  * *Note:* We are moving to another repo really soon.  It will likely be: `https://github.com/crowbar/crowbar-utils`
 
 Prepare the Vagrant Environment
 -------------------------------
@@ -54,7 +53,7 @@ Prepare the Vagrant Environment
   * Edit the file `personal.json`
     * Your "username" is the username on the OS.  Preferably something you like to use.
     * I recommend making sure your proxy is running on the Host OS and that your http_proxy settings
-  point there.
+  point there.  But if you don't no big deal.
     * Ensure that the shared folders you're planning on using exist on the Host OS.
   * Drop the ISO of the OSes you're planning to build with into the ISO library.
 
