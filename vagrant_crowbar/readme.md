@@ -66,6 +66,8 @@ Prepare the Vagrant Environment
           use to get DHCP IP addresses.
         3 and vagrant comes up with it's own private IP for your box.
   * Ensure that the shared folders you're planning on using exist on the Host OS.
+    * Ensure that your shared folders have open write permissions so the build box can write
+      into them. 0777
   * Drop the ISO of the OSes you're planning to build with into the ISO library.
 
 Make It So
