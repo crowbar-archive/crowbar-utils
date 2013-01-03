@@ -51,10 +51,23 @@ Prepare the Vagrant Environment
 
   * Change directory to `crowbar-utils/vagrant_crowbar`
   * Edit the file `personal.json`
-    * Your "username" is the username on the OS.  Preferably something you like to use.
-    * I recommend making sure your proxy is running on the Host OS and that your http_proxy settings
-  point there.  But if you don't no big deal.
-    * Ensure that the shared folders you're planning on using exist on the Host OS.
+    * "guest_username" is the username on the guest you'd like to ssh as.
+    * "user_sshpubkey" is the whole line from your host machine users's ~/.ssh/pubkey file, 
+      so you can login as "guest_username" without a password.
+    * "guest_proxy" and "guest_ssl_proxy" - polipo will be installed on your guest. 
+      * If you want to use the guest proxy set this to http://127.0.0.1:8123.  
+      * If you want to use the HOST proxy you setup earlier, use it's IP address
+      * If you don't want to use a proxy, you're nuts. Leave it blank.
+    * Networking:
+      * I make two networks: a host-only network and a bridged network
+        1 "guest_hostonly_ip": "192.168.124.5" is the IP for the host-only network.  I use 
+          it for the admin network. 192.168.124.x
+        2 "host_network_bridge_interface": "eth0", is the nic ON THE HOST that the guest will 
+          use to get DHCP IP addresses.
+        3 and vagrant comes up with it's own private IP for your box.
+  * Ensure that the shared folders you're planning on using exist on the Host OS.
+    * Ensure that your shared folders have open write permissions so the build box can write
+      into them. 0777
   * Drop the ISO of the OSes you're planning to build with into the ISO library.
 
 Make It So
