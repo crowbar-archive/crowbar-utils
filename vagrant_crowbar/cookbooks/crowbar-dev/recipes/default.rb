@@ -1,11 +1,10 @@
 
 # environment for executes:
-node.attribute?('guest_http_proxy') && http_proxy = node.props.guest_http_proxy
-node.attribute?('guest_https_proxy') && https_proxy = node.props.guest_https_proxy
+#node.attribute?('guest_https_proxy') && https_proxy = node.props.guest_https_proxy
 my_env = {
 	'HOME' => "/home/#{node.props.guest_username}/",
-	'http_proxy' => http_proxy,
-	'https_proxy' => https_proxy,
+	'http_proxy' => node.props.guest_http_proxy,
+	'https_proxy' => node.props.guest_https_proxy,
 	'no_proxy' => "127.0.0.0/8,192.168.124.0/24,10.0.0.0/8,143.166.0.0/16"	
 }
 
@@ -34,7 +33,7 @@ end
 
 execute "add_key" do
 	environment my_env
-	command "echo \"ssh-rsa #{node.props.user_sshpubkey} #{node.props.user_sshpubkey_host}\" >> /home/#{node.props.guest_username}/.ssh/authorized_keys"
+	command "echo \"ssh-rsa #{node.props.user_sshpubkey}\" >> /home/#{node.props.guest_username}/.ssh/authorized_keys"
 	creates "/home/#{node.props.guest_username}/.ssh/authorized_keys"
 	action :run
 end	
@@ -53,8 +52,8 @@ end
 		mode 0644
 		owner node.props.guest_username
 		variables ({
-			:proxy_host => http_proxy,
-			:proxy_ssl_host => https_proxy
+			:proxy_host => node.props.guest_http_proxy,
+			:proxy_ssl_host => node.props.guest_https_proxy
 		})
 	end
 end
@@ -107,7 +106,7 @@ template "/home/#{node.props.guest_username}/.gitconfig" do
 	mode 0400
 	owner node.props.guest_username
 	variables ({ 
-		:username => node.props.guest_username,
+		:username => node.props.git_user_name,
 		:user_email => node.props.git_user_email
  	})
 end
@@ -169,24 +168,3 @@ template "/home/#{node.props.guest_username}/.vimrc" do
 	})
 end
 
-# grab bits we need
-
-#{  #hash of bits "local" => "remote"
-#"#{sharedir}/ISOs/#{distro_iso_name}" => "#{distro_iso_url}",
-## add sledgehammer stuff here if necessary
-#}.each_pair do |local,remote|
-	#remote_file "#{local}" do
-		#source "#{remote}"
-		#action :nothing
-	#end
- #
-	#http_request "HEAD #{remote}" do
-		#message ""
-		#url remote
-		#action :head
-		#if File.exists?("#{local}")
-			#headers "If-Modified-Since" => File.mtime("#{local}").httpdate
-		#end
-		#notifies :create, resources(:remote_file => "#{local}"), :immediately
-	#end
-#end
