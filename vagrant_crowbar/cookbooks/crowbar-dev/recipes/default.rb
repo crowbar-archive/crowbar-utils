@@ -1,6 +1,5 @@
 
 # environment for executes:
-#node.attribute?('guest_https_proxy') && https_proxy = node.props.guest_https_proxy
 my_env = {
 	'HOME' => "/home/#{node.props.guest_username}/",
 	'http_proxy' => node.props.guest_http_proxy,
