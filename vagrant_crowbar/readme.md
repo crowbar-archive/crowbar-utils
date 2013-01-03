@@ -5,6 +5,12 @@ This is to setup a dev and build environment for developer/tester use.
 
 This is NOT the an attempt to deploy the Crowbar Admin node through Vagrant.  For that, have a look at https://github.com/dellcloudedge/crowbar-utils/tree/master/test_deploy_utils
 
+Tested OK on:
+=============
+
+  * Mac OS Lion, VirtualBox 4.2.6, Vagrant 1.0.5
+  * Ubuntu 12.04.2, VirtualBox 4.2.6, Vagrant 1.0.5
+ 
 
 How To:
 =======
@@ -22,7 +28,8 @@ Host Prerequisites:
       guest boxes and you won't lose everything youv'e downloaded.
       * Ubuntu: 
         `apt-get install polipo`
-        edit `/etc/polipo/config` to listen on 0.0.0.0
+        edit `/etc/polipo/config` to listen on 0.0.0.0 and restart polipo to pick up the changes
+        verify with `netstat -lntp | grep polipo`
 
 ### Virtual Box
   * Download and install the latest VirtualBox: https://www.virtualbox.org/wiki/Downloads  
