@@ -51,7 +51,9 @@ Vagrant::Config.run do |config|
   
   config.vm.provision :chef_solo do |chef|
     #chef.recipe_url = "http://files.vagrantup.com/getting_started/cookbooks.tar.gz"
+    #config.vbguest.auto_update = true #true by default when plugin installed
     chef.data_bags_path = "data_bags"
+    chef.add_recipe "apt"
     chef.add_recipe "crowbar-dev"
     chef.json = {
       :props => props

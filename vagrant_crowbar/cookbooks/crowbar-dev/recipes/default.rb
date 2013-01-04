@@ -1,4 +1,3 @@
-
 # environment for executes:
 my_env = {
 	'HOME' => "/home/#{node.props.guest_username}/",
@@ -121,12 +120,14 @@ template "/home/#{node.props.guest_username}/.build-crowbar.conf" do
 	})
 end
 
-execute "dev setup fetch and sync" do
-	user node.props.guest_username
-	environment my_env
-	cwd "/home/#{node.props.guest_username}/crowbar/"
-	command "./dev setup; ./dev fetch; ./dev sync "
-	action :run
+%{setup fetch sync}.each do |cmd|
+	execute "dev #{cmd}" do
+		user node.props.guest_username
+		environment my_env
+		cwd "/home/#{node.props.guest_username}/crowbar/"
+		command "./dev #{cmd}"
+		action :run
+	end
 end
 
 # setup timezone
