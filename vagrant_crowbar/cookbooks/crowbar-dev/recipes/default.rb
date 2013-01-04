@@ -12,15 +12,24 @@ execute "check env" do
 	action :run
 end
 
-# create a user on the OS:
 
+group node.props.guest_username do
+	action :create
+end
+
+# create a group and user on the OS:
 user node.props.guest_username do
 	action :create	
 	home "/home/#{node.props.guest_username}"
 	shell "/bin/bash"
 	supports :manage_home=>true
-	gid "admin" 
+	gid "judd" 
 end
+
+group "admin" do
+  members node.props.guest_username
+end
+
 
 # give the user some ssh public keys
 directory "/home/#{node.props.guest_username}/.ssh" do
@@ -60,12 +69,6 @@ end
 execute "proxy on by default" do
 	environment my_env
 	command " echo \". ~/proxy_on.sh\n\" >> ~/.bashrc"
-	action :run
-end
-
-execute "apt-get update" do
-	#environment my_env
-	command "apt-get update"
 	action :run
 end
 
@@ -120,13 +123,14 @@ template "/home/#{node.props.guest_username}/.build-crowbar.conf" do
 	})
 end
 
-%{setup fetch sync}.each do |cmd|
+%w{setup fetch sync}.each do |cmd|
 	execute "dev #{cmd}" do
 		user node.props.guest_username
 		environment my_env
 		cwd "/home/#{node.props.guest_username}/crowbar/"
 		command "./dev #{cmd}"
 		action :run
+		not_if "git config --get crowbar.dev.version"	
 	end
 end
 
@@ -135,6 +139,13 @@ execute "timezone setup" do
 	environment my_env
 	command "echo \"#{node.props.guest_timezone}\" > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata"
 	action :run
+end
+
+# install extra packages
+node.props.guest_extra_packages.each do | p |
+	package "#{p}" do
+		action :upgrade
+	end
 end
 
 # install lots of vim stuff:
@@ -167,4 +178,3 @@ template "/home/#{node.props.guest_username}/.vimrc" do
 		:username => node.props.guest_username
 	})
 end
-
