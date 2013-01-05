@@ -65,8 +65,9 @@ Prepare the Vagrant Environment
         2 "host_network_bridge_interface": "eth0", is the nic ON THE HOST that the guest will 
           use to get DHCP IP addresses.
         3 and vagrant comes up with it's own private IP for your box.
-    * Remotes: "github_extra_remotes" are added after ./dev setup is complete. To enable,
+    * "github_extra_remotes" Remotes are added after ./dev setup is complete. To enable,
        remove the # from the attribute name github_extra_remotes.  To disable, re-add the #. 
+    * "guest_extra_packages": ["figlet","fgrep"] A place for you to add package names. 
   * Ensure that the shared folders you're planning on using exist on the Host OS.
     * Ensure that your shared folders have open write permissions so the build box can write
       into them. 0777

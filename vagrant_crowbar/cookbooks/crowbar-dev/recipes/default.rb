@@ -167,12 +167,12 @@ execute "timezone setup" do
 	action :run
 end
 
-## install extra packages
-#node.props.guest_extra_packages.each do | p |
-#	package "#{p}" do
-#		action :upgrade
-#	end
-#end
+# install extra packages
+node.props.attribute?('guest_extra_packages') && node.props.guest_extra_packages.each do | p |
+	package "#{p}" do
+		action :upgrade
+	end
+end
 
 # install lots of vim stuff:
 execute "vim installs pathogen" do
