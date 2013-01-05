@@ -17,11 +17,11 @@
 "guest_hostonly_ip": "192.168.124.5",
 "host_network_bridge_interface": "eth0",
 "guest_http_proxy": "http://10.0.2.2:8123",
-"guest_https_proxy": "http://10.0.2.2:8123",
+"guest_https_proxy": "",
 "guest_cpus": "1",
 "guest_ram": "1024",
 "guest_timezone": "America/New_York",
 "guest_extra_packages": "",
-"box_name": "precise64",
+"box_name": "ubuntu64-12.04.1",
 "box_url": "http://files.vagrantup.com/precise64.box"
 }

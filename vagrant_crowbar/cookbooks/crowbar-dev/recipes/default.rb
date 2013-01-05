@@ -27,11 +27,12 @@ user node.props.guest_username do
 end
 
 group "admin" do
-  members node.props.guest_username
+	members node.props.guest_username
+	append true
 end
 
 
-# give the user some ssh public keys
+## give the user some ssh public keys
 directory "/home/#{node.props.guest_username}/.ssh" do
 	owner node.props.guest_username
 	mode "0700"
@@ -43,14 +44,15 @@ execute "add_key" do
 	command "echo \"ssh-rsa #{node.props.user_sshpubkey}\" >> /home/#{node.props.guest_username}/.ssh/authorized_keys"
 	creates "/home/#{node.props.guest_username}/.ssh/authorized_keys"
 	action :run
+	not_if "grep \"#{node.props.user_sshpubkey}\" /home/#{node.props.guest_username}/.ssh/authorized_keys "
 end	
 
-# I don't need to add him to sudoers, because "admin" group above in Ubuntu 
-# gives sudo with NOPASSWD.  ftw
-#execute "sudo hack" do
-	#command "echo \"#{p.username} ALL=(ALL:ALL) NOPASSWD: ALL\" >> /etc/sudoers"
-	#action :run
-#end
+## I don't need to add him to sudoers, because "admin" group above in Ubuntu 
+## gives sudo with NOPASSWD.  ftw
+##execute "sudo hack" do
+#	#command "echo \"#{p.username} ALL=(ALL:ALL) NOPASSWD: ALL\" >> /etc/sudoers"
+#	#action :run
+##end
 
 # setup useful http_proxy scripts
 %w{proxy_on.sh proxy_off.sh}.each do |pf|
@@ -65,11 +67,12 @@ end
 	end
 end
 
-# append proxy_on.sh to .bashrc
+## append proxy_on.sh to .bashrc
 execute "proxy on by default" do
 	environment my_env
-	command " echo \". ~/proxy_on.sh\n\" >> ~/.bashrc"
+	command " echo \"export http_proxy=#{node.props.guest_http_proxy}\nexport https_proxy=#{node.props.guest_https_proxy}\n\" >> /etc/profile"
 	action :run
+	not_if "grep http_proxy /etc/profile"
 end
 
 %w{tmux byobu debootstrap git rubygems molly-guard vim vim-rails curl polipo openssl build-essential mkisofs binutils rpm ruby genisoimage}.each do |p|
@@ -82,6 +85,7 @@ execute "json gem" do
 	environment my_env
 	command "gem install json"
 	action :run
+	not_if "gem list -i json | grep true"
 end	
 
 template "/home/#{node.props.guest_username}/.netrc" do
@@ -141,12 +145,12 @@ execute "timezone setup" do
 	action :run
 end
 
-# install extra packages
-node.props.guest_extra_packages.each do | p |
-	package "#{p}" do
-		action :upgrade
-	end
-end
+## install extra packages
+#node.props.guest_extra_packages.each do | p |
+#	package "#{p}" do
+#		action :upgrade
+#	end
+#end
 
 # install lots of vim stuff:
 execute "vim installs pathogen" do
