@@ -7,8 +7,8 @@
 "github_password": "",
 "github_repo": "https://github.com/crowbar/crowbar.git",
 "github_extra_remotes": {
-	"https://github.com/dellcloudedge/crowbar.git": "25"
-},
+	"cloudedge": [ "https://github.com/dellcloudedge/crowbar.git", "25" ]
+	},
 "shared_dir_guest": "/mnt/VMSharedDir/",
 "shared_dir_host": "/VMs/VMSharedDir/",
 "iso_library": "/mnt/VMSharedDir/",

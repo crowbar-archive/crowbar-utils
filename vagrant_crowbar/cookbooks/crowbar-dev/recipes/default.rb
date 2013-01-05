@@ -23,7 +23,7 @@ user node.props.guest_username do
 	home "/home/#{node.props.guest_username}"
 	shell "/bin/bash"
 	supports :manage_home=>true
-	gid "judd" 
+	gid node.props.guest_username
 end
 
 group "admin" do
@@ -88,6 +88,7 @@ execute "json gem" do
 	not_if "gem list -i json | grep true"
 end	
 
+# setup .netrc for github access
 template "/home/#{node.props.guest_username}/.netrc" do
 	source "netrc.erb"
 	mode 0400
@@ -98,6 +99,7 @@ template "/home/#{node.props.guest_username}/.netrc" do
  	})
 end
 
+# grab the crowbar repo
 execute "git clone crowbar" do
 	user node.props.guest_username
 	environment my_env
@@ -106,6 +108,7 @@ execute "git clone crowbar" do
 	creates "/home/#{node.props.guest_username}/crowbar/"
 end
 
+# setup git usernames
 template "/home/#{node.props.guest_username}/.gitconfig" do
 	source "gitconfig.erb"
 	mode 0400
@@ -116,6 +119,7 @@ template "/home/#{node.props.guest_username}/.gitconfig" do
  	})
 end
 
+# setup .build-crowbar.conf
 template "/home/#{node.props.guest_username}/.build-crowbar.conf" do
 	source "buildcrowbarconf.erb"
 	mode 0777
@@ -139,6 +143,21 @@ end
 		not_if "git config -f /home/#{node.props.guest_username}/crowbar/.git/config --get crowbar.dev.version"	
 	end
 end
+
+# add some remotes, if they want it
+#remotes = node.props[:github_extra_remotes].to_hash
+#remotes.each do | remote_name, remote_settings |
+	#Chef::Log.info remotes
+	#execute "set remote #{remote_name} to priority #{remote_settings}" do
+		#user node.props.guest_username
+		#environment my_env
+		#cwd "/home/#{node.props.guest_username}/crowbar/"
+		#command "./dev remote add #{remote_name} #{remote_settings[0]}"
+		#action :nothing
+	#end
+		#
+#end
+#Chef::Log.info remotes
 
 # setup timezone
 execute "timezone setup" do
