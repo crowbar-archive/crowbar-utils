@@ -127,6 +127,8 @@ template "/home/#{node.props.guest_username}/.build-crowbar.conf" do
 	})
 end
 
+
+# this can take forever - it's setting up the crowbar developemnt environment with ./dev
 %w{setup fetch sync}.each do |cmd|
 	execute "dev #{cmd}" do
 		user node.props.guest_username
@@ -134,7 +136,7 @@ end
 		cwd "/home/#{node.props.guest_username}/crowbar/"
 		command "./dev #{cmd}"
 		action :run
-		not_if "git config --get crowbar.dev.version"	
+		not_if "git config -f /home/#{node.props.guest_username}/crowbar/.git/config --get crowbar.dev.version"	
 	end
 end
 
