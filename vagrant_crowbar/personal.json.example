@@ -23,5 +23,5 @@
 "guest_timezone": "America/New_York",
 "guest_extra_packages": "",
 "box_name": "ubuntu64-12.04.1",
-"box_url": "http://files.vagrantup.com/precise64.box"
+"box_url": "https://dl.dropbox.com/u/9764728/boxes/ubuntu64-12.04.1.box"
 }
