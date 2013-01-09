@@ -24,13 +24,17 @@ Vagrant::Config.run do |config|
   # via the IP. Host-only networks can talk to the host machine as well as
   # any other machines on the same network, but cannot be accessed (through this
   # network interface) by any external networks.
-  config.vm.network :hostonly, props['guest_hostonly_ip']
+  if props.include?("guest_hostonly_ip") 
+	 config.vm.network :hostonly, props['guest_hostonly_ip']
+  end
 
   # Assign this VM to a bridged network, allowing you to connect directly to a
   # network using the host's network device. This makes the VM appear as another
   # physical device on your network.
   #config.vm.network :bridged, :adapter => 'eth0'
-  config.vm.network :bridged, :bridge => props['host_network_bridge_interface']
+  if props.include?("host_network_bridge_interface")
+	 config.vm.network :bridged, :bridge => props['host_network_bridge_interface']
+  end
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
@@ -53,8 +57,12 @@ Vagrant::Config.run do |config|
     #chef.recipe_url = "http://files.vagrantup.com/getting_started/cookbooks.tar.gz"
     #config.vbguest.auto_update = true #true by default when plugin installed
     chef.data_bags_path = "data_bags"
+    chef.add_recipe "crowbar-dev::user_create"
+    chef.add_recipe "crowbar-dev::cntlm"
+    chef.add_recipe "crowbar-dev::polipo"
+    chef.add_recipe "crowbar-dev::apt-proxy"
     chef.add_recipe "apt"
-    chef.add_recipe "crowbar-dev"
+    chef.add_recipe "crowbar-dev::json"
     chef.json = {
       :props => props
     }

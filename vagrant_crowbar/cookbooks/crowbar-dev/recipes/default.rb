@@ -6,87 +6,36 @@ my_env = {
 	'no_proxy' => "127.0.0.0/8,192.168.124.0/24,10.0.0.0/8,143.166.0.0/16"	
 }
 
+# need proxy on as soon as possible
+## append proxy_on.sh to .bashrc
+execute "proxy on by default" do
+	environment my_env
+	command " echo \"export http_proxy=\'#{node.props.guest_http_proxy}\'\nexport https_proxy=\'#{node.props.guest_https_proxy}\'\n\" >> /etc/profile"
+	action :run
+	not_if "grep http_proxy /etc/profile"
+end
+
 execute "check env" do
 	command "env > /tmp/env"
 	environment my_env
 	action :run
 end
 
-
-group node.props.guest_username do
-	action :create
-end
-
-# create a group and user on the OS:
-user node.props.guest_username do
-	action :create	
-	home "/home/#{node.props.guest_username}"
-	shell "/bin/bash"
-	supports :manage_home=>true
-	gid node.props.guest_username
-end
-
-group "admin" do
-	members node.props.guest_username
-	append true
-end
-
-
-## give the user some ssh public keys
-directory "/home/#{node.props.guest_username}/.ssh" do
-	owner node.props.guest_username
-	mode "0700"
-	action :create
-end
-
-execute "add_key" do
+execute "json gem" do
+	command "gem install json"
 	environment my_env
-	command "echo \"ssh-rsa #{node.props.user_sshpubkey}\" >> /home/#{node.props.guest_username}/.ssh/authorized_keys"
-	creates "/home/#{node.props.guest_username}/.ssh/authorized_keys"
 	action :run
-	not_if "grep \"#{node.props.user_sshpubkey}\" /home/#{node.props.guest_username}/.ssh/authorized_keys "
+	#not_if "gem list -i json | grep true"
 end	
 
-## I don't need to add him to sudoers, because "admin" group above in Ubuntu 
-## gives sudo with NOPASSWD.  ftw
-##execute "sudo hack" do
-#	#command "echo \"#{p.username} ALL=(ALL:ALL) NOPASSWD: ALL\" >> /etc/sudoers"
-#	#action :run
-##end
-
-# setup useful http_proxy scripts
-%w{proxy_on.sh proxy_off.sh}.each do |pf|
-	template "/home/#{node.props.guest_username}/#{pf}" do
-		source "#{pf}.erb"
-		mode 0644
-		owner node.props.guest_username
-		variables ({
-			:proxy_host => node.props.guest_http_proxy,
-			:proxy_ssl_host => node.props.guest_https_proxy
-		})
-	end
-end
-
-## append proxy_on.sh to .bashrc
-execute "proxy on by default" do
-	environment my_env
-	command " echo \"export http_proxy=#{node.props.guest_http_proxy}\nexport https_proxy=#{node.props.guest_https_proxy}\n\" >> /etc/profile"
-	action :run
-	not_if "grep http_proxy /etc/profile"
-end
-
-%w{tmux byobu debootstrap git rubygems molly-guard vim vim-rails curl polipo openssl build-essential mkisofs binutils rpm ruby genisoimage}.each do |p|
+#%w{tmux byobu debootstrap git rubygems molly-guard vim vim-rails curl openssl build-essential mkisofs binutils rpm ruby genisoimage}.each do |p|
+%w{debootstrap git rubygems vim vim-rails curl openssl build-essential mkisofs binutils rpm ruby genisoimage erlang ssh}.each do |p|
 	package "#{p}" do
 		action :upgrade
 	end
 end
 
-execute "json gem" do
-	environment my_env
-	command "gem install json"
-	action :run
-	not_if "gem list -i json | grep true"
-end	
+
 
 # setup .netrc for github access
 template "/home/#{node.props.guest_username}/.netrc" do

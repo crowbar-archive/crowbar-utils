@@ -1,0 +1,16 @@
+#!/bin/bash
+case $1 in
+  work) unset DEV_AVAILABLE_REMOTES
+    if [[ $(readlink -e /etc/polipo/config) != *.work ]]; then
+      sudo rm -f /etc/polipo/config
+      sudo ln -fs /etc/polipo/config.work /etc/polipo/config
+      sudo service polipo restart
+    fi;;
+  home) export DEV_AVAILABLE_REMOTES="origin"
+    if [[ $(readlink -e /etc/polipo/config) != *.home ]]; then
+      sudo rm -f /etc/polipo/config
+      sudo ln -fs /etc/polipo/config.home /etc/polipo/config
+      sudo service polipo restart
+    fi;;
+  *) echo "Unknown option $1. Try home or work."
+esac
