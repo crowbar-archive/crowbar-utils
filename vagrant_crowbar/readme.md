@@ -23,6 +23,16 @@ Tested OK on:
 How To:
 =======
 
+Installation Environment:
+-------------------------
+
+### Behind Dell Proxy
+
+### Behind your own proxy on the host box
+
+### Proxy only on the guest box
+
+
 Host Prerequisites:
 -------------------
 
