@@ -2,3 +2,4 @@
 *.swp
 personal.json
 .git
+/doc/
