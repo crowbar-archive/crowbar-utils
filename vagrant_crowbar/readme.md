@@ -26,6 +26,29 @@ How To:
 Installation Environment:
 -------------------------
 
+I've created this Vagrantfile, box and cookbooks to support the kind of installation that support your environment.
+
+### BEHIND NTLM PROXY
+like a typical Corporate Firewall
+*personal.json* settings:
+  *  "guest_use_cntlm": "true",
+  *  "guest_parent_proxy": "127.0.0.1:5865",
+  *  "polipo_mode": "work",
+
+### HOST PROXY
+you are cool to run a proxy on your host OS (or have a good upstream proxy)
+*personal.json* settings:
+  *  "guest_use_cntlm": "false",
+  *  "guest_parent_proxy: "<your parent proxy here>",
+  *  "polipo_mode": "work"
+
+### NO PROXY (will still install a proxy on the guest)
+you can't be bothered to run a proxy on your host OS
+*personal.json* settings:
+  *  "guest_use_cntlm": "false",
+  *  "polipo_mode": "home",
+
+
 Host Prerequisites:
 -------------------
 
@@ -121,14 +144,4 @@ I hope it helps you get up and developing Crowbar quickly.
 
 -judd
 
-Design
-======
-
-Proxied environments can be a challenge when multiple configurations need to be supported.
-
-Modes
------
-work + cntlm
-work 
-home 
 
