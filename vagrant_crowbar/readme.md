@@ -35,7 +35,7 @@ like a typical Corporate Firewall
 
 *personal.json* settings:
   *  "guest_use_cntlm": "true",
-  *  "guest_parent_proxy": "127.0.0.1:5865",
+  *  "guest_parent_proxy": "127.0.0.1:8123",
   *  "polipo_mode": "work",
 
 ### HOST PROXY
