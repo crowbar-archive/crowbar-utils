@@ -111,15 +111,16 @@ Prepare the Vagrant Environment for Installation
     * "guest_extra_packages": ["figlet","fgrep"] A place for you to add package names. 
     *BEHIND NTLM PROXY*
     *  "guest_use_cntlm": "true",
-    *  "guest_parent_proxy": "127.0.0.1:5865",
+    *  "guest_parent_proxy": "127.0.0.1:8123",
     *  "polipo_mode": "work",
     *HOST (or other non-guest) PROXY*
     *  "guest_use_cntlm": "false",
-    *  "guest_parent_proxy: "<your parent proxy here>",
+    *  "guest_parent_proxy: "your parent proxy here",
     *  "polipo_mode": "work"
     *NO PROXY (except the required one on the guest)*
     *  "guest_use_cntlm": "false",
     *  "polipo_mode": "home",
+    *  "rubys_to_install": "1.9.3 1.8.7", note that they're space delimited.
 
   * Ensure that the shared folders you're planning on using exist on the Host OS.
     * Ensure that your shared folders have open write permissions so the build box can write
