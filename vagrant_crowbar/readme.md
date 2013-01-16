@@ -72,11 +72,12 @@ Prepare the Vagrant Environment for Installation
       * If you don't want to use a proxy, you're nuts. Leave it blank.
     * Networking:
       * I make two networks: a host-only network and a bridged network
-        1 "guest_hostonly_ip": "192.168.124.5" is the IP for the host-only network.  I use 
+        * "guest_hostonly_ip": "192.168.124.5" is the IP for the host-only network.  I use 
           it for the admin network. 192.168.124.x
-        2 "host_network_bridge_interface": "eth0", is the nic ON THE HOST that the guest will 
+        * "host_network_bridge_interface": "eth0", is the nic ON THE HOST that the guest will 
           use to get DHCP IP addresses.
-        3 and vagrant comes up with it's own private IP for your box.
+        * and vagrant comes up with it's own private IP for your box - usually 10.0.2.15
+          with 10.0.2.2 for your host box.
     * "github_extra_remotes" Remotes are added after ./dev setup is complete. To enable,
        remove the # from the attribute name github_extra_remotes.  To disable, re-add the #. 
     * "guest_extra_packages": ["figlet","fgrep"] A place for you to add package names. 
