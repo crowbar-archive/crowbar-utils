@@ -32,6 +32,7 @@ Proxies are WICKED important - becuase you'll be doing a lot of downloading.
 
 ### BEHIND NTLM PROXY
 like a typical Corporate Firewall
+
 *personal.json* settings:
   *  "guest_use_cntlm": "true",
   *  "guest_parent_proxy": "127.0.0.1:5865",
@@ -39,6 +40,7 @@ like a typical Corporate Firewall
 
 ### HOST PROXY
 you are cool to run a proxy on your host OS (or have a good upstream proxy)
+
 *personal.json* settings:
   *  "guest_use_cntlm": "false",
   *  "guest_parent_proxy: "<your parent proxy here>",
@@ -46,6 +48,7 @@ you are cool to run a proxy on your host OS (or have a good upstream proxy)
 
 ### NO PROXY (will still install a proxy on the guest)
 you can't be bothered to run a proxy on your host OS
+
 *personal.json* settings:
   *  "guest_use_cntlm": "false",
   *  "polipo_mode": "home",
