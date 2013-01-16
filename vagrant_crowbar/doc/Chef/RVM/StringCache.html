@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Class: Chef::RVM::StringCache</title>
+
+  <link rel="stylesheet" href="../../rdoc.css" type="text/css" media="screen" />
+
+  <script src="../../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body id="top" class="class">
+
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../../index.html">Home</a>
+          <a href="../../index.html#classes">Classes</a>
+          <a href="../../index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="../../cookbooks/rvm/libraries/chef_rvm_string_cache_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/libraries/chef_rvm_string_cache.rb">cookbooks/rvm/libraries/chef_rvm_string_cache.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        
+        <p class="link"><a href="../../Object.html">Object</a></p>
+        
+      </div>
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-c-canonical_ruby_string">::canonical_ruby_string</a></li>
+          
+          <li><a href="#method-c-fetch">::fetch</a></li>
+          
+          <li><a href="#method-c-shell_params">::shell_params</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <!-- Included Modules -->
+      <div id="includes-section" class="section">
+        <h3 class="section-header">Included Modules</h3>
+        <ul class="link-list">
+        
+        
+          <li><span class="include">Chef::Mixin::Command</span></li>
+        
+        
+        
+          <li><a class="include" href="ShellHelpers.html">Chef::RVM::ShellHelpers</a></li>
+        
+        
+        </ul>
+      </div>
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="../../Vagrantfile.html">Vagrantfile</a></li>
+        
+          <li class="file"><a href="../../cookbooks/apt/CONTRIBUTING.html">CONTRIBUTING</a></li>
+        
+          <li class="file"><a href="../../cookbooks/apt/Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="../../cookbooks/apt/LICENSE.html">LICENSE</a></li>
+        
+          <li class="file"><a href="../../cookbooks/apt/test/kitchen/Kitchenfile.html">Kitchenfile</a></li>
+        
+          <li class="file"><a href="../../cookbooks/crowbar-dev/files/default/proxy.html">proxy</a></li>
+        
+          <li class="file"><a href="../../cookbooks/crowbar-dev/templates/default/vimrc.html">vimrc</a></li>
+        
+          <li class="file"><a href="../../cookbooks/rvm/Berksfile.html">Berksfile</a></li>
+        
+          <li class="file"><a href="../../cookbooks/rvm/Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="../../cookbooks/rvm/Rakefile.html">Rakefile</a></li>
+        
+          <li class="file"><a href="../../cookbooks/rvm/Vagrantfile.html">Vagrantfile</a></li>
+        
+          <li class="file"><a href="../../tmp/box1357667719.html">box1357667719</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="../../images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="../../Chef.html">Chef</a></li>
+        
+          <li><a href="../../Chef/Provider.html">Chef::Provider</a></li>
+        
+          <li><a href="../../Chef/Provider/Package.html">Chef::Provider::Package</a></li>
+        
+          <li><a href="../../Chef/Provider/Package/RVMRubygems.html">Chef::Provider::Package::RVMRubygems</a></li>
+        
+          <li><a href="../../Chef/Provider/Package/RVMRubygems/RVMGemEnvironment.html">Chef::Provider::Package::RVMRubygems::RVMGemEnvironment</a></li>
+        
+          <li><a href="../../Chef/RVM.html">Chef::RVM</a></li>
+        
+          <li><a href="../../Chef/RVM/EnvironmentHelpers.html">Chef::RVM::EnvironmentHelpers</a></li>
+        
+          <li><a href="../../Chef/RVM/GemsetHelpers.html">Chef::RVM::GemsetHelpers</a></li>
+        
+          <li><a href="../../Chef/RVM/RecipeHelpers.html">Chef::RVM::RecipeHelpers</a></li>
+        
+          <li><a href="../../Chef/RVM/RubyHelpers.html">Chef::RVM::RubyHelpers</a></li>
+        
+          <li><a href="../../Chef/RVM/SetHelpers.html">Chef::RVM::SetHelpers</a></li>
+        
+          <li><a href="../../Chef/RVM/ShellHelpers.html">Chef::RVM::ShellHelpers</a></li>
+        
+          <li><a href="../../Chef/RVM/StringCache.html">Chef::RVM::StringCache</a></li>
+        
+          <li><a href="../../Chef/RVM/StringHelpers.html">Chef::RVM::StringHelpers</a></li>
+        
+          <li><a href="../../Chef/RVM/VersionCache.html">Chef::RVM::VersionCache</a></li>
+        
+          <li><a href="../../Chef/RVM/VersionHelpers.html">Chef::RVM::VersionHelpers</a></li>
+        
+          <li><a href="../../Chef/Recipe.html">Chef::Recipe</a></li>
+        
+          <li><a href="../../Chef/Resource.html">Chef::Resource</a></li>
+        
+          <li><a href="../../Helpers.html">Helpers</a></li>
+        
+          <li><a href="../../Helpers/AptTest.html">Helpers::AptTest</a></li>
+        
+          <li><a href="../../Object.html">Object</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="class">Chef::RVM::StringCache</h1>
+
+    <div id="description" class="description">
+      
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+
+      <!-- Methods -->
+      
+      <div id="public-class-method-details" class="method-section section">
+        <h3 class="section-header">Public Class Methods</h3>
+
+      
+        <div id="fetch-method" class="method-detail ">
+          <a name="method-c-fetch"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">fetch</span><span
+              class="method-args">(str, user = nil)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Returns a fully qualified <a href="../RVM.html">RVM</a> Ruby string for the
+given input string</p>
+
+<p>@param [String] a string that can interpreted by <a
+href="../RVM.html">RVM</a> @param [String] the username if this is for a
+user install or nil if</p>
+
+<pre>it is a system install</pre>
+
+<p>@return [String] a fully qualified <a href="../RVM.html">RVM</a> Ruby
+string</p>
+            
+
+            
+            <div class="method-source-code" id="fetch-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/libraries/chef_rvm_string_cache.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">user</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">@@strings</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">rvm_install</span> = <span class="ruby-identifier">user</span> <span class="ruby-operator">||</span> <span class="ruby-string">&quot;system&quot;</span>
+  <span class="ruby-identifier">@@strings</span>[<span class="ruby-identifier">rvm_install</span>] <span class="ruby-operator">||=</span> <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">@@strings</span>[<span class="ruby-identifier">rvm_install</span>][<span class="ruby-identifier">str</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">@@strings</span>[<span class="ruby-identifier">rvm_install</span>].<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">str</span>)
+
+  <span class="ruby-identifier">result</span> = <span class="ruby-identifier">canonical_ruby_string</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">user</span>)
+  <span class="ruby-comment"># cache everything except default environment</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">str</span> <span class="ruby-operator">==</span> <span class="ruby-string">'default'</span>
+    <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">@@strings</span>[<span class="ruby-identifier">rvm_install</span>][<span class="ruby-identifier">str</span>] = <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- fetch-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- fetch-method -->
+
+      
+      </div><!-- public-class-method-details -->
+    
+      <div id="protected-class-method-details" class="method-section section">
+        <h3 class="section-header">Protected Class Methods</h3>
+
+      
+        <div id="canonical_ruby_string-method" class="method-detail ">
+          <a name="method-c-canonical_ruby_string"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">canonical_ruby_string</span><span
+              class="method-args">(str, user)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="canonical_ruby_string-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/libraries/chef_rvm_string_cache.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">canonical_ruby_string</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">user</span>)
+  <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;Fetching canonical RVM string for: #{str} &quot;</span> <span class="ruby-operator">+</span>
+                  <span class="ruby-node">&quot;(#{user || 'system'})&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>
+    <span class="ruby-identifier">user_dir</span> = <span class="ruby-constant">Etc</span>.<span class="ruby-identifier">getpwnam</span>(<span class="ruby-identifier">user</span>).<span class="ruby-identifier">dir</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">user_dir</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">cmd</span> = [<span class="ruby-node">&quot;source #{find_profile_to_source(user_dir)}&quot;</span>,
+    <span class="ruby-node">&quot;rvm_ruby_string='#{str}'&quot;</span>, <span class="ruby-string">&quot;__rvm_ruby_string&quot;</span>,
+    <span class="ruby-string">&quot;echo $rvm_ruby_string&quot;</span>].<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &amp;&amp; &quot;</span>)
+  <span class="ruby-identifier">pid</span>, <span class="ruby-identifier">stdin</span>, <span class="ruby-identifier">stdout</span>, <span class="ruby-identifier">stderr</span> = <span class="ruby-identifier">popen4</span>(<span class="ruby-string">'bash'</span>, <span class="ruby-identifier">shell_params</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">user_dir</span>))
+  <span class="ruby-identifier">stdin</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-identifier">cmd</span>)
+  <span class="ruby-identifier">stdin</span>.<span class="ruby-identifier">close</span>
+
+  <span class="ruby-identifier">result</span> = <span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">read</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">'\n'</span>).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^-/</span>   <span class="ruby-comment"># if the result has a leading dash, value is bogus</span>
+    <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">warn</span>(<span class="ruby-node">&quot;Could not determine canonical RVM string for: #{str} &quot;</span> <span class="ruby-operator">+</span>
+                   <span class="ruby-node">&quot;(#{user || 'system'})&quot;</span>)
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;Canonical RVM string is: #{str} =&gt; #{result} &quot;</span> <span class="ruby-operator">+</span>
+                    <span class="ruby-node">&quot;(#{user || 'system'})&quot;</span>)
+    <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- canonical_ruby_string-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- canonical_ruby_string-method -->
+
+      
+        <div id="shell_params-method" class="method-detail ">
+          <a name="method-c-shell_params"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">shell_params</span><span
+              class="method-args">(user, user_dir)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="shell_params-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/libraries/chef_rvm_string_cache.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">shell_params</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">user_dir</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>
+    {
+      <span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>,
+      <span class="ruby-value">:environment</span> =<span class="ruby-operator">&gt;</span> {
+        <span class="ruby-string">'USER'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>,
+        <span class="ruby-string">'HOME'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_dir</span>
+      }
+    }
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- shell_params-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- shell_params-method -->
+
+      
+      </div><!-- protected-class-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
+  
+
+  </div><!-- documentation -->
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+
+</body>
+</html>
+

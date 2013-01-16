@@ -28,6 +28,8 @@
 "win_domain_name": "AMERICAS",
 "win_domain_password": "its the most wonderful time of the year",
 "win_domain_proxy": "proxy.us.dell.com:80",
-"polipo_mode": "work"
+"polipo_mode": "work",
+"rubys_to_install": "1.9.3 1.8.8",
+"ruby_default_version": "1.9.3"
 }
 

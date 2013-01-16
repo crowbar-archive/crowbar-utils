@@ -57,12 +57,14 @@ Vagrant::Config.run do |config|
     #chef.recipe_url = "http://files.vagrantup.com/getting_started/cookbooks.tar.gz"
     #config.vbguest.auto_update = true #true by default when plugin installed
     chef.data_bags_path = "data_bags"
-    chef.add_recipe "crowbar-dev::user_create"
-    chef.add_recipe "crowbar-dev::cntlm"
+    chef.add_recipe "crowbar-dev::user-create"
+    if props.include?("guest_use_ntlm") && props["guest_use_cntlm"] == True 
+         chef.add_recipe "crowbar-dev::cntlm"
+    end
     chef.add_recipe "crowbar-dev::polipo"
-    chef.add_recipe "crowbar-dev::apt-proxy"
     chef.add_recipe "apt"
-    chef.add_recipe "crowbar-dev::json"
+    chef.add_recipe "crowbar-dev::rvm"
+#    chef.add_recipe "crowbar-dev::json"
     chef.json = {
       :props => props
     }

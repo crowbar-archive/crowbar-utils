@@ -103,3 +103,15 @@ Please let me know what you find: submit bug reports, email me, find me on IRC, 
 I hope it helps you get up and developing Crowbar quickly.
 
 -judd
+
+Design
+======
+
+Proxied environments can be a challenge when multiple configurations need to be supported.
+
+Modes
+-----
+work + cntlm
+work 
+home 
+

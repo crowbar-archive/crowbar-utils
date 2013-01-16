@@ -1,0 +1,1758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Class: Object</title>
+
+  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body id="top" class="class">
+
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="./cookbooks/apt/providers/preference_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/apt/providers/preference.rb">cookbooks/apt/providers/preference.rb</a></li>
+          
+            <li><a href="./cookbooks/apt/providers/repository_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/apt/providers/repository.rb">cookbooks/apt/providers/repository.rb</a></li>
+          
+            <li><a href="./cookbooks/apt/resources/preference_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/apt/resources/preference.rb">cookbooks/apt/resources/preference.rb</a></li>
+          
+            <li><a href="./cookbooks/apt/resources/repository_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/apt/resources/repository.rb">cookbooks/apt/resources/repository.rb</a></li>
+          
+            <li><a href="./cookbooks/apt/test/kitchen/cookbooks/apt_test/files/default/tests/minitest/lwrps_test_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/apt/test/kitchen/cookbooks/apt_test/files/default/tests/minitest/lwrps_test.rb">cookbooks/apt/test/kitchen/cookbooks/apt_test/files/default/tests/minitest/lwrps_test.rb</a></li>
+          
+            <li><a href="./cookbooks/apt/test/kitchen/cookbooks/apt_test/files/default/tests/minitest/cacher-ng_test_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/apt/test/kitchen/cookbooks/apt_test/files/default/tests/minitest/cacher-ng_test.rb">cookbooks/apt/test/kitchen/cookbooks/apt_test/files/default/tests/minitest/cacher-ng_test.rb</a></li>
+          
+            <li><a href="./cookbooks/apt/test/kitchen/cookbooks/apt_test/files/default/tests/minitest/default_test_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/apt/test/kitchen/cookbooks/apt_test/files/default/tests/minitest/default_test.rb">cookbooks/apt/test/kitchen/cookbooks/apt_test/files/default/tests/minitest/default_test.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/providers/shell_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/providers/shell.rb">cookbooks/rvm/providers/shell.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/providers/wrapper_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/providers/wrapper.rb">cookbooks/rvm/providers/wrapper.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/providers/ruby_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/providers/ruby.rb">cookbooks/rvm/providers/ruby.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/providers/environment_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/providers/environment.rb">cookbooks/rvm/providers/environment.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/providers/global_gem_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/providers/global_gem.rb">cookbooks/rvm/providers/global_gem.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/providers/gemset_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/providers/gemset.rb">cookbooks/rvm/providers/gemset.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/providers/default_ruby_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/providers/default_ruby.rb">cookbooks/rvm/providers/default_ruby.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/resources/shell_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/resources/shell.rb">cookbooks/rvm/resources/shell.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/resources/wrapper_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/resources/wrapper.rb">cookbooks/rvm/resources/wrapper.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/resources/ruby_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/resources/ruby.rb">cookbooks/rvm/resources/ruby.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/resources/environment_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/resources/environment.rb">cookbooks/rvm/resources/environment.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/resources/global_gem_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/resources/global_gem.rb">cookbooks/rvm/resources/global_gem.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/resources/gemset_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/resources/gemset.rb">cookbooks/rvm/resources/gemset.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/resources/gem_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/resources/gem.rb">cookbooks/rvm/resources/gem.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/resources/default_ruby_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/resources/default_ruby.rb">cookbooks/rvm/resources/default_ruby.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/libraries/rvm_chef_user_environment_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/libraries/rvm_chef_user_environment.rb">cookbooks/rvm/libraries/rvm_chef_user_environment.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/libraries/rvm_shell_chef_wrapper_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/libraries/rvm_shell_chef_wrapper.rb">cookbooks/rvm/libraries/rvm_shell_chef_wrapper.rb</a></li>
+          
+            <li><a href="./cookbooks/rvm/libraries/gem_package_monkeypatch_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="cookbooks/rvm/libraries/gem_package_monkeypatch.rb">cookbooks/rvm/libraries/gem_package_monkeypatch.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        
+        <p class="link">BasicObject</p>
+        
+      </div>
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-c-new">::new</a></li>
+          
+          <li><a href="#method-c-root_rvm_path-3D">::root_rvm_path=</a></li>
+          
+          <li><a href="#method-i-build_pref">#build_pref</a></li>
+          
+          <li><a href="#method-i-build_repo">#build_repo</a></li>
+          
+          <li><a href="#method-i-create_rvm_chef_user_environment">#create_rvm_chef_user_environment</a></li>
+          
+          <li><a href="#method-i-create_rvm_shell_chef_wrapper">#create_rvm_shell_chef_wrapper</a></li>
+          
+          <li><a href="#method-i-create_wrapper">#create_wrapper</a></li>
+          
+          <li><a href="#method-i-extract_gpg_ids_from_cmd">#extract_gpg_ids_from_cmd</a></li>
+          
+          <li><a href="#method-i-gem_package_wrapper">#gem_package_wrapper</a></li>
+          
+          <li><a href="#method-i-gemset_resource">#gemset_resource</a></li>
+          
+          <li><a href="#method-i-install_key_from_keyserver">#install_key_from_keyserver</a></li>
+          
+          <li><a href="#method-i-install_key_from_uri">#install_key_from_uri</a></li>
+          
+          <li><a href="#method-i-install_ruby_dependencies">#install_ruby_dependencies</a></li>
+          
+          <li><a href="#method-i-load_current_resource">#load_current_resource</a></li>
+          
+          <li><a href="#method-i-patch_gem_package">#patch_gem_package</a></li>
+          
+          <li><a href="#method-i-ruby_resource">#ruby_resource</a></li>
+          
+          <li><a href="#method-i-run_command">#run_command</a></li>
+          
+          <li><a href="#method-i-run_command_silently">#run_command_silently</a></li>
+          
+          <li><a href="#method-i-script_wrapper">#script_wrapper</a></li>
+          
+          <li><a href="#method-i-shell_params">#shell_params</a></li>
+          
+          <li><a href="#method-i-skip_environment-3F">#skip_environment?</a></li>
+          
+          <li><a href="#method-i-skip_ruby-3F">#skip_ruby?</a></li>
+          
+          <li><a href="#method-i-stderr">#stderr</a></li>
+          
+          <li><a href="#method-i-stdin">#stdin</a></li>
+          
+          <li><a href="#method-i-stdout">#stdout</a></li>
+          
+          <li><a href="#method-i-update_global_gems_file">#update_global_gems_file</a></li>
+          
+          <li><a href="#method-i-user_dir">#user_dir</a></li>
+          
+          <li><a href="#method-i-user_installed_rvm-3F">#user_installed_rvm?</a></li>
+          
+          <li><a href="#method-i-whyrun_supported-3F">#whyrun_supported?</a></li>
+          
+          <li><a href="#method-i-with_shell_instance">#with_shell_instance</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <!-- Included Modules -->
+      <div id="includes-section" class="section">
+        <h3 class="section-header">Included Modules</h3>
+        <ul class="link-list">
+        
+        
+          <li><a class="include" href="Helpers/AptTest.html">Helpers::AptTest</a></li>
+        
+        
+        
+          <li><a class="include" href="Chef/RVM/StringHelpers.html">Chef::RVM::StringHelpers</a></li>
+        
+        
+        
+          <li><a class="include" href="Chef/RVM/EnvironmentHelpers.html">Chef::RVM::EnvironmentHelpers</a></li>
+        
+        
+        
+          <li><a class="include" href="Chef/RVM/ShellHelpers.html">Chef::RVM::ShellHelpers</a></li>
+        
+        
+        
+          <li><a class="include" href="Chef/RVM/RubyHelpers.html">Chef::RVM::RubyHelpers</a></li>
+        
+        
+        
+          <li><a class="include" href="Chef/RVM/GemsetHelpers.html">Chef::RVM::GemsetHelpers</a></li>
+        
+        
+        
+          <li><span class="include">Chef::Mixin::Command</span></li>
+        
+        
+        </ul>
+      </div>
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./Vagrantfile.html">Vagrantfile</a></li>
+        
+          <li class="file"><a href="./cookbooks/apt/CONTRIBUTING.html">CONTRIBUTING</a></li>
+        
+          <li class="file"><a href="./cookbooks/apt/Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="./cookbooks/apt/LICENSE.html">LICENSE</a></li>
+        
+          <li class="file"><a href="./cookbooks/apt/test/kitchen/Kitchenfile.html">Kitchenfile</a></li>
+        
+          <li class="file"><a href="./cookbooks/crowbar-dev/files/default/proxy.html">proxy</a></li>
+        
+          <li class="file"><a href="./cookbooks/crowbar-dev/templates/default/vimrc.html">vimrc</a></li>
+        
+          <li class="file"><a href="./cookbooks/rvm/Berksfile.html">Berksfile</a></li>
+        
+          <li class="file"><a href="./cookbooks/rvm/Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="./cookbooks/rvm/Rakefile.html">Rakefile</a></li>
+        
+          <li class="file"><a href="./cookbooks/rvm/Vagrantfile.html">Vagrantfile</a></li>
+        
+          <li class="file"><a href="./tmp/box1357667719.html">box1357667719</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./Chef.html">Chef</a></li>
+        
+          <li><a href="./Chef/Provider.html">Chef::Provider</a></li>
+        
+          <li><a href="./Chef/Provider/Package.html">Chef::Provider::Package</a></li>
+        
+          <li><a href="./Chef/Provider/Package/RVMRubygems.html">Chef::Provider::Package::RVMRubygems</a></li>
+        
+          <li><a href="./Chef/Provider/Package/RVMRubygems/RVMGemEnvironment.html">Chef::Provider::Package::RVMRubygems::RVMGemEnvironment</a></li>
+        
+          <li><a href="./Chef/RVM.html">Chef::RVM</a></li>
+        
+          <li><a href="./Chef/RVM/EnvironmentHelpers.html">Chef::RVM::EnvironmentHelpers</a></li>
+        
+          <li><a href="./Chef/RVM/GemsetHelpers.html">Chef::RVM::GemsetHelpers</a></li>
+        
+          <li><a href="./Chef/RVM/RecipeHelpers.html">Chef::RVM::RecipeHelpers</a></li>
+        
+          <li><a href="./Chef/RVM/RubyHelpers.html">Chef::RVM::RubyHelpers</a></li>
+        
+          <li><a href="./Chef/RVM/SetHelpers.html">Chef::RVM::SetHelpers</a></li>
+        
+          <li><a href="./Chef/RVM/ShellHelpers.html">Chef::RVM::ShellHelpers</a></li>
+        
+          <li><a href="./Chef/RVM/StringCache.html">Chef::RVM::StringCache</a></li>
+        
+          <li><a href="./Chef/RVM/StringHelpers.html">Chef::RVM::StringHelpers</a></li>
+        
+          <li><a href="./Chef/RVM/VersionCache.html">Chef::RVM::VersionCache</a></li>
+        
+          <li><a href="./Chef/RVM/VersionHelpers.html">Chef::RVM::VersionHelpers</a></li>
+        
+          <li><a href="./Chef/Recipe.html">Chef::Recipe</a></li>
+        
+          <li><a href="./Chef/Resource.html">Chef::Resource</a></li>
+        
+          <li><a href="./Helpers.html">Helpers</a></li>
+        
+          <li><a href="./Helpers/AptTest.html">Helpers::AptTest</a></li>
+        
+          <li><a href="./Object.html">Object</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="class">Object</h1>
+
+    <div id="description" class="description">
+      
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+
+      <!-- Methods -->
+      
+      <div id="public-class-method-details" class="method-section section">
+        <h3 class="section-header">Public Class Methods</h3>
+
+      
+        <div id="new-method" class="method-detail ">
+          <a name="method-c-new"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">(*args)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="new-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/apt/resources/preference.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(*<span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">super</span>
+  <span class="ruby-ivar">@action</span> = <span class="ruby-value">:add</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- new-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- new-method -->
+
+      
+        <div id="root_rvm_path-3D-method" class="method-detail ">
+          <a name="method-c-root_rvm_path-3D"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">root_rvm_path=</span><span
+              class="method-args">(path)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="root_rvm_path-3D-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/libraries/rvm_chef_user_environment.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">root_rvm_path=</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">@@root_rvm_path</span> = <span class="ruby-identifier">path</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- root_rvm_path-3D-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- root_rvm_path-3D-method -->
+
+      
+      </div><!-- public-class-method-details -->
+    
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="build_pref-method" class="method-detail ">
+          <a name="method-i-build_pref"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">build_pref</span><span
+              class="method-args">(package_name, pin, pin_priority)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Build preferences.d file contents</p>
+            
+
+            
+            <div class="method-source-code" id="build_pref-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/apt/providers/preference.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_pref</span>(<span class="ruby-identifier">package_name</span>, <span class="ruby-identifier">pin</span>, <span class="ruby-identifier">pin_priority</span>)
+  <span class="ruby-identifier">preference_content</span> = <span class="ruby-node">&quot;Package: #{package_name}\nPin: #{pin}\nPin-Priority: #{pin_priority}\n&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- build_pref-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- build_pref-method -->
+
+      
+        <div id="build_repo-method" class="method-detail ">
+          <a name="method-i-build_repo"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">build_repo</span><span
+              class="method-args">(uri, distribution, components, arch, add_deb_src)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>build repo file contents</p>
+            
+
+            
+            <div class="method-source-code" id="build_repo-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/apt/providers/repository.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_repo</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">distribution</span>, <span class="ruby-identifier">components</span>, <span class="ruby-identifier">arch</span>, <span class="ruby-identifier">add_deb_src</span>)
+  <span class="ruby-identifier">components</span> = <span class="ruby-identifier">components</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">' '</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">components</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:join</span>)
+  <span class="ruby-identifier">repo_info</span> = <span class="ruby-node">&quot;#{uri} #{distribution} #{components}\n&quot;</span>
+  <span class="ruby-identifier">repo_info</span> = <span class="ruby-node">&quot;arch=#{arch} #{repo_info}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">arch</span>
+  <span class="ruby-identifier">repo</span> =  <span class="ruby-node">&quot;deb     #{repo_info}&quot;</span>
+  <span class="ruby-identifier">repo</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;deb-src #{repo_info}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">add_deb_src</span>
+  <span class="ruby-identifier">repo</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- build_repo-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- build_repo-method -->
+
+      
+        <div id="create_rvm_chef_user_environment-method" class="method-detail ">
+          <a name="method-i-create_rvm_chef_user_environment"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">create_rvm_chef_user_environment</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="create_rvm_chef_user_environment-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/libraries/rvm_chef_user_environment.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_rvm_chef_user_environment</span>
+  <span class="ruby-identifier">klass</span> = <span class="ruby-constant">Class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">::</span><span class="ruby-constant">RVM</span><span class="ruby-operator">::</span><span class="ruby-constant">Environment</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">attr_reader</span> <span class="ruby-value">:user</span>
+
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">user</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">environment_name</span> = <span class="ruby-string">&quot;default&quot;</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
+      <span class="ruby-comment"># explicitly set rvm_path if user is set</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-identifier">config</span>[<span class="ruby-string">'rvm_path'</span>] = <span class="ruby-identifier">@@root_rvm_path</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">config</span>[<span class="ruby-string">'rvm_path'</span>] = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">Etc</span>.<span class="ruby-identifier">getpwnam</span>(<span class="ruby-ivar">@user</span>).<span class="ruby-identifier">dir</span>, <span class="ruby-string">'.rvm'</span>)
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-identifier">merge_config!</span> <span class="ruby-identifier">options</span>
+      <span class="ruby-ivar">@environment_name</span> = <span class="ruby-identifier">environment_name</span>
+      <span class="ruby-ivar">@shell_wrapper</span> = <span class="ruby-operator">::</span><span class="ruby-constant">RVM</span><span class="ruby-operator">::</span><span class="ruby-constant">Shell</span><span class="ruby-operator">::</span><span class="ruby-constant">ChefWrapper</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user</span>)
+      <span class="ruby-ivar">@shell_wrapper</span>.<span class="ruby-identifier">setup</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">source_rvm_environment</span>
+        <span class="ruby-identifier">use_rvm_environment</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">root_rvm_path=</span>(<span class="ruby-identifier">path</span>)
+      <span class="ruby-identifier">@@root_rvm_path</span> = <span class="ruby-identifier">path</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-operator">::</span><span class="ruby-constant">RVM</span>.<span class="ruby-identifier">const_set</span>(<span class="ruby-string">'ChefUserEnvironment'</span>, <span class="ruby-identifier">klass</span>)
+
+  <span class="ruby-operator">::</span><span class="ruby-constant">RVM</span><span class="ruby-operator">::</span><span class="ruby-constant">ChefUserEnvironment</span>.<span class="ruby-identifier">root_rvm_path</span> = <span class="ruby-identifier">node</span>[<span class="ruby-string">'rvm'</span>][<span class="ruby-string">'root_path'</span>]
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- create_rvm_chef_user_environment-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- create_rvm_chef_user_environment-method -->
+
+      
+        <div id="create_rvm_shell_chef_wrapper-method" class="method-detail ">
+          <a name="method-i-create_rvm_shell_chef_wrapper"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">create_rvm_shell_chef_wrapper</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="create_rvm_shell_chef_wrapper-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/libraries/rvm_shell_chef_wrapper.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_rvm_shell_chef_wrapper</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-string">'chef/mixin/command'</span>
+
+  <span class="ruby-identifier">klass</span> = <span class="ruby-constant">Class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">::</span><span class="ruby-constant">RVM</span><span class="ruby-operator">::</span><span class="ruby-constant">Shell</span><span class="ruby-operator">::</span><span class="ruby-constant">AbstractWrapper</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">include</span> <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Mixin</span><span class="ruby-operator">::</span><span class="ruby-constant">Command</span>
+
+    <span class="ruby-identifier">attr_accessor</span> <span class="ruby-value">:current</span>
+
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">user</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">sh</span> = <span class="ruby-string">'bash -l'</span>, &amp;<span class="ruby-identifier">setup_block</span>)
+      <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
+      <span class="ruby-keyword">super</span>(<span class="ruby-identifier">sh</span>, &amp;<span class="ruby-identifier">setup_block</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Runs a given command in the current shell.</span>
+    <span class="ruby-comment"># Defaults the command to true if empty.</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">run_command</span>(<span class="ruby-identifier">command</span>)
+      <span class="ruby-identifier">command</span> = <span class="ruby-string">&quot;true&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-identifier">with_shell_instance</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-string">&quot;RVM::Shell::ChefWrapper executing: &quot;</span> <span class="ruby-operator">+</span>
+          <span class="ruby-node">&quot;[#{wrapped_command(command)}]&quot;</span>)
+        <span class="ruby-identifier">stdin</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">wrapped_command</span>(<span class="ruby-identifier">command</span>)
+        <span class="ruby-identifier">stdin</span>.<span class="ruby-identifier">close</span>
+        <span class="ruby-identifier">out</span>, <span class="ruby-identifier">err</span> = <span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">read</span>, <span class="ruby-identifier">stderr</span>.<span class="ruby-identifier">read</span>
+        <span class="ruby-identifier">out</span>, <span class="ruby-identifier">status</span>, <span class="ruby-identifier">_</span> = <span class="ruby-identifier">raw_stdout_to_parts</span>(<span class="ruby-identifier">out</span>)
+        <span class="ruby-keyword">return</span> <span class="ruby-identifier">status</span>, <span class="ruby-identifier">out</span>, <span class="ruby-identifier">err</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Runs a command, ensuring no output is collected.</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">run_command_silently</span>(<span class="ruby-identifier">command</span>)
+      <span class="ruby-identifier">with_shell_instance</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-string">&quot;RVM::Shell::ChefWrapper silently executing: &quot;</span> <span class="ruby-operator">+</span>
+          <span class="ruby-node">&quot;[#{wrapped_command(command)}]&quot;</span>)
+        <span class="ruby-identifier">stdin</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">silent_command</span>(<span class="ruby-identifier">command</span>)
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">protected</span>
+
+    <span class="ruby-comment"># yields stdio, stderr and stdin for a shell instance.</span>
+    <span class="ruby-comment"># If there isn't a current shell instance, it will create a new one.</span>
+    <span class="ruby-comment"># In said scenario, it will also cleanup once it is done.</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">with_shell_instance</span>(&amp;<span class="ruby-identifier">blk</span>)
+      <span class="ruby-identifier">no_current</span> = <span class="ruby-ivar">@current</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">no_current</span>
+        <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-string">&quot;RVM::Shell::ChefWrapper subprocess executing with &quot;</span> <span class="ruby-operator">+</span>
+          <span class="ruby-node">&quot;environment of: [#{shell_params.inspect}].&quot;</span>)
+        <span class="ruby-ivar">@current</span> = <span class="ruby-identifier">popen4</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">shell_executable</span>, <span class="ruby-identifier">shell_params</span>)
+        <span class="ruby-identifier">invoke_setup!</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">yield</span>
+    <span class="ruby-keyword">ensure</span>
+      <span class="ruby-ivar">@current</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">no_current</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Direct access to each of the named descriptors</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">stdin</span>;  <span class="ruby-ivar">@current</span>[<span class="ruby-value">1</span>]; <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">stdout</span>; <span class="ruby-ivar">@current</span>[<span class="ruby-value">2</span>]; <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">stderr</span>; <span class="ruby-ivar">@current</span>[<span class="ruby-value">3</span>]; <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">shell_params</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-keyword">else</span>
+        {
+          <span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>,
+          <span class="ruby-value">:environment</span> =<span class="ruby-operator">&gt;</span> {
+            <span class="ruby-string">'USER'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>,
+            <span class="ruby-string">'HOME'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Etc</span>.<span class="ruby-identifier">getpwnam</span>(<span class="ruby-ivar">@user</span>).<span class="ruby-identifier">dir</span>
+          }
+        }
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-operator">::</span><span class="ruby-constant">RVM</span><span class="ruby-operator">::</span><span class="ruby-constant">Shell</span>.<span class="ruby-identifier">const_set</span>(<span class="ruby-string">'ChefWrapper'</span>, <span class="ruby-identifier">klass</span>)
+
+  <span class="ruby-operator">::</span><span class="ruby-constant">RVM</span><span class="ruby-operator">::</span><span class="ruby-constant">Shell</span>.<span class="ruby-identifier">default_wrapper</span> = <span class="ruby-operator">::</span><span class="ruby-constant">RVM</span><span class="ruby-operator">::</span><span class="ruby-constant">Shell</span><span class="ruby-operator">::</span><span class="ruby-constant">ChefWrapper</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- create_rvm_shell_chef_wrapper-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- create_rvm_shell_chef_wrapper-method -->
+
+      
+        <div id="create_wrapper-method" class="method-detail ">
+          <a name="method-i-create_wrapper"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">create_wrapper</span><span
+              class="method-args">(bin)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="create_wrapper-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/providers/wrapper.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_wrapper</span>(<span class="ruby-identifier">bin</span>)
+  <span class="ruby-identifier">full_bin</span> = <span class="ruby-node">&quot;#{new_resource.prefix}_#{bin}&quot;</span>
+  <span class="ruby-identifier">resource_name</span> = <span class="ruby-node">&quot;rvm_wrapper[#{full_bin}::#{@ruby_string}]&quot;</span>
+  <span class="ruby-identifier">script</span> = <span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@rvm_env</span>.<span class="ruby-identifier">config</span>[<span class="ruby-string">&quot;rvm_path&quot;</span>], <span class="ruby-string">&quot;bin&quot;</span>, <span class="ruby-identifier">full_bin</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">script</span>)
+    <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;#{resource_name} already exists, so updating&quot;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;Creating #{resource_name}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@rvm_env</span>.<span class="ruby-identifier">wrapper</span> <span class="ruby-ivar">@ruby_string</span>, <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">prefix</span>, <span class="ruby-identifier">bin</span>
+    <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;Creation/Update of #{resource_name} was successful.&quot;</span>)
+    <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">updated_by_last_action</span>(<span class="ruby-keyword">true</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">warn</span>(<span class="ruby-node">&quot;Failed to create/update #{resource_name}.&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- create_wrapper-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- create_wrapper-method -->
+
+      
+        <div id="extract_gpg_ids_from_cmd-method" class="method-detail ">
+          <a name="method-i-extract_gpg_ids_from_cmd"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">extract_gpg_ids_from_cmd</span><span
+              class="method-args">(cmd)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>run command and extract gpg ids</p>
+            
+
+            
+            <div class="method-source-code" id="extract_gpg_ids_from_cmd-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/apt/providers/repository.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_gpg_ids_from_cmd</span>(<span class="ruby-identifier">cmd</span>)
+  <span class="ruby-identifier">so</span> = <span class="ruby-constant">Mixlib</span><span class="ruby-operator">::</span><span class="ruby-constant">ShellOut</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">cmd</span>)
+  <span class="ruby-identifier">so</span>.<span class="ruby-identifier">run_command</span>
+  <span class="ruby-identifier">so</span>.<span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp">/\n/</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">z</span> = <span class="ruby-identifier">t</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/^pub\s+\d+\w\/([0-9A-F]{8})/</span>)
+      <span class="ruby-identifier">z</span>[<span class="ruby-value">1</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">compact</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- extract_gpg_ids_from_cmd-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- extract_gpg_ids_from_cmd-method -->
+
+      
+        <div id="gem_package_wrapper-method" class="method-detail ">
+          <a name="method-i-gem_package_wrapper"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">gem_package_wrapper</span><span
+              class="method-args">(exec_action, ruby_global_gemset)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Wraps the rvm_gem resource</p>
+
+<p>@param [Symbol] action to be performed with gem_package provider @param
+[optional, String, to_s] the fully qualifed rvm string</p>
+            
+
+            
+            <div class="method-source-code" id="gem_package_wrapper-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/providers/global_gem.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">gem_package_wrapper</span>(<span class="ruby-identifier">exec_action</span>, <span class="ruby-identifier">ruby_global_gemset</span>)
+  <span class="ruby-identifier">g</span> = <span class="ruby-identifier">rvm_gem</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">package_name</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">ruby_string</span> <span class="ruby-identifier">ruby_global_gemset</span>
+    <span class="ruby-identifier">source</span>      <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">source</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">source</span>
+    <span class="ruby-identifier">options</span>     <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">options</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">options</span>
+    <span class="ruby-identifier">version</span>     <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">version</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">version</span>
+    <span class="ruby-identifier">gem_binary</span>  <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">gem_binary</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">gem_binary</span>
+    <span class="ruby-identifier">user</span>        <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>
+    <span class="ruby-identifier">action</span>      <span class="ruby-value">:nothing</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">g</span>.<span class="ruby-identifier">run_action</span>(<span class="ruby-identifier">exec_action</span>)
+  <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">updated_by_last_action</span>(<span class="ruby-keyword">true</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">g</span>.<span class="ruby-identifier">updated_by_last_action?</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- gem_package_wrapper-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- gem_package_wrapper-method -->
+
+      
+        <div id="gemset_resource-method" class="method-detail ">
+          <a name="method-i-gemset_resource"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">gemset_resource</span><span
+              class="method-args">(exec_action)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="gemset_resource-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/providers/environment.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">gemset_resource</span>(<span class="ruby-identifier">exec_action</span>)
+  <span class="ruby-comment"># ensure gemset is created, if specified</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">gemset_exists?</span>(<span class="ruby-value">:ruby</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@rubie</span>, <span class="ruby-value">:gemset</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@gemset</span>)
+    <span class="ruby-identifier">r</span> = <span class="ruby-identifier">rvm_gemset</span> <span class="ruby-ivar">@ruby_string</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">user</span>    <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>
+      <span class="ruby-identifier">action</span>  <span class="ruby-value">:nothing</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">run_action</span>(<span class="ruby-identifier">exec_action</span>)
+    <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">updated_by_last_action</span>(<span class="ruby-keyword">true</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">updated_by_last_action?</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- gemset_resource-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- gemset_resource-method -->
+
+      
+        <div id="install_key_from_keyserver-method" class="method-detail ">
+          <a name="method-i-install_key_from_keyserver"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">install_key_from_keyserver</span><span
+              class="method-args">(key, keyserver)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>install apt key from keyserver</p>
+            
+
+            
+            <div class="method-source-code" id="install_key_from_keyserver-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/apt/providers/repository.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">install_key_from_keyserver</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">keyserver</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;apt-key list | grep #{key}&quot;</span>)
+    <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;install-key #{key}&quot;</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">command</span> <span class="ruby-node">&quot;apt-key adv --keyserver #{keyserver} --recv #{key}&quot;</span>
+      <span class="ruby-identifier">action</span> <span class="ruby-value">:nothing</span>
+    <span class="ruby-keyword">end</span>.<span class="ruby-identifier">run_action</span>(<span class="ruby-value">:run</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- install_key_from_keyserver-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- install_key_from_keyserver-method -->
+
+      
+        <div id="install_key_from_uri-method" class="method-detail ">
+          <a name="method-i-install_key_from_uri"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">install_key_from_uri</span><span
+              class="method-args">(uri)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>install apt key from URI</p>
+            
+
+            
+            <div class="method-source-code" id="install_key_from_uri-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/apt/providers/repository.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">install_key_from_uri</span>(<span class="ruby-identifier">uri</span>)
+  <span class="ruby-identifier">key_name</span> = <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp">/\//</span>).<span class="ruby-identifier">last</span>
+  <span class="ruby-identifier">cached_keyfile</span> = <span class="ruby-node">&quot;#{Chef::Config[:file_cache_path]}/#{key_name}&quot;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">key</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/http/</span>
+    <span class="ruby-identifier">r</span> = <span class="ruby-identifier">remote_file</span> <span class="ruby-identifier">cached_keyfile</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">source</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">key</span>
+      <span class="ruby-identifier">mode</span> <span class="ruby-value">00644</span>
+      <span class="ruby-identifier">action</span> <span class="ruby-value">:nothing</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">r</span> = <span class="ruby-identifier">cookbook_file</span> <span class="ruby-identifier">cached_keyfile</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">source</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">key</span>
+      <span class="ruby-identifier">cookbook</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">cookbook</span>
+      <span class="ruby-identifier">mode</span> <span class="ruby-value">00644</span>
+      <span class="ruby-identifier">action</span> <span class="ruby-value">:nothing</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">r</span>.<span class="ruby-identifier">run_action</span>(<span class="ruby-value">:create</span>)
+
+  <span class="ruby-identifier">installed_ids</span> = <span class="ruby-identifier">extract_gpg_ids_from_cmd</span>(<span class="ruby-string">&quot;apt-key finger&quot;</span>)
+  <span class="ruby-identifier">key_ids</span> = <span class="ruby-identifier">extract_gpg_ids_from_cmd</span>(<span class="ruby-node">&quot;gpg --with-fingerprint #{cached_keyfile}&quot;</span>)
+  <span class="ruby-keyword">unless</span> (<span class="ruby-identifier">installed_ids</span> &amp; <span class="ruby-identifier">key_ids</span>).<span class="ruby-identifier">sort</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">key_ids</span>.<span class="ruby-identifier">sort</span>
+    <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;install-key #{key_name}&quot;</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">command</span> <span class="ruby-node">&quot;apt-key add #{cached_keyfile}&quot;</span>
+      <span class="ruby-identifier">action</span> <span class="ruby-value">:nothing</span>
+    <span class="ruby-keyword">end</span>.<span class="ruby-identifier">run_action</span>(<span class="ruby-value">:run</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- install_key_from_uri-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- install_key_from_uri-method -->
+
+      
+        <div id="install_ruby_dependencies-method" class="method-detail ">
+          <a name="method-i-install_ruby_dependencies"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">install_ruby_dependencies</span><span
+              class="method-args">(rubie)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Installs any package dependencies needed by a given ruby</p>
+
+<p>@param [String, to_s] the fully qualified RVM ruby string</p>
+            
+
+            
+            <div class="method-source-code" id="install_ruby_dependencies-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/providers/ruby.rb, line 120</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">install_ruby_dependencies</span>(<span class="ruby-identifier">rubie</span>)
+  <span class="ruby-identifier">pkgs</span> = []
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">rubie</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^ruby-/</span>, <span class="ruby-regexp">/^ree-/</span>, <span class="ruby-regexp">/^rbx-/</span>, <span class="ruby-regexp">/^kiji/</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">node</span>[<span class="ruby-string">'platform'</span>]
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;debian&quot;</span>,<span class="ruby-string">&quot;ubuntu&quot;</span>
+        <span class="ruby-identifier">pkgs</span>  = <span class="ruby-node">%{ build-essential openssl libreadline6 libreadline6-dev
+                    zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev
+                    sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev
+                    ncurses-dev automake libtool bison ssl-cert }</span>
+        <span class="ruby-identifier">pkgs</span> <span class="ruby-operator">+=</span> <span class="ruby-node">%{ subversion }</span>  <span class="ruby-keyword">if</span> <span class="ruby-identifier">rubie</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^ruby-head$/</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;suse&quot;</span>
+        <span class="ruby-identifier">pkgs</span> = <span class="ruby-node">%{ gcc-c++ patch zlib zlib-devel libffi-devel
+                   sqlite3-devel libxml2-devel libxslt-devel }</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">node</span>[<span class="ruby-string">'platform_version'</span>].<span class="ruby-identifier">to_f</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">11.0</span>
+          <span class="ruby-identifier">pkgs</span> <span class="ruby-operator">+=</span> <span class="ruby-node">%{ libreadline5 readline-devel libopenssl-devel }</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">pkgs</span> <span class="ruby-operator">+=</span> <span class="ruby-node">%{ readline readline-devel openssl-devel }</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">pkgs</span> <span class="ruby-operator">+=</span> <span class="ruby-node">%{ git subversion autoconf }</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">rubie</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^ruby-head$/</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;centos&quot;</span>,<span class="ruby-string">&quot;redhat&quot;</span>,<span class="ruby-string">&quot;fedora&quot;</span>,<span class="ruby-string">&quot;scientific&quot;</span>,<span class="ruby-string">&quot;amazon&quot;</span>
+        <span class="ruby-identifier">pkgs</span> = <span class="ruby-node">%{ gcc-c++ patch readline readline-devel zlib zlib-devel
+                   libyaml-devel libffi-devel openssl-devel
+                   make bzip2 autoconf automake libtool bison
+                   libxml2 libxml2-devel libxslt libxslt-devel }</span>
+        <span class="ruby-identifier">pkgs</span> <span class="ruby-operator">+=</span> <span class="ruby-node">%{ git subversion autoconf }</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">rubie</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^ruby-head$/</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^jruby-/</span>
+    <span class="ruby-comment"># TODO: need to figure out how to pull in java recipe only when needed. For</span>
+    <span class="ruby-comment"># now, users of jruby will have to add the &quot;java&quot; recipe to their run_list.</span>
+    <span class="ruby-comment">#include_recipe &quot;java&quot;</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">node</span>[<span class="ruby-string">'platform'</span>]
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;debian&quot;</span>,<span class="ruby-string">&quot;ubuntu&quot;</span>
+      <span class="ruby-identifier">pkgs</span> <span class="ruby-operator">+=</span> <span class="ruby-node">%{ g++ ant }</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">pkgs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pkg</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">package</span> <span class="ruby-identifier">pkg</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">action</span> <span class="ruby-value">:nothing</span>
+    <span class="ruby-keyword">end</span>.<span class="ruby-identifier">run_action</span>(<span class="ruby-value">:install</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- install_ruby_dependencies-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- install_ruby_dependencies-method -->
+
+      
+        <div id="load_current_resource-method" class="method-detail ">
+          <a name="method-i-load_current_resource"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">load_current_resource</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="load_current_resource-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/providers/shell.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_current_resource</span>
+  <span class="ruby-ivar">@user_rvm</span>     = <span class="ruby-identifier">user_installed_rvm?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@rubie</span>        = <span class="ruby-identifier">normalize_ruby_string</span>(<span class="ruby-identifier">select_ruby</span>(<span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">ruby_string</span>), <span class="ruby-ivar">@user_rvm</span>)
+  <span class="ruby-ivar">@gemset</span>       = <span class="ruby-identifier">select_gemset</span>(<span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">ruby_string</span>)
+  <span class="ruby-ivar">@ruby_string</span>  = <span class="ruby-ivar">@gemset</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@rubie</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{@rubie}@#{@gemset}&quot;</span>
+  <span class="ruby-ivar">@rvm_env</span>      = <span class="ruby-operator">::</span><span class="ruby-constant">RVM</span><span class="ruby-operator">::</span><span class="ruby-constant">ChefUserEnvironment</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_rvm</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- load_current_resource-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- load_current_resource-method -->
+
+      
+        <div id="patch_gem_package-method" class="method-detail ">
+          <a name="method-i-patch_gem_package"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">patch_gem_package</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Patch Chef::Resource::GemPackage resource to use the RVMRubygems provider.
+This has potentially dangerous side effects and should be considered
+experimental. You have been warned.</p>
+            
+
+            
+            <div class="method-source-code" id="patch_gem_package-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/libraries/gem_package_monkeypatch.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">patch_gem_package</span>
+  <span class="ruby-operator">::</span><span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Resource</span><span class="ruby-operator">::</span><span class="ruby-constant">GemPackage</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">run_context</span>=<span class="ruby-keyword">nil</span>)
+      <span class="ruby-keyword">super</span>
+      <span class="ruby-ivar">@resource_name</span> = <span class="ruby-value">:gem_package</span>
+      <span class="ruby-ivar">@provider</span> = <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Provider</span><span class="ruby-operator">::</span><span class="ruby-constant">Package</span><span class="ruby-operator">::</span><span class="ruby-constant">RVMRubygems</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- patch_gem_package-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- patch_gem_package-method -->
+
+      
+        <div id="ruby_resource-method" class="method-detail ">
+          <a name="method-i-ruby_resource"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">ruby_resource</span><span
+              class="method-args">(exec_action)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="ruby_resource-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/providers/environment.rb, line 67</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ruby_resource</span>(<span class="ruby-identifier">exec_action</span>)
+  <span class="ruby-comment"># ensure ruby is installed</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">ruby_installed?</span>(<span class="ruby-ivar">@rubie</span>)
+    <span class="ruby-identifier">r</span> = <span class="ruby-identifier">rvm_ruby</span> <span class="ruby-ivar">@rubie</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">user</span>    <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>
+      <span class="ruby-identifier">action</span> <span class="ruby-value">:nothing</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">run_action</span>(<span class="ruby-identifier">exec_action</span>)
+    <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">updated_by_last_action</span>(<span class="ruby-keyword">true</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">updated_by_last_action?</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- ruby_resource-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- ruby_resource-method -->
+
+      
+        <div id="run_command-method" class="method-detail ">
+          <a name="method-i-run_command"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">run_command</span><span
+              class="method-args">(command)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Runs a given command in the current shell. Defaults the command to true if
+empty.</p>
+            
+
+            
+            <div class="method-source-code" id="run_command-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/libraries/rvm_shell_chef_wrapper.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">run_command</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">command</span> = <span class="ruby-string">&quot;true&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">empty?</span>
+  <span class="ruby-identifier">with_shell_instance</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-string">&quot;RVM::Shell::ChefWrapper executing: &quot;</span> <span class="ruby-operator">+</span>
+      <span class="ruby-node">&quot;[#{wrapped_command(command)}]&quot;</span>)
+    <span class="ruby-identifier">stdin</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">wrapped_command</span>(<span class="ruby-identifier">command</span>)
+    <span class="ruby-identifier">stdin</span>.<span class="ruby-identifier">close</span>
+    <span class="ruby-identifier">out</span>, <span class="ruby-identifier">err</span> = <span class="ruby-identifier">stdout</span>.<span class="ruby-identifier">read</span>, <span class="ruby-identifier">stderr</span>.<span class="ruby-identifier">read</span>
+    <span class="ruby-identifier">out</span>, <span class="ruby-identifier">status</span>, <span class="ruby-identifier">_</span> = <span class="ruby-identifier">raw_stdout_to_parts</span>(<span class="ruby-identifier">out</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">status</span>, <span class="ruby-identifier">out</span>, <span class="ruby-identifier">err</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- run_command-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- run_command-method -->
+
+      
+        <div id="run_command_silently-method" class="method-detail ">
+          <a name="method-i-run_command_silently"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">run_command_silently</span><span
+              class="method-args">(command)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Runs a command, ensuring no output is collected.</p>
+            
+
+            
+            <div class="method-source-code" id="run_command_silently-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/libraries/rvm_shell_chef_wrapper.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">run_command_silently</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-identifier">with_shell_instance</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-string">&quot;RVM::Shell::ChefWrapper silently executing: &quot;</span> <span class="ruby-operator">+</span>
+      <span class="ruby-node">&quot;[#{wrapped_command(command)}]&quot;</span>)
+    <span class="ruby-identifier">stdin</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">silent_command</span>(<span class="ruby-identifier">command</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- run_command_silently-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- run_command_silently-method -->
+
+      
+        <div id="script_wrapper-method" class="method-detail ">
+          <a name="method-i-script_wrapper"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">script_wrapper</span><span
+              class="method-args">(exec_action)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Wraps the script resource for RVM-dependent code.</p>
+
+<p>@param [Symbol] action to be performed with gem_package provider</p>
+            
+
+            
+            <div class="method-source-code" id="script_wrapper-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/providers/shell.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">script_wrapper</span>(<span class="ruby-identifier">exec_action</span>)
+  <span class="ruby-identifier">profile</span> = <span class="ruby-identifier">find_profile_to_source</span>
+
+  <span class="ruby-identifier">script_code</span> = <span class="ruby-string">    if [ -s &quot;${HOME}/.rvm/scripts/rvm&quot; ]; then      source &quot;${HOME}/.rvm/scripts/rvm&quot;    elif [ -s &quot;#{profile}&quot; ]; then      source &quot;#{profile}&quot;    fi    rvm use #{@ruby_string}    #{new_resource.code}</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>
+    <span class="ruby-identifier">user_rvm</span>  = <span class="ruby-identifier">user_installed_rvm?</span>
+    <span class="ruby-identifier">user_home</span> = <span class="ruby-identifier">user_dir</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">s</span> = <span class="ruby-identifier">script</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">name</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">interpreter</span>   <span class="ruby-string">&quot;bash&quot;</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>
+      <span class="ruby-identifier">user</span>        <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">user_rvm</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">environment</span>
+        <span class="ruby-identifier">environment</span>({ <span class="ruby-string">'USER'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>, <span class="ruby-string">'HOME'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_home</span> }.<span class="ruby-identifier">merge</span>(
+          <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">environment</span>))
+      <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">user_rvm</span>
+        <span class="ruby-identifier">environment</span>({ <span class="ruby-string">'USER'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>, <span class="ruby-string">'HOME'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_home</span> })
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">code</span>          <span class="ruby-identifier">script_code</span>
+    <span class="ruby-identifier">creates</span>       <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">creates</span>      <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">creates</span>
+    <span class="ruby-identifier">cwd</span>           <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">cwd</span>          <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">cwd</span>
+    <span class="ruby-identifier">group</span>         <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">group</span>        <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">group</span>
+    <span class="ruby-identifier">path</span>          <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">path</span>         <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">path</span>
+    <span class="ruby-identifier">returns</span>       <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">returns</span>      <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">returns</span>
+    <span class="ruby-identifier">timeout</span>       <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">timeout</span>      <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">timeout</span>
+    <span class="ruby-identifier">umask</span>         <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">umask</span>        <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">umask</span>
+    <span class="ruby-identifier">action</span>        <span class="ruby-value">:nothing</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">s</span>.<span class="ruby-identifier">run_action</span>(<span class="ruby-identifier">exec_action</span>)
+  <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">updated_by_last_action</span>(<span class="ruby-keyword">true</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">updated_by_last_action?</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- script_wrapper-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- script_wrapper-method -->
+
+      
+        <div id="shell_params-method" class="method-detail ">
+          <a name="method-i-shell_params"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">shell_params</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="shell_params-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/libraries/rvm_shell_chef_wrapper.rb, line 88</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">shell_params</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">else</span>
+    {
+      <span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>,
+      <span class="ruby-value">:environment</span> =<span class="ruby-operator">&gt;</span> {
+        <span class="ruby-string">'USER'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@user</span>,
+        <span class="ruby-string">'HOME'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Etc</span>.<span class="ruby-identifier">getpwnam</span>(<span class="ruby-ivar">@user</span>).<span class="ruby-identifier">dir</span>
+      }
+    }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- shell_params-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- shell_params-method -->
+
+      
+        <div id="skip_environment-3F-method" class="method-detail ">
+          <a name="method-i-skip_environment-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">skip_environment?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="skip_environment-3F-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/providers/environment.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">skip_environment?</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@rubie</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">warn</span>(<span class="ruby-node">&quot;#{self.class.name}: RVM ruby string `#{@rubie}' &quot;</span> <span class="ruby-operator">+</span>
+      <span class="ruby-string">&quot;is not known. Use `rvm list known` to get a full list.&quot;</span>)
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- skip_environment-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- skip_environment-3F-method -->
+
+      
+        <div id="skip_ruby-3F-method" class="method-detail ">
+          <a name="method-i-skip_ruby-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">skip_ruby?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="skip_ruby-3F-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/providers/ruby.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">skip_ruby?</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@rubie</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">warn</span>(<span class="ruby-node">&quot;#{self.class.name}: RVM ruby string `#{@rubie}' &quot;</span> <span class="ruby-operator">+</span>
+      <span class="ruby-string">&quot;is not known. Use `rvm list known` to get a full list.&quot;</span>)
+    <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- skip_ruby-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- skip_ruby-3F-method -->
+
+      
+        <div id="stderr-method" class="method-detail ">
+          <a name="method-i-stderr"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">stderr</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="stderr-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/libraries/rvm_shell_chef_wrapper.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">stderr</span>; <span class="ruby-ivar">@current</span>[<span class="ruby-value">3</span>]; <span class="ruby-keyword">end</span></pre>
+            </div><!-- stderr-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- stderr-method -->
+
+      
+        <div id="stdin-method" class="method-detail ">
+          <a name="method-i-stdin"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">stdin</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Direct access to each of the named descriptors</p>
+            
+
+            
+            <div class="method-source-code" id="stdin-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/libraries/rvm_shell_chef_wrapper.rb, line 84</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">stdin</span>;  <span class="ruby-ivar">@current</span>[<span class="ruby-value">1</span>]; <span class="ruby-keyword">end</span></pre>
+            </div><!-- stdin-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- stdin-method -->
+
+      
+        <div id="stdout-method" class="method-detail ">
+          <a name="method-i-stdout"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">stdout</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="stdout-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/libraries/rvm_shell_chef_wrapper.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">stdout</span>; <span class="ruby-ivar">@current</span>[<span class="ruby-value">2</span>]; <span class="ruby-keyword">end</span></pre>
+            </div><!-- stdout-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- stdout-method -->
+
+      
+        <div id="update_global_gems_file-method" class="method-detail ">
+          <a name="method-i-update_global_gems_file"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">update_global_gems_file</span><span
+              class="method-args">(exec_action)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Updates global.gems file to create or remove a gem entry</p>
+
+<p>@oaram [Symbol] action to :create or :remove the gem from the file</p>
+            
+
+            
+            <div class="method-source-code" id="update_global_gems_file-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/providers/global_gem.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_global_gems_file</span>(<span class="ruby-identifier">exec_action</span>)
+  <span class="ruby-identifier">gem</span>               = <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">version</span>
+                        <span class="ruby-node">&quot;#{new_resource.package_name} -v#{new_resource.version}&quot;</span>
+                      <span class="ruby-keyword">else</span>
+                        <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">package_name</span>
+                      <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">user_dir</span>          = <span class="ruby-constant">Etc</span>.<span class="ruby-identifier">getpwnam</span>(<span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>).<span class="ruby-identifier">dir</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>
+  <span class="ruby-identifier">global_gems_file</span>  = <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>
+                        <span class="ruby-node">&quot;#{user_dir}/.rvm/gemsets/global.gems&quot;</span>
+                      <span class="ruby-keyword">else</span>
+                        <span class="ruby-node">&quot;#{node['rvm']['root_path']}/gemsets/global.gems&quot;</span>
+                      <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> [<span class="ruby-value">:install</span>, <span class="ruby-value">:upgrade</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">exec_action</span>)
+    <span class="ruby-identifier">e</span> = <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;Add #{gem} to #{global_gems_file}&quot;</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>
+        <span class="ruby-identifier">user</span>    <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>
+        <span class="ruby-identifier">group</span>   <span class="ruby-constant">Etc</span>.<span class="ruby-identifier">getpwnam</span>(<span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>).<span class="ruby-identifier">gid</span>
+        <span class="ruby-identifier">environment</span> ({ <span class="ruby-string">'USER'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>, <span class="ruby-string">'HOME'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user_dir</span> })
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">user</span>    <span class="ruby-string">&quot;root&quot;</span>
+        <span class="ruby-identifier">group</span>   <span class="ruby-string">&quot;rvm&quot;</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-identifier">command</span>   <span class="ruby-node">%{echo &quot;#{gem}&quot; &gt;&gt; &quot;#{global_gems_file}&quot;}</span>
+      <span class="ruby-identifier">action</span>    <span class="ruby-value">:nothing</span>
+
+      <span class="ruby-identifier">not_if</span>    <span class="ruby-node">%{grep -q &quot;^#{gem}&quot; &quot;#{global_gems_file}&quot;}</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">e</span>.<span class="ruby-identifier">run_action</span>(<span class="ruby-value">:run</span>)
+    <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">updated_by_last_action</span>(<span class="ruby-keyword">true</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">updated_by_last_action?</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- update_global_gems_file-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- update_global_gems_file-method -->
+
+      
+        <div id="user_dir-method" class="method-detail ">
+          <a name="method-i-user_dir"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">user_dir</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Determines the user’s home directory</p>
+
+<p>@return [String] the path to the user’s home directory</p>
+            
+
+            
+            <div class="method-source-code" id="user_dir-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/providers/shell.rb, line 116</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">user_dir</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>
+
+  <span class="ruby-constant">Etc</span>.<span class="ruby-identifier">getpwnam</span>(<span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>).<span class="ruby-identifier">dir</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- user_dir-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- user_dir-method -->
+
+      
+        <div id="user_installed_rvm-3F-method" class="method-detail ">
+          <a name="method-i-user_installed_rvm-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">user_installed_rvm?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Whether or not the user has an isolated RVM installation</p>
+
+<p>@return [true,false] does the user have RVM installed for themselves?</p>
+            
+
+            
+            <div class="method-source-code" id="user_installed_rvm-3F-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/providers/shell.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">user_installed_rvm?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">new_resource</span>.<span class="ruby-identifier">user</span>
+
+  <span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-node">&quot;#{user_dir}/.rvm/VERSION&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- user_installed_rvm-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- user_installed_rvm-3F-method -->
+
+      
+        <div id="whyrun_supported-3F-method" class="method-detail ">
+          <a name="method-i-whyrun_supported-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">whyrun_supported?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <table class="rdoc-list"><tr><td class="rdoc-term"><p>Cookbook Name</p></td>
+<td>
+<p>apt</p>
+</td></tr><tr><td class="rdoc-term"><p>Provider</p></td>
+<td>
+<p>repository</p>
+</td></tr></table>
+
+<p>Copyright 2010-2011, Opscode, Inc.</p>
+
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not
+use this file except in compliance with the License. You may obtain a copy
+of the License at</p>
+
+<pre>http://www.apache.org/licenses/LICENSE-2.0</pre>
+
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an “AS IS” BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations
+under the License.</p>
+            
+
+            
+            <div class="method-source-code" id="whyrun_supported-3F-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/apt/providers/repository.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">whyrun_supported?</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- whyrun_supported-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- whyrun_supported-3F-method -->
+
+      
+        <div id="with_shell_instance-method" class="method-detail ">
+          <a name="method-i-with_shell_instance"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">with_shell_instance</span><span
+              class="method-args">(&blk)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>yields stdio, stderr and stdin for a shell instance. If there isn’t a
+current shell instance, it will create a new one. In said scenario, it will
+also cleanup once it is done.</p>
+            
+
+            
+            <div class="method-source-code" id="with_shell_instance-source">
+<pre>
+<span class="ruby-comment"># File cookbooks/rvm/libraries/rvm_shell_chef_wrapper.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">with_shell_instance</span>(&amp;<span class="ruby-identifier">blk</span>)
+  <span class="ruby-identifier">no_current</span> = <span class="ruby-ivar">@current</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">no_current</span>
+    <span class="ruby-constant">Chef</span><span class="ruby-operator">::</span><span class="ruby-constant">Log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-string">&quot;RVM::Shell::ChefWrapper subprocess executing with &quot;</span> <span class="ruby-operator">+</span>
+      <span class="ruby-node">&quot;environment of: [#{shell_params.inspect}].&quot;</span>)
+    <span class="ruby-ivar">@current</span> = <span class="ruby-identifier">popen4</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">shell_executable</span>, <span class="ruby-identifier">shell_params</span>)
+    <span class="ruby-identifier">invoke_setup!</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">yield</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-ivar">@current</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">no_current</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- with_shell_instance-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- with_shell_instance-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
+  
+
+  </div><!-- documentation -->
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+
+</body>
+</html>
+

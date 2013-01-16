@@ -1,9 +1,7 @@
 
-template "/etc/apt/apt.conf.d/00proxy" do
-                source "apt-proxy.erb"
-                variables ({
-                :proxy_host => node.props.guest_http_proxy,
-       		:proxy_ssl_host => node.props.guest_https_proxy
-	})
+proxy_settings "parent proxy 00" do
+	http_proxy "http://10.0.2.2:8123"
+	https_proxy "http://10.0.2.2:8123"
 end
+
 
