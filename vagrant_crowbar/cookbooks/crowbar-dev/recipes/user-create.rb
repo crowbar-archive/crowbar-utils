@@ -41,3 +41,9 @@ execute "add_key" do
 	not_if "grep \"#{node.props.user_sshpubkey}\" /home/#{node.props.guest_username}/.ssh/authorized_keys "
 end	
 
+# setup timezone
+execute "timezone setup" do
+	environment my_env
+	command "echo \"#{node.props.guest_timezone}\" > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata"
+	action :run
+end

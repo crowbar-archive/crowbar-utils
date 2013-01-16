@@ -63,8 +63,13 @@ Vagrant::Config.run do |config|
     end
     chef.add_recipe "crowbar-dev::polipo"
     chef.add_recipe "apt"
+    chef.add_recipe "crowbar-dev::ruby"
     chef.add_recipe "crowbar-dev::rvm"
-#    chef.add_recipe "crowbar-dev::json"
+    chef.add_recipe "crowbar-dev::json"
+    chef.add_recipe "crowbar-dev::crowbar-1-source-and-build-prep"
+    chef.add_recipe "crowbar-dev::crowbar-2-dev-setup-fetch-sync"
+    chef.add_recipe "crowbar-dev::crowbar-3-add-remotes"
+    chef.add_recipe "crowbar-dev::final"
     chef.json = {
       :props => props
     }

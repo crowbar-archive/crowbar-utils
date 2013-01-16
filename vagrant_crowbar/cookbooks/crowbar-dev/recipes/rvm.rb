@@ -25,13 +25,12 @@ execute "install rvm" do
 	not_if "file /home/#{node.props.guest_username}/.rvm"
 end
 
-#execute "rvm shell" do
-	#environment my_env
-	#user node.props.guest_username
-	#command "echo \"source $HOME/.rvm/scripts/rvm\" >> ~/.bash_profile"
-	#action :run
-#end
-
+execute "rvm shell" do
+	environment my_env
+	user node.props.guest_username
+	command "echo \"source $HOME/.rvm/scripts/rvm\" >> ~/.bashrc"
+	action :run
+end
 
 if node.props.attribute?('rubys_to_install') 
 node.props.rubys_to_install.split.each do |rubyversion|
@@ -42,23 +41,24 @@ node.props.rubys_to_install.split.each do |rubyversion|
 		# 2. set multi-core compile flags
 		# 3. 'command' ignores the shell function and uses the command rvm
 		# 4. install the rubyversion
-		command "source $HOME/.rvm/scripts/rvm; export optflags=\"-j#{node.props.guest_cpus}\"; command $HOME/.rvm/bin/rvm install #{rubyversion}"
-		#command "command $HOME/.rvm/bin/rvm install #{node.props.rubys_to_install}" 
+		#command "source $HOME/.rvm/scripts/rvm; export optflags=\"-j#{node.props.guest_cpus}\"; command $HOME/.rvm/bin/rvm install #{rubyversion}"
+		command "source $HOME/.rvm/scripts/rvm; command $HOME/.rvm/bin/rvm install #{rubyversion}"
+		#command "command $HOME/.rvm/bin/rvm install #{node.props.rubys_to_install}"
 		action :run
-		not_if "rvm list | grep #{rubyversion}" 
+		not_if "rvm list | grep #{rubyversion}"
 	end
 end
 end
 
-if node.props.attribute?('ruby_default_version')
-bash "rvm use ruby #{node.props.ruby_default_version}" do
-	environment my_env
-	user node.props.guest_username
-	cwd "/home/#{node.props.guest_username}"
-	#not_if "rvm current | grep #{node.props.ruby_default_version} | grep \\* "
-	code <<-EOH
-source $HOME/.rvm/scripts/rvm
-rvm use #{node.props.ruby_default_version} --default
-EOH
-end
-end
+#if node.props.attribute?('ruby_default_version')
+#bash "rvm use ruby #{node.props.ruby_default_version}" do
+#	environment my_env
+#	user node.props.guest_username
+#	cwd "/home/#{node.props.guest_username}"
+#	not_if "rvm current | grep #{node.props.ruby_default_version} | grep \\* "
+#	code <<-EOH
+#source $HOME/.rvm/scripts/rvm
+#rvm use #{node.props.ruby_default_version} --default
+#EOH
+#end
+#end
