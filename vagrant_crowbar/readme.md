@@ -23,6 +23,9 @@ Tested OK on:
 How To:
 =======
 
+Installation Environment:
+-------------------------
+
 Host Prerequisites:
 -------------------
 
@@ -33,11 +36,12 @@ Host Prerequisites:
   * It's best practice to have a web proxy running somewhere.  Crowbar downloads a lot of stuff.
     * Guest proxy: gets installed by default.  You should set the http_proxy variables to your guest IP.
     * Host proxy: For greater awesomeness, install a web proxy on your Host box, so you can destroy your
-      guest boxes and you won't lose everything youv'e downloaded.
+      guest boxes and you won't lose everything you've downloaded.
       * Ubuntu: 
         `apt-get install polipo`
         edit `/etc/polipo/config` to listen on 0.0.0.0 and restart polipo to pick up the changes
         verify with `netstat -lntp | grep polipo`
+    * NTML Proxy: some proxies are evil, and require NTLM authentication.  This is supported.
 
 ### Virtual Box
   * Download and install the latest VirtualBox: https://www.virtualbox.org/wiki/Downloads  
@@ -54,8 +58,8 @@ Host Prerequisites:
   * Clone/download this repo: `git clone https://github.com/crowbar/crowbar-utils`
   * You may also use your own group's repo.
 
-Prepare the Vagrant Environment
--------------------------------
+Prepare the Vagrant Environment for Installation
+------------------------------------------------
 
   * Change directory to `crowbar-utils/vagrant_crowbar`
   * Edit the file `personal.json`
@@ -68,14 +72,27 @@ Prepare the Vagrant Environment
       * If you don't want to use a proxy, you're nuts. Leave it blank.
     * Networking:
       * I make two networks: a host-only network and a bridged network
-        1 "guest_hostonly_ip": "192.168.124.5" is the IP for the host-only network.  I use 
+        * "guest_hostonly_ip": "192.168.124.5" is the IP for the host-only network.  I use 
           it for the admin network. 192.168.124.x
-        2 "host_network_bridge_interface": "eth0", is the nic ON THE HOST that the guest will 
+        * "host_network_bridge_interface": "eth0", is the nic ON THE HOST that the guest will 
           use to get DHCP IP addresses.
-        3 and vagrant comes up with it's own private IP for your box.
+        * and vagrant comes up with it's own private IP for your box - usually 10.0.2.15
+          with 10.0.2.2 for your host box.
     * "github_extra_remotes" Remotes are added after ./dev setup is complete. To enable,
        remove the # from the attribute name github_extra_remotes.  To disable, re-add the #. 
     * "guest_extra_packages": ["figlet","fgrep"] A place for you to add package names. 
+    *BEHIND NTLM PROXY*
+    *  "guest_use_cntlm": "true",
+    *  "guest_parent_proxy": "127.0.0.1:5865",
+    *  "polipo_mode": "work",
+    *HOST (or other non-guest) PROXY*
+    *  "guest_use_cntlm": "false",
+    *  "guest_parent_proxy: "<your parent proxy here>",
+    *  "polipo_mode": "work"
+    *NO PROXY (except the required one on the guest)*
+    *  "guest_use_cntlm": "false",
+    *  "polipo_mode": "home",
+
   * Ensure that the shared folders you're planning on using exist on the Host OS.
     * Ensure that your shared folders have open write permissions so the build box can write
       into them. 0777
