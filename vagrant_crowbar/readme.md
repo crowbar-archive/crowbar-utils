@@ -6,8 +6,8 @@ _|       _|       _|    _|   _|  _|  _|  _|   _|    _| _|    _| _|
   _|_|_| _|         _|_|       _|      _|     _|_|_|     _|_|_| _|        
 </pre>
 
-vagrant_crowbar
-===============
+vagrant_crowbar - get developing on crowbar quickly
+===================================================
 
 This is to setup a dev and build environment for developer/tester use.
 
@@ -23,10 +23,12 @@ Tested OK on:
 How To:
 =======
 
-Installation Environment:
--------------------------
+What's You Installation Environment?
+------------------------------------
 
 I've created this Vagrantfile, box and cookbooks to support the kind of installation that support your environment.
+
+Proxies are WICKED important - becuase you'll be doing a lot of downloading.
 
 ### BEHIND NTLM PROXY
 like a typical Corporate Firewall
@@ -91,10 +93,10 @@ Prepare the Vagrant Environment for Installation
       so you can login as "guest_username" without a password.
     * "guest_proxy" and "guest_ssl_proxy" - polipo will be installed on your guest. 
       * If you want to use the guest proxy set this to http://127.0.0.1:8123.  
-      * If you want to use the HOST proxy you setup earlier, use it's IP address
+      * If you want to use the HOST proxy you setup earlier, use its IP address
       * If you don't want to use a proxy, you're nuts. Leave it blank.
     * Networking:
-      * I make two networks: a host-only network and a bridged network
+      * I make two networks: a host-only network and a bridged network. They are optional.
         * "guest_hostonly_ip": "192.168.124.5" is the IP for the host-only network.  I use 
           it for the admin network. 192.168.124.x
         * "host_network_bridge_interface": "eth0", is the nic ON THE HOST that the guest will 
