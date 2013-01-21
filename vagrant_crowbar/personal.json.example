@@ -24,6 +24,7 @@
 "guest_extra_packages": "",
 "box_name": "ubuntu64-12.04.1",
 "box_url": "https://dl.dropbox.com/u/9764728/boxes/ubuntu64-12.04.1.box",
+"guest_use_cntlm": "",
 "win_domain_username": "judd_maltin",
 "win_domain_name": "AMERICAS",
 "win_domain_password": "its the most wonderful time of the year",
