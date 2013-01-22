@@ -7,7 +7,7 @@ my_env = {
 }
 
 # install extra packages
-node.props.attribute?('guest_extra_packages') && node.props.guest_extra_packages.each do | p |
+node.props.attribute?('guest_extra_packages') && node.props.guest_extra_packages.split.each do | p |
 	package "#{p}" do
 		action :upgrade
 	end
