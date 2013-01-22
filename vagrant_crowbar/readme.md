@@ -141,6 +141,45 @@ Make It So
     * ./dev switch development/master
     * ./dev build --os ubuntu-12.04 --update-cache
 
+Development Cycle
+=================
+
+### Login
+
+I usually ssh into the box from the host box with the public key I supplied in personal.json.
+
+http://docs.vagrantup.com/v1/docs/getting-started/ssh.html
+
+### Hacking
+
+I'm happy hacking over SSH CLI.  But you can use other things, like installing a GUI 
+(`apt-get install kde-desktop`, or `apt-get install xfce`) and interacting via shared desktops. 
+That might be great if you run your Vagrant Box on a server.  There are other ways too!
+
+If you need to, you can forward ports from your Vagrant box so they show up on the host box's network:
+
+http://docs.vagrantup.com/v1/docs/getting-started/ports.html
+
+### Suspending & Resuming
+
+It's best to suspend your system, rather than `vagrant halt` it.  Just type `vagrant suspend` from your host machine in the
+Vagrantfile directory, and it'll write memory to disk and quiesce things.  `vagrant resume` does just what you think.
+
+http://docs.vagrantup.com/v1/docs/getting-started/teardown.html
+
+### Restarting
+
+`vagrant halt` will finalize the image and shut it down. From then on, `vagrant up` will not re-run the 
+import and provision.
+
+### Building
+
+I'm able to use ./dev just fine.  It drops the ISOs in the ISO_LIBRARY directory.
+
+Note that I'm using both a polipo caching web proxy on my client, and one on my host machine.  I try to get
+out to the Internet as rarely as possible.
+
+
 Epilogue
 --------
 
