@@ -180,6 +180,32 @@ Note that I'm using both a polipo caching web proxy on my client, and one on my 
 out to the Internet as rarely as possible.
 
 
+## Troubleshooting
+
+### if a up goes down
+
+If you try vagrant up, and it spits some error out, you'd want to troubleshoot it, by running the provision step on the box itself.
+The easiest process is to ssh to the box (see below for windows) and then do what vagrant is trying to do:
+
+cd /tmp/vagrant-chef-1$ 
+
+sudo chef-solo -c solo.rb -j dna.json 
+
+### Running on windows
+
+#### invoking
+
+The vagrant code is written to make accommodations for the windows platform (paths, .exe extensions and such). The thing is that detection only works if you're using the CMD shell (i.e. no cygwin for vagrant).
+
+#### ssh
+
+by default vagrant doesn't even try to use windows ssh, rather spits out some instructions you have to digest. The predigested vesion for cygwin/windows (replace <USERNAME> ) is
+
+$ ssh -vvv vagrant@127.0.0.1 -p 2222 -i /c/Users/<USERNAME>/.vagrant.d/insecure_private_key 
+
+
+
+
 Epilogue
 --------
 
