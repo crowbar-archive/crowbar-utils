@@ -11,7 +11,6 @@ end
 
 # switch the apt proxy host to this until polipo is installed
 
-
 template "/etc/cntlm.conf" do
         source "cntlm.conf.erb"
         mode 0640

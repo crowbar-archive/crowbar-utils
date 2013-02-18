@@ -25,6 +25,7 @@ end
 		cwd "/home/#{node.props.guest_username}/crowbar/"
 		command "./dev #{cmd}"
 		action :run
+		not_if "git config -f /home/#{node.props.guest_username}/crowbar/.git/config --get crowbar.dev.version"	
 	end
 end
 
