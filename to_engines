@@ -1,0 +1,229 @@
+#!/bin/bash
+
+# NOTES
+# in Gemfile of crowbar, add path of engine, for example:
+# gem 'logging', :path => "/home/me/crowbar/barclamps/logging/crowbar_engine/logging"
+
+# in crowbar routes file:
+# mount Logging::Engine, :at => "logging"
+
+# in main app (crowbar_framework), do:
+# rake railties:install:migrations
+
+# in routes file
+# mount Logging::Engine, at: "logging"
+
+readonly currdir="$PWD"
+
+cd barclamps || exit  # ASSUME WE'RE IN SOURCE ROOT
+if [[ $1 ]]; then
+    barclamps="$*"  
+else
+    barclamps=*       # convert all of them
+fi
+
+# Convert barclamp crowbar_framework trees to engine trees
+function convert_barclamp_framework_to_engine {
+
+    for bc in ${barclamps[@]}; do
+	if [[ -f $bc/README.empty-branch ]]; then
+            echo "$bc is empty on this branch"
+	    continue
+	fi
+	if [[ -d $bc/crowbar_engine/barclamp_$bc ]]; then
+            echo "$bc has an engine"
+	    continue
+        fi
+
+        echo "converting $bc..."
+
+        bc_cc=`echo "${bc}" | sed -e "s=_\([A-Za-z]\)=\u\1=g" | sed -e "s=\(.*\)=\u\1=g"`
+
+	mkdir -p $bc/crowbar_engine
+	cd $bc/crowbar_engine
+        rails plugin new barclamp_${bc} --mountable
+	cd ../..
+        echo "creating $bc engine as barclamp_${bc}"
+        bcroot=$bc
+	bcbc=barclamp_${bc}
+
+        if [[ -d $bcroot/crowbar_framework/app/models ]]; then
+	    mkdir -p $bcroot/crowbar_engine/$bcbc/app/models/$bcbc
+	    cp -r $bcroot/crowbar_framework/app/models/* $bcroot/crowbar_engine/$bcbc/app/models/$bcbc
+	    # make prototype barclamp object from barclamp service object
+	    if [[ -f $bcroot/crowbar_engine/$bcbc/app/models/$bcbc/${bc}_service.rb ]]; then
+	        cp $bcroot/crowbar_engine/$bcbc/app/models/$bcbc/${bc}_service.rb $bcroot/crowbar_engine/$bcbc/app/models/$bcbc/barclamp.rb
+	        # rename class of from <barclamp>Service to <barclamp>Barclamp
+	        perl -pi -e "s/^class +${bc_cc}Service/class Barclamp/g" $bcroot/crowbar_engine/$bcbc/app/models/$bcbc/barclamp.rb
+	        perl -pi -e "s/< ServiceObject/< Barclamp/g" $bcroot/crowbar_engine/$bcbc/app/models/$bcbc/barclamp.rb
+            fi
+	    # add barclamp namespace to class names
+	    perl -pi -e "s/^class +(\w+)/class Barclamp${bc_cc}::\1/g" $bcroot/crowbar_engine/$bcbc/app/models/$bcbc/*
+	fi
+	if [[ -d $bcroot/crowbar_framework/db/migrate ]]; then
+	    mkdir -p $bcroot/crowbar_engine/$bcbc/db/migrate
+	    cp $bcroot/crowbar_framework/db/migrate/* $bcroot/crowbar_engine/$bcbc/db/migrate
+	fi
+	if [[ -d $bcroot/crowbar_framework/config ]]; then
+	    cp -r $bcroot/crowbar_framework/config/* $bcroot/crowbar_engine/$bcbc/config
+	fi
+	if [[ -d $bcroot/crowbar_engine/$bcbc/config/locales/$bc ]]; then
+	    mv $bcroot/crowbar_engine/$bcbc/config/locales/$bc/* $bcroot/crowbar_engine/$bcbc/config/locales
+	    rmdir $bcroot/crowbar_engine/$bcbc/config/locales/$bc
+	fi
+	if [[ -d $bcroot/crowbar_framework/app/controllers ]]; then
+	    cp -r $bcroot/crowbar_framework/app/controllers/* $bcroot/crowbar_engine/$bcbc/app/controllers/$bcbc
+	fi
+	# if it has the "standard" barclamp controller we'll go to some trouble
+	# converting it to a more rails-ish name for routing goodness
+	if [[ -f $bcroot/crowbar_engine/$bcbc/app/controllers/$bcbc/${bc}_controller.rb ]]; then
+	    mv $bcroot/crowbar_engine/$bcbc/app/controllers/$bcbc/${bc}_controller.rb $bcroot/crowbar_engine/$bcbc/app/controllers/$bcbc/barclamps_controller.rb
+	    perl -pi -e "s/^class +${bc_cc}Controller/class Barclamp${bc_cc}::BarclampsController/g" $bcroot/crowbar_engine/$bcbc/app/controllers/$bcbc/barclamps_controller.rb 
+	    write_initial_routes $bc_cc $bcroot/crowbar_engine/$bcbc/config/routes.rb   $bcroot/crowbar_engine/$bcbc/app/controllers/$bcbc/barclamps_controller.rb
+	fi
+        if [[ -d $bcroot/crowbar_framework/app/assets/images ]]; then
+	    mkdir -p $bcroot/crowbar_engine/$bcbc/app/assets/images/$bcbc
+	    cp -r $bcroot/crowbar_framework/app/assets/images/* $bcroot/crowbar_engine/$bcbc/app/assets/images/$bcbc
+        fi
+        if [[ -d $bcroot/crowbar_framework/app/assets/javascripts ]]; then
+	    mkdir -p $bcroot/crowbar_engine/$bcbc/app/assets/javascripts/$bcbc
+	    cp -r $bcroot/crowbar_framework/app/assets/javascripts/* $bcroot/crowbar_engine/$bcbc/app/assets/javascripts/$bcbc
+        fi
+        if [[ -d $bcroot/crowbar_framework/app/assets/stylesheets ]]; then
+	    mkdir -p $bcroot/crowbar_engine/$bcbc/app/assets/stylesheets/$bcbc
+	    cp -r $bcroot/crowbar_framework/app/assets/stylesheets/* $bcroot/crowbar_engine/$bcbc/app/assets/stylesheets/$bcbc
+        fi
+        if [[ -d $bcroot/crowbar_framework/app/views/barclamp/$bc ]]; then
+	    mkdir -p $bcroot/crowbar_engine/$bcbc/app/views/$bcbc
+	    cp -r $bcroot/crowbar_framework/app/views/barclamp/$bc/* $bcroot/crowbar_engine/$bcbc/app/views/$bcbc
+        fi
+	if [[ -d $bcroot/crowbar_framework/app/views/$bc ]]; then 
+	    mkdir -p $bcroot/crowbar_engine/$bcbc/app/views/$bcbc
+	    cp -r $bcroot/crowbar_framework/app/views/$bc/* $bcroot/crowbar_engine/$bcbc/app/views/$bcbc
+	fi
+        if [[ -d $bcroot/crowbar_framework/BDD ]]; then 
+	    mkdir -p $bcroot/crowbar_engine/$bcbc/BDD
+	    cp -r $bcroot/crowbar_framework/BDD/* $bcroot/crowbar_engine/$bcbc/BDD
+	fi
+        if [[ -d $bcroot/crowbar_framework/doc ]]; then 
+	    mkdir -p $bcroot/crowbar_engine/$bcbc/doc
+	    cp -r $bcroot/crowbar_framework/doc/* $bcroot/crowbar_engine/$bcbc/doc
+	fi
+        if [[ -d $bcroot/crowbar_framework/test ]]; then 
+	    cp -r $bcroot/crowbar_framework/test/* $bcroot/crowbar_engine/$bcbc/test
+	fi
+        if [[ -d $bcroot/crowbar_framework/app/models ]]; then
+	    mkdir -p $bcroot/crowbar_engine/$bcbc/test/models/$bcbc
+	fi
+
+	mkdir -p $bcroot/crowbar_engine/$bcbc/config/initializers
+	write_api_init $bc $bc_cc  $bcroot/crowbar_engine/$bcbc/config/initializers/api.rb
+
+	fill_gemspec $bc_cc $bcroot/crowbar_engine/$bcbc/$bcbc.gemspec
+	
+	rm $bcroot/crowbar_engine/$bcbc/{MIT-LICENSE,README.rdoc}
+	find $bcroot/crowbar_engine/$bcbc -type f | grep -v test | xargs perl -pi -e 's|Copyright 2012|Copyright 2013|g'
+    done
+}
+
+function write_api_init {
+    local bc=$1
+    local bcc=$2
+    local path=$3
+    echo "creating $bc api init file"
+    
+    cat >$path <<HERE
+# Copyright 2013, Dell
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+bc = Barclamp.table_exists? ? Barclamp.find_by_name("${bc}") : nil
+Barclamp${bcc}::API_VERSION=(bc && bc.api_version || "v1")
+Barclamp${bcc}::API_VERSION_ACCEPTS=(bc && bc.api_version_accepts || "v1")
+HERE
+}
+
+
+function fill_gemspec {
+    local bcc=$1
+    local path=$2
+
+    perl -pi -e "s/TODO: Your name/Dell Crowbar Team/g" $path
+    perl -pi -e "s/TODO: Your email/crowbar\@dell.com/g" $path
+    perl -pi -e "s/TODO[:]?//g" $path
+}
+
+
+function write_initial_routes  {
+# Write prototypical routes file from the list of methods in the barclamp controller.
+# Don't include "standard" methods such as index, new, etc.
+# This file won't compile, and forces examination and editing of routes.rb 
+    local bc=$1
+    local routes=$2
+    local controller=$3
+    echo "creating stub $bc routes file"
+
+    cat >$routes <<HERE
+# Copyright 2013, Dell
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+Barclamp${bc}::Engine.routes.draw do
+
+  # API routes
+  scope "#{Barclamp${bc}::API_VERSION}" do
+    resources :barclamps do
+      collection do
+        get :catalog
+      end
+      member do
+      
+      end
+    end
+  end
+
+  # non-API routes
+  resources :barclamps do
+    collection do
+        
+    end
+    member do
+      
+    end
+  end
+
+
+HERE
+    echo "# configure routes for these $bc barclamps controller actions..." >>$routes
+    echo "# (other controllers may also need routing configuration!)" >>$routes
+    bop=$(egrep "^[ ]+def " $controller | perl -p -e 's/ *def ([a-z_]+).*/\1/g' | grep -v -e "^index$" -e "^show$" -e "^edit$" -e "^create$" -e "^new$" -e "^update$" -e "^destroy$")
+    cat >>$routes<<HERE
+$bop
+HERE
+    echo "" >>$routes
+    echo "end" >>$routes
+}
+
+
+convert_barclamp_framework_to_engine
+echo "Done!"
