@@ -1,0 +1,77 @@
+# -*- mode: ruby -*- # vi: set ft=ruby :
+
+props = JSON.load(IO.read('personal.json'))
+
+Vagrant::Config.run do |config|
+  # All Vagrant configuration is done here. The most common configuration
+  # options are documented and commented below. For a complete reference,
+  # please see the online documentation at vagrantup.com.
+  config.vm.host_name = props['guest_hostname']
+
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = props['box_name']
+
+  # The url from where the 'config.vm.box' box will be fetched if it
+  # doesn't already exist on the user's system.
+  # config.vm.box_url = "http://domain.com/path/to/above.box"
+  config.vm.box_url = props['box_url']
+  #config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+
+  # Boot with a GUI so you can see the screen. (Default is headless)
+  # config.vm.boot_mode = :gui
+
+  # Assign this VM to a host-only network IP, allowing you to access it
+  # via the IP. Host-only networks can talk to the host machine as well as
+  # any other machines on the same network, but cannot be accessed (through this
+  # network interface) by any external networks.
+  if props.include?("guest_hostonly_ip") 
+	 config.vm.network :hostonly, props['guest_hostonly_ip']
+  end
+
+  # Assign this VM to a bridged network, allowing you to connect directly to a
+  # network using the host's network device. This makes the VM appear as another
+  # physical device on your network.
+  #config.vm.network :bridged, :adapter => 'eth0'
+  if props.include?("host_network_bridge_interface")
+	 config.vm.network :bridged, :bridge => props['host_network_bridge_interface']
+  end
+
+  # Forward a port from the guest to the host, which allows for outside
+  # computers to access the VM, whereas host only networking does not.
+  # config.vm.forward_port 80, 8080
+
+  # Share an additional folder to the guest VM. The first argument is
+  # an identifier, the second is the path on the guest to mount the
+  # folder, and the third is the path on the host to the actual folder.
+  #config.vm.share_folder "v-data", "/vagrant_data", "../data"
+  config.vm.share_folder "share", props['shared_dir_guest'], props['shared_dir_host'], :create => true, :extra => 'dmode=777,fmode=777'
+
+  config.vm.customize ["modifyvm", :id, "--memory", props['guest_ram']]
+  config.vm.customize ["modifyvm", :id, "--cpus", props['guest_cpus']]
+
+  # Enable provisioning with chef solo, specifying a cookbooks path, roles
+  # path, and data_bags path (all relative to this Vagrantfile), and adding 
+  # some recipes and/or roles.
+  
+  config.vm.provision :chef_solo do |chef|
+    #chef.recipe_url = "http://files.vagrantup.com/getting_started/cookbooks.tar.gz"
+    #config.vbguest.auto_update = true #true by default when plugin installed
+    chef.data_bags_path = "data_bags"
+    chef.add_recipe "crowbar-dev::user-create"
+    if props.include?("guest_use_cntlm") && props["guest_use_cntlm"] == "true" 
+         chef.add_recipe "crowbar-dev::cntlm"
+    end
+    chef.add_recipe "crowbar-dev::polipo"
+    chef.add_recipe "apt"
+    chef.add_recipe "crowbar-dev::ruby"
+    #chef.add_recipe "crowbar-dev::rvm"
+    chef.add_recipe "crowbar-dev::json"
+    chef.add_recipe "crowbar-dev::crowbar-1-source-and-build-prep"
+    chef.add_recipe "crowbar-dev::crowbar-2-dev-setup-fetch-sync"
+    chef.add_recipe "crowbar-dev::crowbar-3-add-remotes"
+    chef.add_recipe "crowbar-dev::final"
+    chef.json = {
+      :props => props
+    }
+  end
+end
