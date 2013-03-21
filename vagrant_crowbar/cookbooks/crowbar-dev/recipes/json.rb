@@ -8,10 +8,10 @@ my_env = {
 
 bash "sudo json gem install" do
 	environment my_env
-	user node.props.guest_username
+	#user node.props.guest_username
 	cwd "/home/#{node.props.guest_username}"
 	code <<-EOH
-sudo gem install json
+gem install json
 EOH
 	not_if "gem list json | grep json"
 end	

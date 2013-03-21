@@ -1,0 +1,21 @@
+
+_dev()
+{
+
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts=$(    )
+    opts="backup barclamps-in-build branch branches build build-refs builds checkout ci clear-unit-tests clone-barclamps create-barclamp crowbar-version current-build cut_release erase-feature fetch fetch-pull-requests find-parent flatten help is_clean local-changes missing-barclamps new-feature orphaned-barclamps pin pull-requests pull-requests-gen pull-requests-prep purge-submodules push push-release push-tag redundant-barclamps refresh-tracking release releases reload-unit-tests remote remotes reset-release run-BDD-tests run-tests run-unit-tests scrub-merged-pulls setup setup-unit-tests switch sync tag-build tests unpin upstream-changes"
+
+    #opts="--help --verbose --version"
+
+    #if [[ ${cur} == -* ]] ; then
+        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+        return 0
+    #fi
+}
+complete -F _dev dev
+
+

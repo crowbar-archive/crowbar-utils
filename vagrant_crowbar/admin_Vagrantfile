@@ -32,7 +32,9 @@ Vagrant::Config.run do |config|
   # network using the host's network device. This makes the VM appear as another
   # physical device on your network.
   #config.vm.network :bridged, :adapter => 'eth0'
-  if props.include?("host_network_bridge_interface")
+  # admin network
+  config.vm.network :bridged, :adapter => 'eth0'
+  if props.include?("admin_network_bridge_interface")
 	 config.vm.network :bridged, :bridge => props['host_network_bridge_interface']
   end
 
@@ -57,21 +59,5 @@ Vagrant::Config.run do |config|
     #chef.recipe_url = "http://files.vagrantup.com/getting_started/cookbooks.tar.gz"
     #config.vbguest.auto_update = true #true by default when plugin installed
     chef.data_bags_path = "data_bags"
-    chef.add_recipe "crowbar-dev::user-create"
-    if props.include?("guest_use_cntlm") && props["guest_use_cntlm"] == "true" 
-         chef.add_recipe "crowbar-dev::cntlm"
-    end
-    chef.add_recipe "crowbar-dev::polipo"
-    chef.add_recipe "apt"
-    chef.add_recipe "crowbar-dev::ruby"
-    #chef.add_recipe "crowbar-dev::rvm"
-    chef.add_recipe "crowbar-dev::json"
-    chef.add_recipe "crowbar-dev::crowbar-1-source-and-build-prep"
-    chef.add_recipe "crowbar-dev::crowbar-2-dev-setup-fetch-sync"
-    chef.add_recipe "crowbar-dev::crowbar-3-add-remotes"
-    chef.add_recipe "crowbar-dev::final"
-    chef.json = {
-      :props => props
-    }
   end
 end
