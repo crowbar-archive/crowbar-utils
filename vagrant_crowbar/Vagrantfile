@@ -58,13 +58,9 @@ Vagrant::Config.run do |config|
     #config.vbguest.auto_update = true #true by default when plugin installed
     chef.data_bags_path = "data_bags"
     chef.add_recipe "crowbar-dev::user-create"
-    if props.include?("guest_use_cntlm") && props["guest_use_cntlm"] == "true" 
-         chef.add_recipe "crowbar-dev::cntlm"
-    end
     chef.add_recipe "crowbar-dev::polipo"
     chef.add_recipe "apt"
     chef.add_recipe "crowbar-dev::ruby"
-    #chef.add_recipe "crowbar-dev::rvm"
     chef.add_recipe "crowbar-dev::json"
     chef.add_recipe "crowbar-dev::crowbar-1-source-and-build-prep"
     chef.add_recipe "crowbar-dev::crowbar-2-dev-setup-fetch-sync"
