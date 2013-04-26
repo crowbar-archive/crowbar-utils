@@ -52,7 +52,7 @@ Host Prerequisites:
   * Do not use stock Ubuntu packages.  They're old.
 
 ### Vagrant
-  * Download and install the latest Vagrant: http://downloads.vagrantup.com/tags/v1.0.5
+  * Download and install the latest Vagrant: http://downloads.vagrantup.com/
   * Do not use stock Ubuntu packages.  They're old. 
     * Ubuntu:
       Vagrant's Ubuntu packages put vagrant in opt:
@@ -84,6 +84,8 @@ you can't be bothered to run a proxy on your host OS
 Prepare the Vagrant Environment for Installation
 ------------------------------------------------
 
+### Editing the personal.json*
+
   * Change directory to `crowbar-utils/vagrant_crowbar`
   * Edit the file `personal.json`
     * "guest_username" is the username on the guest you'd like to ssh as.
@@ -104,12 +106,7 @@ Prepare the Vagrant Environment for Installation
     * "github_extra_remotes" Remotes are added after ./dev setup is complete. To enable,
        remove the # from the attribute name github_extra_remotes.  To disable, re-add the #. 
     * "guest_extra_packages": ["figlet","fgrep"] A place for you to add package names. 
-    *HOST (or other non-guest) PROXY*
-    *  "guest_parent_proxy: "your parent proxy here",
-    *  "polipo_mode": "work"
-    *NO PROXY (except the required one on the guest)*
-    *  "polipo_mode": "home",
-    *  "rubys_to_install": "1.9.3 1.8.7", note that they're space delimited.
+    * "rubys_to_install": "1.9.3 1.8.7", note that they're space delimited.
 
   * Ensure that the shared folders you're planning on using exist on the Host OS.
     * Ensure that your shared folders have open write permissions so the build box can write
@@ -148,6 +145,8 @@ That might be great if you run your Vagrant Box on a server.  There are other wa
 If you need to, you can forward ports from your Vagrant box so they show up on the host box's network:
 
 http://docs.vagrantup.com/v1/docs/getting-started/ports.html
+
+I also really like SSHFS, the FUSE plugin.
 
 ### Suspending & Resuming
 
