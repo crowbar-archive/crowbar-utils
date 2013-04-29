@@ -18,7 +18,7 @@ Tested OK on hosts:
 
   * Mac OS Lion, VirtualBox 4.2.6, Vagrant 1.0.5
   * Ubuntu 12.04.2, VirtualBox 4.2.6, Vagrant 1.0.5
-  * Windows 7, Virtual Box 4.2.10, Vagrant 1.1.2
+  * Windows 7, Virtual Box 4.2.12, Vagrant 1.2.2
  
 
 How To:
