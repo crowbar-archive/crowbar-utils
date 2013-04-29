@@ -58,7 +58,8 @@ Host Prerequisites:
       Vagrant's Ubuntu packages put vagrant in opt:
       `export PATH=/opt/vagrant/bin/:$PATH`
 
-### Clone the Repo
+### Git - Clone the Repo
+  * Install Git on your OS
   * Clone/download this repo: `git clone https://github.com/crowbar/crowbar-utils`
   * You may also use your own group's repo.
 
