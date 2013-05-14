@@ -159,7 +159,7 @@ http://docs.vagrantup.com/v1/docs/getting-started/teardown.html
 ### Restarting
 
 `vagrant halt` will finalize the image and shut it down. From then on, `vagrant up` will not re-run the 
-import and provision.
+import BUT IT WILL RE-RUN THE PROVISIONER!
 
 ### Building
 
