@@ -18,7 +18,7 @@ Tested OK on hosts:
 
   * Mac OS Lion, VirtualBox 4.2.6, Vagrant 1.0.5
   * Ubuntu 12.04.2, VirtualBox 4.2.6, Vagrant 1.0.5
-  * Windows 7, Virtual Box 4.2.10, Vagrant 1.1.2
+  * Windows 7, Virtual Box 4.2.12, Vagrant 1.2.2
  
 
 How To:
@@ -29,30 +29,6 @@ What's You Installation Environment?
 
 I've created this Vagrantfile, box and cookbooks to support the kind of installation that support your environment.
 
-Proxies are WICKED important - becuase you'll be doing a lot of downloading.
-
-### BEHIND NTLM PROXY
-like a typical Corporate Firewall
-
-*personal.json* settings:
-  *  "guest_use_cntlm": "true",
-  *  "guest_parent_proxy": "127.0.0.1:8123",
-  *  "polipo_mode": "work",
-
-### HOST PROXY
-you are cool to run a proxy on your host OS (or have a good upstream proxy)
-
-*personal.json* settings:
-  *  "guest_use_cntlm": "false",
-  *  "guest_parent_proxy: "your parent proxy here",
-  *  "polipo_mode": "work"
-
-### NO PROXY (will still install a proxy on the guest)
-you can't be bothered to run a proxy on your host OS
-
-*personal.json* settings:
-  *  "guest_use_cntlm": "false",
-  *  "polipo_mode": "home",
 
 
 Host Prerequisites:
@@ -70,25 +46,46 @@ Host Prerequisites:
         `apt-get install polipo`
         edit `/etc/polipo/config` to listen on 0.0.0.0 and restart polipo to pick up the changes
         verify with `netstat -lntp | grep polipo`
-    * NTML Proxy: some proxies are evil, and require NTLM authentication.  This is supported.
 
 ### Virtual Box
   * Download and install the latest VirtualBox: https://www.virtualbox.org/wiki/Downloads  
   * Do not use stock Ubuntu packages.  They're old.
 
 ### Vagrant
-  * Download and install the latest Vagrant: http://downloads.vagrantup.com/tags/v1.0.5
+  * Download and install the latest Vagrant: http://downloads.vagrantup.com/
   * Do not use stock Ubuntu packages.  They're old. 
     * Ubuntu:
       Vagrant's Ubuntu packages put vagrant in opt:
       `export PATH=/opt/vagrant/bin/:$PATH`
 
-### Clone the Repo
+### Git - Clone the Repo
+  * Install Git on your OS
   * Clone/download this repo: `git clone https://github.com/crowbar/crowbar-utils`
   * You may also use your own group's repo.
 
+Proxies are WICKED important 
+----------------------------
+
+becuase you'll be doing a lot of downloading.
+
+### HOST PROXY
+you are cool to run a proxy on your host OS (or have a good upstream proxy)
+
+*personal.json* settings:
+  *  "guest_parent_proxy: "your parent proxy here",
+  *  "polipo_mode": "work"
+
+### NO PROXY (will still install a proxy on the guest)
+you can't be bothered to run a proxy on your host OS
+
+*personal.json* settings:
+  *  "polipo_mode": "home",
+
+
 Prepare the Vagrant Environment for Installation
 ------------------------------------------------
+
+### Editing the personal.json*
 
   * Change directory to `crowbar-utils/vagrant_crowbar`
   * Edit the file `personal.json`
@@ -110,18 +107,7 @@ Prepare the Vagrant Environment for Installation
     * "github_extra_remotes" Remotes are added after ./dev setup is complete. To enable,
        remove the # from the attribute name github_extra_remotes.  To disable, re-add the #. 
     * "guest_extra_packages": ["figlet","fgrep"] A place for you to add package names. 
-    *BEHIND NTLM PROXY*
-    *  "guest_use_cntlm": "true",
-    *  "guest_parent_proxy": "127.0.0.1:8123",
-    *  "polipo_mode": "work",
-    *HOST (or other non-guest) PROXY*
-    *  "guest_use_cntlm": "false",
-    *  "guest_parent_proxy: "your parent proxy here",
-    *  "polipo_mode": "work"
-    *NO PROXY (except the required one on the guest)*
-    *  "guest_use_cntlm": "false",
-    *  "polipo_mode": "home",
-    *  "rubys_to_install": "1.9.3 1.8.7", note that they're space delimited.
+    * "rubys_to_install": "1.9.3 1.8.7", note that they're space delimited.
 
   * Ensure that the shared folders you're planning on using exist on the Host OS.
     * Ensure that your shared folders have open write permissions so the build box can write
@@ -161,6 +147,8 @@ If you need to, you can forward ports from your Vagrant box so they show up on t
 
 http://docs.vagrantup.com/v1/docs/getting-started/ports.html
 
+I also really like SSHFS, the FUSE plugin.
+
 ### Suspending & Resuming
 
 It's best to suspend your system, rather than `vagrant halt` it.  Just type `vagrant suspend` from your host machine in the
@@ -171,7 +159,7 @@ http://docs.vagrantup.com/v1/docs/getting-started/teardown.html
 ### Restarting
 
 `vagrant halt` will finalize the image and shut it down. From then on, `vagrant up` will not re-run the 
-import and provision.
+import BUT IT WILL RE-RUN THE PROVISIONER!
 
 ### Building
 
