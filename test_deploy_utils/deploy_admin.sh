@@ -46,8 +46,12 @@ VM=$("$VBOX_M" list vms | grep $1 | cut -d"{" -f2 | cut -d"}" -f1  )
 [[ $CYGWIN == '1' ]] && ISO_PATH=$(cygpath -w ${ISO_PATH})
 echo "Path to ISO I am booting with: ${ISO_PATH}"
 
+# find the IDE storage controller name
+
+
+MEDIUM=$("$VBOX_M" showvminfo --machinereadable "${VM}" | sed -n 's/^storagecontrol.*"\(IDE.*\)"/\1/p')
 # attach that medium, assuming that the vm already let go of the previous one
-"$VBOX_M" storageattach "${VM}" --storagectl "IDE Controller" --medium "${ISO_PATH}" --port 1 --device 0 --type dvddrive
+"$VBOX_M" storageattach "${VM}" --storagectl "${MEDIUM}" --medium "${ISO_PATH}" --port 1 --device 0 --type dvddrive
 
 # restart th VM, with vengance
 "$VBOX_M" controlvm "${VM}" reset || "$VBOX_M" startvm "${VM}" 

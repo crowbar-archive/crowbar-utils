@@ -9,6 +9,8 @@
 "#github_extra_remotes": {
 	"dellcloudedge": [ "https://github.com/dellcloudedge/crowbar.git", "50" ]
 	},
+"extra_disk_host_file": "/VMs/disks/large_disk.vdi",
+"#cache_dir": "/home/judd/.crowbar-build-cache/",
 "shared_dir_guest": "/mnt/VMSharedDir/",
 "shared_dir_host": "/VMs/VMSharedDir/",
 "iso_library": "/mnt/VMSharedDir/",
@@ -27,6 +29,8 @@
 "box_url": "https://dl.dropbox.com/u/9764728/boxes/ubuntu64-12.04.1.box",
 "polipo_mode": "work",
 "rubys_to_install": "1.9.3 1.8.7",
-"ruby_default_version": "1.9.3"
+"ruby_default_version": "1.9.3",
+"extra_disk_device": "/mnt/disks/large_disk.vdi",
+"extra_disk_mount": "/mnt/crowbar_cache/"
 }
 

@@ -16,6 +16,9 @@ group "admin" do
 	append true
 end
 
+bash "add NOPASSWD to /etc/sudoers" do
+  code "sed -i -e 's/%admin ALL=(ALL) ALL/%admin ALL=NOPASSWD:ALL/g' /etc/sudoers"
+end
 
 ## give the user some ssh public keys
 directory "/home/#{node.props.guest_username}/.ssh" do
