@@ -19,6 +19,8 @@ Tested OK on hosts:
   * Mac OS Lion, VirtualBox 4.2.6, Vagrant 1.0.5
   * Ubuntu 12.04.2, VirtualBox 4.2.6, Vagrant 1.0.5
   * Windows 7, Virtual Box 4.2.12, Vagrant 1.2.2
+
+NOTE:  Vagrant > 1.2 now supports VMWare: http://www.vagrantup.com/vmware
  
 
 How To:
@@ -149,17 +151,17 @@ http://docs.vagrantup.com/v1/docs/getting-started/ports.html
 
 I also really like SSHFS, the FUSE plugin.
 
-### Suspending & Resuming
+### Suspending & Resuming (recommended)
 
 It's best to suspend your system, rather than `vagrant halt` it.  Just type `vagrant suspend` from your host machine in the
 Vagrantfile directory, and it'll write memory to disk and quiesce things.  `vagrant resume` does just what you think.
 
 http://docs.vagrantup.com/v1/docs/getting-started/teardown.html
 
-### Restarting
+### Restarting (less recommended)
 
-`vagrant halt` will finalize the image and shut it down. From then on, `vagrant up` will not re-run the 
-import BUT IT WILL RE-RUN THE PROVISIONER!
+`vagrant halt` will finalize the image and shut it down. To start it up again `vagrant up` will not re-run the 
+import BUT IT WILL RE-RUN THE PROVISIONER!  So it's better to use `vagrant suspend` and `vagrant resume.`
 
 ### Building
 
@@ -200,7 +202,7 @@ Epilogue
 
 Please let me know what you find: submit bug reports, email me, find me on IRC, or best of all, fork the code and submit pull-requests!
 
-I hope it helps you get up and developing Crowbar quickly.
+I hope it helps you get up and developing Crowbar quickly.  I look forward to your pull requests.
 
 -judd
 
