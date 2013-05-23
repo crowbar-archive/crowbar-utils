@@ -3,15 +3,15 @@ crowbar-utils
 
 A place to store misc crowbar related utilities.
 
-# bash_utils
+## bash_utils
 
-unsorted stuff
+unsorted stuff, like the tab-completion stuff for devtool
 
-# env_setup_scripts
+## env_setup_scripts
 
 Scripts to automate setup of virtual environments of admin servers and nodes - for development and testing.
 
-# vagrant_crowbar
+## vagrant_crowbar
 
 Sets up a virtualbox VM specifically designed for development of Crowbar.
 
@@ -19,7 +19,7 @@ Sets up your Github account information.  Installs a proxy on the guest, can int
 
 Downloads all the stuff you need, including the Crowbar source code.
 
-# veewee_admin
+## veewee_admin
 
 veewee is a tool to create Vagrant boxes.  Not using this right now.
 
