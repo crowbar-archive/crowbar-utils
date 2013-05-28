@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# (c) 2013, Dell
+# Author: Judd Maltin
+
 # Script originally written for cygwin - now on ubuntu, should still work on Cygwin
 # Intended to be run from the Host system running Virtual Box
 # VM name is the VBox name of your admin server, already configured for running the
