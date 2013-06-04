@@ -60,5 +60,8 @@ MEDIUM=$("$VBOX_M" showvminfo --machinereadable "${VM}" | sed -n 's/^storagecont
 "$VBOX_M" controlvm "${VM}" reset || "$VBOX_M" startvm "${VM}" 
 
 echo "All done.  Enjoy your new Admin Server."
-exit 0
 
+cd `basename $0`
+./my_notify.sh "Admin server deployment started.  Please now run admin install."
+
+./admin_await_ssh.sh

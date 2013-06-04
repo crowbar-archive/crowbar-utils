@@ -2,10 +2,14 @@
 
 # make swift proxy nodes
 
+set -x 
 # argv
+typeset -i NUM_CPU NUM_RAM DISK_SIZE NUM_DRIVES
 NAME="swift_pxe_${1}"
-DISK_SIZE=$2
-NUM_DRIVES=$3
+DISK_SIZE=${2:-5000}
+NUM_DRIVES=${3:-1}
+NUM_CPU=${4:-1}
+NUM_RAM=${5:-1000}
 
 # paths
 DEFAULT_FOLDER="/$(VBoxManage list systemproperties | grep "^Default machine folder:" | cut -d'/' -f 2-)/"
@@ -21,16 +25,13 @@ rm -rf "$VMPATH"
 
 # create a new vm
 VBoxManage createvm --name ${NAME} --ostype Ubuntu_64 --register 
-VBoxManage modifyvm  ${NAME} --memory 1000
+VBoxManage modifyvm  ${NAME} --memory ${NUM_RAM} --cpus ${NUM_CPU}
 
 # add drive controllers
 VBoxManage storagectl  "${NAME}" --name 'IDE' --add ide
 
-SATA_PORT_COUNT=1
-if [ ! -z "$NUM_DRIVES" ]
-then
-  SATA_PORT_COUNT=$((${NUM_DRIVES} + 1))
-fi
+SATA_PORT_COUNT=$((${NUM_DRIVES} + 1))
+
 echo "SATA_PORT_COUNT = ${SATA_PORT_COUNT}"
 
 VBoxManage storagectl "${NAME}" --name 'SATA' --add sata --hostiocache off --sataportcount ${SATA_PORT_COUNT}
