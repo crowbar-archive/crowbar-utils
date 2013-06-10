@@ -1,0 +1,4 @@
+dev /home/judd/crowbar
+devapp /home/judd/crowbar/barclamps/crowbar/crowbar_framework
+
+live /mnt/admin/opt/dell
