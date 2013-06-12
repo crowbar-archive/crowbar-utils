@@ -62,7 +62,7 @@ Host Prerequisites:
       `export PATH=/opt/vagrant/bin/:$PATH`
 
 ### Vagrant Plugins
-  * You must install this if you're using Virtual Box. It will keep you client 
+  * Auto "VirtualBox Guest Additions" updater for your VMs - GREAT! https://github.com/dotless-de/vagrant-vbguest
 
 ### Git - Clone the Repo
   * Install Git on your OS
