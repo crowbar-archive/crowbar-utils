@@ -81,13 +81,13 @@ you are cool to run a proxy on your host OS (or have a good upstream proxy)
 
 *personal.json* settings:
   *  "guest_parent_proxy: "your parent proxy here",
-  *  "polipo_mode": "work"
+  *  "proxy_mode": "work"
 
 ### NO PROXY (will still install a proxy on the guest)
 you can't be bothered to run a proxy on your host OS
 
 *personal.json* settings:
-  *  "polipo_mode": "home",
+  *  "proxy_mode": "home",
 
 
 Prepare the Vagrant Environment for Installation
