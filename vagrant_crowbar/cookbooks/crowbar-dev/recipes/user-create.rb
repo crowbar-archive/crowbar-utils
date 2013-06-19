@@ -38,6 +38,11 @@ end
 # setup timezone
 execute "timezone setup" do
 	environment node["my_env"]
-	command "echo \"#{node.props.guest_timezone}\" > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata"
+  case node[:platform]
+  when "ubuntu"
+    command "echo \"#{node.props.guest_timezone}\" > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata"
+  when "suse"
+    command "echo 'testing'"
+  end
 	action :run
 end
