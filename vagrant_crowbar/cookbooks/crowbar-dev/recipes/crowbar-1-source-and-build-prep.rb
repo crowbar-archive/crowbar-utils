@@ -1,9 +1,3 @@
-#%w{tmux byobu debootstrap git rubygems molly-guard vim vim-rails curl openssl build-essential mkisofs binutils rpm ruby genisoimage}.each do |p|
-%w{debootstrap git curl openssl build-essential mkisofs binutils rpm genisoimage erlang ssh kvm}.each do |p|
-	package "#{p}" do
-		action :install
-	end
-end
 
 
 # setup .netrc for github access
@@ -50,3 +44,4 @@ template "/home/#{node.props.guest_username}/.build-crowbar.conf" do
 	})
 end
 
+# setup .crowbar-build-cache

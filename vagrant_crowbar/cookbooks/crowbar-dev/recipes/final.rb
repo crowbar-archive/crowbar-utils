@@ -5,7 +5,7 @@ node.props.attribute?('guest_extra_packages') && node.props.guest_extra_packages
 	end
 end
 
-# install lots of vim stuff:
+# install lots of vim stuff that Judd likes:
 execute "vim installs pathogen" do
 	user node.props.guest_username
 	environment node["my_env"]
@@ -16,7 +16,8 @@ end
 
 {
 	'vim-fugitive' => 'git://github.com/tpope/vim-fugitive.git',
-	'nerdtree' => 'https://github.com/scrooloose/nerdtree.git'
+	'nerdtree' => 'https://github.com/scrooloose/nerdtree.git',
+  'vim-nerdtree-tabs' => 'https://github.com/jistr/vim-nerdtree-tabs',
 }.each_pair do | name, repo |
 	execute "vim install #{name}" do
 		user node.props.guest_username
@@ -35,3 +36,5 @@ template "/home/#{node.props.guest_username}/.vimrc" do
 		:username => node.props.guest_username
 	})
 end
+
+

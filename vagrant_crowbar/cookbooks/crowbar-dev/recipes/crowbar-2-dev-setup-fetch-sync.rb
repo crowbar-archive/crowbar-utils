@@ -1,5 +1,6 @@
 
 # this can take forever - it's setting up the crowbar developemnt environment with ./dev
+
 execute "dev setup" do
 	user node.props.guest_username
 	environment node["my_env"]

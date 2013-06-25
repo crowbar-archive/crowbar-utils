@@ -1,8 +1,8 @@
+# create a group and user on the OS:
 group node.props.guest_username do
 	action :create
 end
 
-# create a group and user on the OS:
 user node.props.guest_username do
 	action :create	
 	home "/home/#{node.props.guest_username}"
