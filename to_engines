@@ -19,7 +19,9 @@ cd barclamps || exit  # ASSUME WE'RE IN SOURCE ROOT
 if [[ $1 ]]; then
     barclamps="$*"  
 else
-    barclamps=*       # convert all of them
+    # barclamps=*       # convert all of them
+    echo "Usage: to_engines <barclamp_name>"
+    exit
 fi
 
 # Convert barclamp crowbar_framework trees to engine trees
@@ -53,6 +55,7 @@ function convert_barclamp_framework_to_engine {
 	    # make prototype barclamp object from barclamp service object
 	    if [[ -f $bcroot/crowbar_engine/$bcbc/app/models/$bcbc/${bc}_service.rb ]]; then
 	        cp $bcroot/crowbar_engine/$bcbc/app/models/$bcbc/${bc}_service.rb $bcroot/crowbar_engine/$bcbc/app/models/$bcbc/barclamp.rb
+		rm $bcroot/crowbar_engine/$bcbc/app/models/$bcbc/${bc}_service.rb
 	        # rename class of from <barclamp>Service to <barclamp>Barclamp
 	        perl -pi -e "s/^class +${bc_cc}Service/class Barclamp/g" $bcroot/crowbar_engine/$bcbc/app/models/$bcbc/barclamp.rb
 	        perl -pi -e "s/< ServiceObject/< Barclamp/g" $bcroot/crowbar_engine/$bcbc/app/models/$bcbc/barclamp.rb
@@ -63,6 +66,8 @@ function convert_barclamp_framework_to_engine {
 	if [[ -d $bcroot/crowbar_framework/db/migrate ]]; then
 	    mkdir -p $bcroot/crowbar_engine/$bcbc/db/migrate
 	    cp $bcroot/crowbar_framework/db/migrate/* $bcroot/crowbar_engine/$bcbc/db/migrate
+	    # move to "import" from "import_1x"
+	    perl -pi -e "s/Barclamp.import_1x/Barclamp.import/g" $bcroot/crowbar_engine/$bcbc/db/migrate/*
 	fi
 	if [[ -d $bcroot/crowbar_framework/config ]]; then
 	    cp -r $bcroot/crowbar_framework/config/* $bcroot/crowbar_engine/$bcbc/config
@@ -79,6 +84,7 @@ function convert_barclamp_framework_to_engine {
 	if [[ -f $bcroot/crowbar_engine/$bcbc/app/controllers/$bcbc/${bc}_controller.rb ]]; then
 	    mv $bcroot/crowbar_engine/$bcbc/app/controllers/$bcbc/${bc}_controller.rb $bcroot/crowbar_engine/$bcbc/app/controllers/$bcbc/barclamps_controller.rb
 	    perl -pi -e "s/^class +${bc_cc}Controller/class Barclamp${bc_cc}::BarclampsController/g" $bcroot/crowbar_engine/$bcbc/app/controllers/$bcbc/barclamps_controller.rb 
+	    perl -pi -e "s/< BarclampController/< BarclampsController/g" $bcroot/crowbar_engine/$bcbc/app/controllers/$bcbc/barclamps_controller.rb 
 	    write_initial_routes $bc_cc $bcroot/crowbar_engine/$bcbc/config/routes.rb   $bcroot/crowbar_engine/$bcbc/app/controllers/$bcbc/barclamps_controller.rb
 	fi
         if [[ -d $bcroot/crowbar_framework/app/assets/images ]]; then
@@ -122,7 +128,8 @@ function convert_barclamp_framework_to_engine {
 	fill_gemspec $bc_cc $bcroot/crowbar_engine/$bcbc/$bcbc.gemspec
 	
 	rm $bcroot/crowbar_engine/$bcbc/{MIT-LICENSE,README.rdoc}
-	find $bcroot/crowbar_engine/$bcbc -type f | grep -v test | xargs perl -pi -e 's|Copyright 2012|Copyright 2013|g'
+	find $bcroot/crowbar_engine/$bcbc -type f | grep -v test | xargs perl -pi -e 's|Copyright 201\d|Copyright 2013|g'
+	rm $bcroot/crowbar_engine/$bcbc/Gemfile.lock
     done
 }
 
@@ -161,6 +168,8 @@ function fill_gemspec {
     perl -pi -e "s/TODO: Your name/Dell Crowbar Team/g" $path
     perl -pi -e "s/TODO: Your email/crowbar\@dell.com/g" $path
     perl -pi -e "s/TODO[:]?//g" $path
+    perl -pi -e 's/"MIT-LICENSE",|"README.rdoc"//g' $path
+    perl -pi -e 's/add_dependency \"rails\",.*/add_dependency "rails"/' $path
 }
 
 
@@ -191,13 +200,18 @@ function write_initial_routes  {
 Barclamp${bc}::Engine.routes.draw do
 
   # API routes
-  scope "#{Barclamp${bc}::API_VERSION}" do
-    resources :barclamps do
-      collection do
-        get :catalog
-      end
-      member do
+  scope :defaults => {:format=> 'json'} do
+    constraints( :api_version => /v[1-9]/ ) do
+      scope ':api_version' do
+
+        resources :barclamps do
+          collection do
+            get :catalog
+          end
+          member do
       
+          end
+        end
       end
     end
   end
@@ -216,7 +230,8 @@ Barclamp${bc}::Engine.routes.draw do
 HERE
     echo "# configure routes for these $bc barclamps controller actions..." >>$routes
     echo "# (other controllers may also need routing configuration!)" >>$routes
-    bop=$(egrep "^[ ]+def " $controller | perl -p -e 's/ *def ([a-z_]+).*/\1/g' | grep -v -e "^index$" -e "^show$" -e "^edit$" -e "^create$" -e "^new$" -e "^update$" -e "^destroy$")
+    echo "#" >>$routes
+    bop=$(egrep "^[ ]+def " $controller | perl -p -e 's/ *def ([a-z_]+).*/\# \1/g' | grep -v -e "^index$" -e "^show$" -e "^edit$" -e "^create$" -e "^new$" -e "^update$" -e "^destroy$")
     cat >>$routes<<HERE
 $bop
 HERE
