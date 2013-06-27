@@ -1,14 +1,16 @@
 #!/bin/bash
 
-# Script originally written for cygwin - now on ubuntu
+# (c) 2013, Dell
+# Author: Judd Maltin
+
+# Script originally written for cygwin - now on ubuntu, should still work on Cygwin
 # Intended to be run from the Host system running Virtual Box
 # VM name is the VBox name of your admin server, already configured for running the
-# Crowbar Admin server (with networking, disk, etc)
+# Crowbar Admin server (must have machine already setup.. networking, disk, etc)
 
 # $1 = admin VM name (glob)
 # $2 = full path to ISO
 
-set -x
 VM_NAME=${1}
 ISO_PATH=${2}
 
@@ -19,9 +21,6 @@ echo ISO_PATH=${ISO_PATH}
 if [[ $( uname -a ) == *"CYGWIN"* ]]
 then
         CYGWIN=1
-else
-        echo "This is not running on CYGWIN.  I invite you to hack this so it works in your OS"
-#        exit
 fi
 
 # path to VBoxManage
@@ -34,11 +33,11 @@ VM=$("$VBOX_M" list vms | grep $VM_NAME  )
 # test to make sure we only have one VM to reset
 if [[ $( echo "${VM}" | wc -l ) > 1 ]]
 then
-        echo more than one match, must only be one
-        exit
+        echo ERROR: more than one match, must only be one.  Pick a better glob.  Exiting.
+        exit 1
 fi
 
-echo "Virtual machine to reset: ${VM}"
+echo "Virtual machine I am resetting now: ${VM}"
 
 # get the UID of the VM
 VM=$("$VBOX_M" list vms | grep $1 | cut -d"{" -f2 | cut -d"}" -f1  )
@@ -48,15 +47,21 @@ VM=$("$VBOX_M" list vms | grep $1 | cut -d"{" -f2 | cut -d"}" -f1  )
 
 # change ISO path style from cygwin to Windows (if necessary)
 [[ $CYGWIN == '1' ]] && ISO_PATH=$(cygpath -w ${ISO_PATH})
-echo "Path to ISO: ${ISO_PATH}"
+echo "Path to ISO I am booting with: ${ISO_PATH}"
 
+# find the IDE storage controller name
+
+
+MEDIUM=$("$VBOX_M" showvminfo --machinereadable "${VM}" | sed -n 's/^storagecontrol.*"\(IDE.*\)"/\1/p')
 # attach that medium, assuming that the vm already let go of the previous one
-"$VBOX_M" storageattach "${VM}" --storagectl "IDE Controller" --medium "${ISO_PATH}" --port 1 --device 0 --type dvddrive
+"$VBOX_M" storageattach "${VM}" --storagectl "${MEDIUM}" --medium "${ISO_PATH}" --port 1 --device 0 --type dvddrive
 
 # restart th VM, with vengance
 "$VBOX_M" controlvm "${VM}" reset || "$VBOX_M" startvm "${VM}" 
 
+echo "All done.  Enjoy your new Admin Server."
 
+cd `basename $0`
+./my_notify.sh "Admin server deployment started.  Awaiting s s h"
 
-exit 0
-
+./admin_await_ssh.sh

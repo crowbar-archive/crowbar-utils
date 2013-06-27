@@ -1,15 +1,7 @@
-# environment for executes:
-my_env = {
-	'HOME' => "/home/#{node.props.guest_username}/",
-	'http_proxy' => node.props.guest_http_proxy,
-	'https_proxy' => node.props.guest_https_proxy,
-	'no_proxy' => "127.0.0.0/8,192.168.124.0/24,10.0.0.0/8,143.166.0.0/16"	
-}
-
 # need proxy on as soon as possible
 ## append proxy_on.sh to .bashrc
 execute "proxy on by default" do
-	environment my_env
+	environment node["my_env"]
 	command " echo \"export http_proxy=\'#{node.props.guest_http_proxy}\'\nexport https_proxy=\'#{node.props.guest_https_proxy}\'\n\" >> /etc/profile"
 	action :run
 	not_if "grep http_proxy /etc/profile"
@@ -17,13 +9,13 @@ end
 
 execute "check env" do
 	command "env > /tmp/env"
-	environment my_env
+	environment node["my_env"]
 	action :run
 end
 
 execute "json gem" do
 	command "gem install json"
-	environment my_env
+	environment node["my_env"]
 	action :run
 	#not_if "gem list -i json | grep true"
 end	
@@ -51,7 +43,7 @@ end
 # grab the crowbar repo
 execute "git clone crowbar" do
 	user node.props.guest_username
-	environment my_env
+	environment node["my_env"]
 	cwd "/home/#{node.props.guest_username}/"
 	command "git clone #{node.props.github_repo}"
 	creates "/home/#{node.props.guest_username}/crowbar/"
@@ -85,7 +77,7 @@ end
 %w{setup fetch sync}.each do |cmd|
 	execute "dev #{cmd}" do
 		user node.props.guest_username
-		environment my_env
+		environment node["my_env"]
 		cwd "/home/#{node.props.guest_username}/crowbar/"
 		command "./dev #{cmd}"
 		action :run
@@ -98,20 +90,20 @@ node.props.attribute?('github_extra_remotes') &&
 	node.props[:github_extra_remotes].each do | remote_name, remote_settings |
 		execute "set remote #{remote_name} with url #{remote_settings[0]} to priority #{remote_settings[1]}" do
 			user node.props.guest_username
-			environment my_env
+			environment node["my_env"]
 			cwd "/home/#{node.props.guest_username}/crowbar/"
 			command "./dev remote add #{remote_name} #{remote_settings[0]}; ./dev remote priority #{remote_name} #{remote_settings[1]};"
 			action :run
 			not_if "./dev remote show #{remote_name}", 
 				:user => node.props.guest_username, 
-				:environment => my_env,
+				:environment => node["my_env"],
 				:cwd => "/home/#{node.props.guest_username}/crowbar/"
 		end
 	end
 
 # setup timezone
 execute "timezone setup" do
-	environment my_env
+	environment node["my_env"]
 	command "echo \"#{node.props.guest_timezone}\" > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata"
 	action :run
 end
@@ -126,7 +118,7 @@ end
 # install lots of vim stuff:
 execute "vim installs pathogen" do
 	user node.props.guest_username
-	environment my_env
+	environment node["my_env"]
 	command "mkdir -p ~/.vim/autoload ~/.vim/bundle; curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim"
 	creates "/home/#{node.props.guest_username}/.vim/autoload/pathogen.vim"
 	action :run
@@ -138,7 +130,7 @@ end
 }.each_pair do | name, repo |
 	execute "vim install #{name}" do
 		user node.props.guest_username
-		environment my_env
+		environment node["my_env"]
 		command "cd ~/.vim/bundle; git clone #{repo}"
 		action :run
 		creates "/home/#{node.props.guest_username}/.vim/bundle/#{name}"

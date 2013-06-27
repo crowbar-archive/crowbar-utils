@@ -45,20 +45,16 @@ end
 
 cookbook_file "/home/#{node.props.guest_username}/proxy" do
 	source "proxy"
-	mode 00755
+	mode 0755
 end
 
-execute "switch polipo to #{node.props.polipo_mode}" do
-	command "/home/#{node.props.guest_username}/proxy #{node.props.polipo_mode}"
+execute "switch polipo to #{node.props.proxy_mode}" do
+	command "/home/#{node.props.guest_username}/proxy #{node.props.proxy_mode}"
 	action :run
-        #notifies :run, resources(:execute => "apt-get update"), :immediately
 	notifies :restart, "service[polipo]", :immediately
-        #notifies :create, resources(:cookbook_file => "/home/#{node.props.guest_username}/proxy"), :immediately
 end
 
 proxy_settings "parent proxy localhost" do
 	http_proxy node.props.guest_http_proxy
 	https_proxy node.props.guest_https_proxy
 end
-
-

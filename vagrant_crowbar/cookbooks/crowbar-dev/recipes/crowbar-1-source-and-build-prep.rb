@@ -1,13 +1,5 @@
-# environment for executes:
-my_env = {
-	'HOME' => "/home/#{node.props.guest_username}/",
-	'http_proxy' => node.props.guest_http_proxy,
-	'https_proxy' => node.props.guest_https_proxy,
-	'no_proxy' => "127.0.0.0/8,192.168.124.0/24,10.0.0.0/8,143.166.0.0/16"	
-}
-
 #%w{tmux byobu debootstrap git rubygems molly-guard vim vim-rails curl openssl build-essential mkisofs binutils rpm ruby genisoimage}.each do |p|
-%w{debootstrap git curl openssl build-essential mkisofs binutils rpm genisoimage erlang ssh}.each do |p|
+%w{debootstrap git curl openssl build-essential mkisofs binutils rpm genisoimage erlang ssh kvm}.each do |p|
 	package "#{p}" do
 		action :install
 	end
@@ -28,7 +20,7 @@ end
 # grab the crowbar repo
 execute "git clone crowbar" do
 	user node.props.guest_username
-	environment my_env
+	environment node["my_env"]
 	cwd "/home/#{node.props.guest_username}/"
 	command "git clone #{node.props.github_repo}"
 	creates "/home/#{node.props.guest_username}/crowbar/"
@@ -52,8 +44,9 @@ template "/home/#{node.props.guest_username}/.build-crowbar.conf" do
 	owner node.props.guest_username
 	variables ({
 		:github_id => node.props.github_id,
-		:iso_library => node.props.iso_library,
-		:iso_dest => node.props.iso_dest
+		:iso_library => node.props.crowbar_iso_library,
+		:iso_dest => node.props.crowbar_iso_dest,
+		:cache_dir => node.props.crowbar_build_cache
 	})
 end
 

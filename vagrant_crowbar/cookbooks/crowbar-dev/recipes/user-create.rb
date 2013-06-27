@@ -1,12 +1,3 @@
-# environment for executes:
-my_env = {
-	'HOME' => "/home/#{node.props.guest_username}/",
-	'http_proxy' => node.props.guest_http_proxy,
-	'https_proxy' => node.props.guest_https_proxy,
-	'no_proxy' => "127.0.0.0/8,192.168.124.0/24,10.0.0.0/8,143.166.0.0/16"	
-}
-
-
 group node.props.guest_username do
 	action :create
 end
@@ -25,6 +16,9 @@ group "admin" do
 	append true
 end
 
+bash "add NOPASSWD to /etc/sudoers" do
+  code "sed -i -e 's/%admin ALL=(ALL) ALL/%admin ALL=NOPASSWD:ALL/g' /etc/sudoers"
+end
 
 ## give the user some ssh public keys
 directory "/home/#{node.props.guest_username}/.ssh" do
@@ -34,7 +28,7 @@ directory "/home/#{node.props.guest_username}/.ssh" do
 end
 
 execute "add_key" do
-	environment my_env
+	environment node["my_env"]
 	command "echo \"#{node.props.user_sshpubkey}\" >> /home/#{node.props.guest_username}/.ssh/authorized_keys"
 	creates "/home/#{node.props.guest_username}/.ssh/authorized_keys"
 	action :run
@@ -43,7 +37,7 @@ end
 
 # setup timezone
 execute "timezone setup" do
-	environment my_env
+	environment node["my_env"]
 	command "echo \"#{node.props.guest_timezone}\" > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata"
 	action :run
 end
