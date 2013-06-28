@@ -4,30 +4,18 @@ props = JSON.load(IO.read('personal.json'))
 
 Vagrant::configure("2") do |config|
 
-<<<<<<< HEAD
   config.vm.hostname = "#{props['guest_hostname']}"
   config.vm.box = "#{props['box_name']}"
   config.vm.box_url = "#{props['box_url']}"
   #config.vm.box_url = "http://files.vagrantup.com/precise32.box"
-=======
-  config.vm.hostname = props['guest_hostname']
-  config.vm.box = props['box_name']
-  config.vm.box_url = props['box_url']
->>>>>>> 9fc852aa0c510371552b597ad1558cfc418263cc
   
   # Assign this VM to a host-only network IP, allowing you to access it
   # via the IP. Host-only networks can talk to the host machine as well as
   # any other machines on the same network, but cannot be accessed (through this
   # network interface) by any external networks.
-<<<<<<< HEAD
   #if props.include?("guest_hostonly_ip") 
 	# config.vm.network :hostonly, props['guest_hostonly_ip']
   #end
-=======
-  #  if props.include?("guest_hostonly_ip") 
-  #    config.vm.network :hostonly, props['guest_hostonly_ip']
-  #  end
->>>>>>> 9fc852aa0c510371552b597ad1558cfc418263cc
 
   # Assign this VM to a bridged network, allowing you to connect directly to a
   # network using the host's network device. This makes the VM appear as another
@@ -46,26 +34,19 @@ Vagrant::configure("2") do |config|
   # config.vm.synced_folder "v-data", "/vagrant_data", "../data"
   # config.vm.synced_folder "share", props['shared_dir_guest'], props['shared_dir_host'], :create => true, :extra => 'dmode=777,fmode=777'
   #
-<<<<<<< HEAD
-  #config.vm.synced_folder props['shared_dir_host'], props['shared_dir_guest']
-=======
   config.vm.synced_folder props['synced_dir_host'], props['synced_dir_guest']
->>>>>>> 9fc852aa0c510371552b597ad1558cfc418263cc
 
 
   config.vm.provider :virtualbox do |vb|
     vb.gui  = true
     vb.name = props['guest_hostname']
     vb.customize ["modifyvm", :id, "--cpus", props['guest_cpus']]
-<<<<<<< HEAD
-    #vb.customize ["modifyvm", :id, "--nic2", "bridged", "--bridgeadapter2", props['host_network_bridge_interface'] ]
-=======
     vb.customize ["modifyvm", :id, "--memory", props['guest_ram']]
+    #vb.customize ["modifyvm", :id, "--nic2", "bridged", "--bridgeadapter2", props['host_network_bridge_interface'] ]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     # cool stuff!
     # install the plugin:  vagrant plugin install vagrant-vbguest 
     config.vbguest.auto_update = true #true by default when plugin installed
->>>>>>> 9fc852aa0c510371552b597ad1558cfc418263cc
   end
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
@@ -74,11 +55,6 @@ Vagrant::configure("2") do |config|
   
   config.vm.provision :chef_solo do |chef|
     #chef.recipe_url = "http://files.vagrantup.com/getting_started/cookbooks.tar.gz"
-<<<<<<< HEAD
-    #vagrant plugin install vagrant-vbguest
-    config.vbguest.auto_update = true #true by default when plugin installed
-=======
->>>>>>> 9fc852aa0c510371552b597ad1558cfc418263cc
     chef.data_bags_path = "data_bags"
     chef.json = {
       :props => props
