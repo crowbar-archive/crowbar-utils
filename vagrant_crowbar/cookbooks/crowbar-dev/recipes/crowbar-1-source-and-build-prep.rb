@@ -38,9 +38,9 @@ template "/home/#{node.props.guest_username}/.build-crowbar.conf" do
 	owner node.props.guest_username
 	variables ({
 		:github_id => node.props.github_id,
-		:iso_library => node.props.iso_library,
-		:iso_dest => node.props.iso_dest,
-		:cache_dir => node.props.cache_dir
+		:iso_library => node.props.crowbar_iso_library,
+		:iso_dest => node.props.crowbar_iso_dest,
+		:cache_dir => node.props.crowbar_build_cache
 	})
 end
 

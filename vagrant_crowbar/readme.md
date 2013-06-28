@@ -55,13 +55,19 @@ Host Prerequisites:
 
 ### Vagrant
   * Download and install the latest Vagrant: http://downloads.vagrantup.com/
+  * It does NOT have a GUI.  But once you install it, it's there.
   * Do not use stock Ubuntu packages.  They're old. 
     * Ubuntu:
       Vagrant's Ubuntu packages put vagrant in opt:
       `export PATH=/opt/vagrant/bin/:$PATH`
 
+### Vagrant Plugins
+  * Auto "VirtualBox Guest Additions" updater for your VMs - GREAT! https://github.com/dotless-de/vagrant-vbguest
+
 ### Git - Clone the Repo
   * Install Git on your OS
+    * How?  If you're on Microsoft, the Github App is great.  Follow the instructions:
+      * https://help.github.com/articles/set-up-git#platform-windows
   * Clone/download this repo: `git clone https://github.com/crowbar/crowbar-utils`
   * You may also use your own group's repo.
 
@@ -75,13 +81,13 @@ you are cool to run a proxy on your host OS (or have a good upstream proxy)
 
 *personal.json* settings:
   *  "guest_parent_proxy: "your parent proxy here",
-  *  "polipo_mode": "work"
+  *  "proxy_mode": "work"
 
 ### NO PROXY (will still install a proxy on the guest)
 you can't be bothered to run a proxy on your host OS
 
 *personal.json* settings:
-  *  "polipo_mode": "home",
+  *  "proxy_mode": "home",
 
 
 Prepare the Vagrant Environment for Installation

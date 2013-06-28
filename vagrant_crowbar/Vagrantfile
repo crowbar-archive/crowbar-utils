@@ -4,28 +4,37 @@ props = JSON.load(IO.read('personal.json'))
 
 Vagrant::configure("2") do |config|
 
+<<<<<<< HEAD
   config.vm.hostname = "#{props['guest_hostname']}"
   config.vm.box = "#{props['box_name']}"
   config.vm.box_url = "#{props['box_url']}"
   #config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+=======
+  config.vm.hostname = props['guest_hostname']
+  config.vm.box = props['box_name']
+  config.vm.box_url = props['box_url']
+>>>>>>> 9fc852aa0c510371552b597ad1558cfc418263cc
   
   # Assign this VM to a host-only network IP, allowing you to access it
   # via the IP. Host-only networks can talk to the host machine as well as
   # any other machines on the same network, but cannot be accessed (through this
   # network interface) by any external networks.
+<<<<<<< HEAD
   #if props.include?("guest_hostonly_ip") 
 	# config.vm.network :hostonly, props['guest_hostonly_ip']
   #end
+=======
+  #  if props.include?("guest_hostonly_ip") 
+  #    config.vm.network :hostonly, props['guest_hostonly_ip']
+  #  end
+>>>>>>> 9fc852aa0c510371552b597ad1558cfc418263cc
 
   # Assign this VM to a bridged network, allowing you to connect directly to a
   # network using the host's network device. This makes the VM appear as another
   # physical device on your network.
   #config.vm.network :bridged, :adapter => 'eth0'
-  #if props.include?("host_network_bridge_interface")
-	 #config.vm.network :bridged, :bridge => props['host_network_bridge_interface']
-	 #config.vm.public_network props['host_network_bridge_interface']
-	# config.vm.public_network props['host_network_bridge_interface']
-  #end
+
+  config.vm.network :public_network
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
@@ -34,17 +43,29 @@ Vagrant::configure("2") do |config|
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
   # folder, and the third is the path on the host to the actual folder.
-  #config.vm.share_folder "v-data", "/vagrant_data", "../data"
-  #config.vm.shared_folder "share", props['shared_dir_guest'], props['shared_dir_host'], :create => true, :extra => 'dmode=777,fmode=777'
+  # config.vm.synced_folder "v-data", "/vagrant_data", "../data"
+  # config.vm.synced_folder "share", props['shared_dir_guest'], props['shared_dir_host'], :create => true, :extra => 'dmode=777,fmode=777'
   #
+<<<<<<< HEAD
   #config.vm.synced_folder props['shared_dir_host'], props['shared_dir_guest']
+=======
+  config.vm.synced_folder props['synced_dir_host'], props['synced_dir_guest']
+>>>>>>> 9fc852aa0c510371552b597ad1558cfc418263cc
 
 
   config.vm.provider :virtualbox do |vb|
     vb.gui  = true
     vb.name = props['guest_hostname']
     vb.customize ["modifyvm", :id, "--cpus", props['guest_cpus']]
+<<<<<<< HEAD
     #vb.customize ["modifyvm", :id, "--nic2", "bridged", "--bridgeadapter2", props['host_network_bridge_interface'] ]
+=======
+    vb.customize ["modifyvm", :id, "--memory", props['guest_ram']]
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    # cool stuff!
+    # install the plugin:  vagrant plugin install vagrant-vbguest 
+    config.vbguest.auto_update = true #true by default when plugin installed
+>>>>>>> 9fc852aa0c510371552b597ad1558cfc418263cc
   end
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
@@ -53,9 +74,15 @@ Vagrant::configure("2") do |config|
   
   config.vm.provision :chef_solo do |chef|
     #chef.recipe_url = "http://files.vagrantup.com/getting_started/cookbooks.tar.gz"
+<<<<<<< HEAD
     #vagrant plugin install vagrant-vbguest
     config.vbguest.auto_update = true #true by default when plugin installed
+=======
+>>>>>>> 9fc852aa0c510371552b597ad1558cfc418263cc
     chef.data_bags_path = "data_bags"
+    chef.json = {
+      :props => props
+    }
     chef.add_recipe "crowbar-dev::user-create"
     chef.add_recipe "crowbar-dev::http-proxy-client"
     chef.add_recipe "crowbar-dev::package-repo"
@@ -66,10 +93,9 @@ Vagrant::configure("2") do |config|
     chef.add_recipe "crowbar-dev::crowbar-2-dev-setup-fetch-sync"
     chef.add_recipe "crowbar-dev::crowbar-3-add-remotes"
     chef.add_recipe "crowbar-dev::final"
-    chef.json = {
-      :props => props
-    }
   end
 end
+
+# __END__
 #  config.vm.customize ['createhd', '--filename', extra_disk_host_file, '--size', 500 * 1024]
 #  config.vm.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', extra_disk_host_file]
