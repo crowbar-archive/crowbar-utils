@@ -11,16 +11,25 @@ user node.props.guest_username do
 	gid node.props.guest_username
 end
 
-group "admin" do
-	members node.props.guest_username
-	append true
+# give guest user superpowers
+power_group_name="admin"
+case node[:platform]
+when "ubuntu"
+  power_group_name = "admin"
+when "suse"
+  power_group_name = "wheel"
+end
+group "#{power_group_name}" do
+  members node.props.guest_username
+  append true
 end
 
 bash "add NOPASSWD to /etc/sudoers" do
-  code "sed -i -e 's/%admin ALL=(ALL) ALL/%admin ALL=NOPASSWD:ALL/g' /etc/sudoers"
+  code "echo \"%#{power_group_name} ALL=NOPASSWD:ALL\" >> /etc/sudoers"
+  not_if "grep \"^%#{power_group_name} ALL_NOPASSWD:ALL\" /etc/sudoers"
 end
 
-## give the user some ssh public keys
+## give the user ssh public keys
 directory "/home/#{node.props.guest_username}/.ssh" do
 	owner node.props.guest_username
 	mode "0700"

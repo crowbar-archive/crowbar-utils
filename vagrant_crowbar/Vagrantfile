@@ -56,10 +56,10 @@ Vagrant::configure("2") do |config|
     #vagrant plugin install vagrant-vbguest
     config.vbguest.auto_update = true #true by default when plugin installed
     chef.data_bags_path = "data_bags"
-    chef.add_recipe "crowbar-dev::basic-packages"
     chef.add_recipe "crowbar-dev::user-create"
     chef.add_recipe "crowbar-dev::http-proxy-client"
     chef.add_recipe "crowbar-dev::package-repo"
+    chef.add_recipe "crowbar-dev::basic-packages"
     chef.add_recipe "crowbar-dev::ruby"
     chef.add_recipe "crowbar-dev::json"
     chef.add_recipe "crowbar-dev::crowbar-1-source-and-build-prep"

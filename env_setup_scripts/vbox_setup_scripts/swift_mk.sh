@@ -7,9 +7,9 @@ set -x
 #./swift_mk_node.sh proxy3 50000
 
 # create three storage nodes with 3 additional 
-#./swift_mk_node.sh storage1 50000 3
+./swift_mk_node.sh storage1 50000 3 2 5000
 #./swift_mk_node.sh storage2 50000 3
-./swift_mk_node.sh storage3 50000 3
+#./swift_mk_node.sh storage3 50000 3
 
 
 
