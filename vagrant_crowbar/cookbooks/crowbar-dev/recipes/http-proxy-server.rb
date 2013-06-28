@@ -16,8 +16,6 @@ package "#{proxy_name}" do
   action :install
 end
 
-guest_parent_proxy = node.props.attribute?('guest_parent_proxy') ? node.props.guest_parent_proxy : ''
-
 
 case node[:platform]
 when "ubuntu"
@@ -73,7 +71,3 @@ when "ubuntu"
   end
 end
 
-proxy_settings "set proxies" do
-	http_proxy node.props.guest_http_proxy
-	https_proxy node.props.guest_https_proxy
-end

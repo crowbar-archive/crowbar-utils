@@ -42,7 +42,8 @@ execute "timezone setup" do
   when "ubuntu"
     command "echo \"#{node.props.guest_timezone}\" > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata"
   when "suse"
-    command "echo 'testing'"
+    command "echo \"TZ=#{node.props.guest_timezone}\" >> /home/#{node.props.guest_username}/.profile"
+	  not_if "grep \"TZ=#{node.props.guest_timezone}\" /home/#{node.props.guest_username}/.profile"
   end
 	action :run
 end

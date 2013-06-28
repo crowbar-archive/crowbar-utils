@@ -2,7 +2,7 @@
 ## append proxy_on.sh to .bashrc
 execute "proxy on by default" do
 	environment node["my_env"]
-	command " echo \"export http_proxy=\'#{node.props.guest_http_proxy}\'\nexport https_proxy=\'#{node.props.guest_https_proxy}\'\n\" >> /etc/profile"
+	command " echo \"export http_proxy=\'#{node.props.http_proxy}\'\nexport https_proxy=\'#{node.props.https_proxy}\'\n\" >> /etc/profile"
 	action :run
 	not_if "grep http_proxy /etc/profile"
 end
