@@ -42,7 +42,7 @@ Host Prerequisites:
 ### Web Proxy
   * It's best practice to have a web proxy running somewhere.  Crowbar downloads a lot of stuff.
     * Host proxy: For greater awesomeness, install a web proxy on your Host box, so you can destroy your
-      guest boxes and you won't lose everything you've downloaded.
+      guest boxes and you won't have to rely entirely on your .crowbar_build_cache.
       * Ubuntu: 
         `apt-get install polipo`
         edit `/etc/polipo/config` to listen on 0.0.0.0 and restart polipo to pick up the changes
