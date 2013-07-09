@@ -76,6 +76,10 @@ Host Prerequisites:
   * Clone/download this repo: `git clone https://github.com/crowbar/crowbar-utils`
   * You may also use your own group's repo.
 
+## Guest Box URLs
+  * Ubuntu 12.04: https://dl.dropboxusercontent.com/u/9764728/boxes/vagrant-ubuntu12042-64.box
+  * OpenSuSE: https://googledrive.com/host/0B6uHJ6DBTZtFcmwyd0dPVVhKcUk/opensuse-12.3-chef.box
+
 ### SuSE Guest problems:
   * Setting hostnames doesn't work.  You've gotta do this:
     * https://github.com/dsesh/vagrant/commit/497ebb0f72c2a5dfe211a211348c4149830bff79
