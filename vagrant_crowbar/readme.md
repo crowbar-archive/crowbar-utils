@@ -76,13 +76,16 @@ Host Prerequisites:
   * Clone/download this repo: `git clone https://github.com/crowbar/crowbar-utils`
   * You may also use your own group's repo.
 
-### SuSE problems:
+### SuSE Guest problems:
   * Setting hostnames doesn't work.  You've gotta do this:
     * https://github.com/dsesh/vagrant/commit/497ebb0f72c2a5dfe211a211348c4149830bff79
     * Ubuntu Host: The file to edit referenced above if found here:
       * /opt/vagrant/...
     * Windows Host: The file to edit referenced above is found here:
       * C:\HashiCorp\Vagrant\embedded\gems\gems\vagrant-1.2.2\plugins\guests\suse\cap\change_host_name.rb
+
+### Windows Host problems:
+  * VirtualBox app has to be running, otherwise "vagrant up" will fail with an unhepful message.
 
 Proxies are WICKED important 
 ----------------------------
