@@ -41,17 +41,18 @@ Host Prerequisites:
 
 ### Web Proxy
   * It's best practice to have a web proxy running somewhere.  Crowbar downloads a lot of stuff.
-    * Guest proxy: gets installed by default.  You should set the http_proxy variables to your guest IP.
     * Host proxy: For greater awesomeness, install a web proxy on your Host box, so you can destroy your
-      guest boxes and you won't lose everything you've downloaded.
+      guest boxes and you won't have to rely entirely on your .crowbar_build_cache.
       * Ubuntu: 
         `apt-get install polipo`
         edit `/etc/polipo/config` to listen on 0.0.0.0 and restart polipo to pick up the changes
         verify with `netstat -lntp | grep polipo`
+      * Windows:
+        Someone please add here. :)
 
 ### Virtual Box
   * Download and install the latest VirtualBox: https://www.virtualbox.org/wiki/Downloads  
-  * Do not use stock Ubuntu packages.  They're old.
+  * Do not use stock Ubuntu packages, unless you use the PPA.  They're old.
 
 ### Vagrant
   * Download and install the latest Vagrant: http://downloads.vagrantup.com/
@@ -60,9 +61,13 @@ Host Prerequisites:
     * Ubuntu:
       Vagrant's Ubuntu packages put vagrant in opt:
       `export PATH=/opt/vagrant/bin/:$PATH`
+    * Windows:
+      You can find Vagrant in c:\HashiCorp\Vagrant\
 
 ### Vagrant Plugins
-  * Auto "VirtualBox Guest Additions" updater for your VMs - GREAT! https://github.com/dotless-de/vagrant-vbguest
+   * Windows: Vagrant plugins are located in: C:\HashiCorp\Vagrant\embedded\gems\gems\vagrant-1.2.2\plugins
+   * Auto "VirtualBox Guest Additions" updater for your VMs - GREAT! https://github.com/dotless-de/vagrant-vbguest
+      * vagrant plugins add vbguest
 
 ### Git - Clone the Repo
   * Install Git on your OS
@@ -70,6 +75,21 @@ Host Prerequisites:
       * https://help.github.com/articles/set-up-git#platform-windows
   * Clone/download this repo: `git clone https://github.com/crowbar/crowbar-utils`
   * You may also use your own group's repo.
+
+## Guest Box URLs
+  * Ubuntu 12.04: https://dl.dropboxusercontent.com/u/9764728/boxes/vagrant-ubuntu12042-64.box
+  * OpenSuSE: https://googledrive.com/host/0B6uHJ6DBTZtFcmwyd0dPVVhKcUk/opensuse-12.3-chef.box
+
+### SuSE Guest problems:
+  * Setting hostnames doesn't work.  You've gotta do this:
+    * https://github.com/dsesh/vagrant/commit/497ebb0f72c2a5dfe211a211348c4149830bff79
+    * Ubuntu Host: The file to edit referenced above if found here:
+      * /opt/vagrant/...
+    * Windows Host: The file to edit referenced above is found here:
+      * C:\HashiCorp\Vagrant\embedded\gems\gems\vagrant-1.2.2\plugins\guests\suse\cap\change_host_name.rb
+
+### Windows Host problems:
+  * VirtualBox app has to be running, otherwise "vagrant up" will fail with an unhepful message.
 
 Proxies are WICKED important 
 ----------------------------
@@ -80,14 +100,15 @@ becuase you'll be doing a lot of downloading.
 you are cool to run a proxy on your host OS (or have a good upstream proxy)
 
 *personal.json* settings:
-  *  "guest_parent_proxy: "your parent proxy here",
-  *  "proxy_mode": "work"
+  *  "proxy_on": "true"
+  *  "http_proxy": "http://10.0.2.2:8123"
+  *  "https_proxy": "http://10.0.2.2:8123"
 
-### NO PROXY (will still install a proxy on the guest)
+### NO PROXY
 you can't be bothered to run a proxy on your host OS
 
 *personal.json* settings:
-  *  "proxy_mode": "home",
+  *  "proxy_on": "false",
 
 
 Prepare the Vagrant Environment for Installation
@@ -100,16 +121,7 @@ Prepare the Vagrant Environment for Installation
     * "guest_username" is the username on the guest you'd like to ssh as.
     * "user_sshpubkey" is the whole line from your host machine users's ~/.ssh/pubkey file, 
       so you can login as "guest_username" without a password.
-    * "guest_proxy" and "guest_ssl_proxy" - polipo will be installed on your guest. 
-      * If you want to use the guest proxy set this to http://127.0.0.1:8123.  
-      * If you want to use the HOST proxy you setup earlier, use its IP address
-      * If you don't want to use a proxy, you're nuts. Leave it blank.
     * Networking:
-      * I make two networks: a host-only network and a bridged network. They are optional.
-        * "guest_hostonly_ip": "192.168.124.5" is the IP for the host-only network.  I use 
-          it for the admin network. 192.168.124.x
-        * "host_network_bridge_interface": "eth0", is the nic ON THE HOST that the guest will 
-          use to get DHCP IP addresses.
         * and vagrant comes up with it's own private IP for your box - usually 10.0.2.15
           with 10.0.2.2 for your host box.
     * "github_extra_remotes" Remotes are added after ./dev setup is complete. To enable,

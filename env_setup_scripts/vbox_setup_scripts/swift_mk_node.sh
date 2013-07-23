@@ -22,9 +22,14 @@ NUM_DRIVES=${3:-1}
 NUM_CPU=${4:-1}
 NUM_RAM=${5:-1000}
 
+VBOX_M="\"${VBOX_INSTALL_PATH}vboxmanage\""
+echo $VBOX_M
+
 # paths
-DEFAULT_FOLDER="/$(VBoxManage list systemproperties | grep "^Default machine folder:" | cut -d'/' -f 2-)/"
+DEFAULT_FOLDER="/$(${VBOX_M} list systemproperties | grep "^Default machine folder:" | cut -d'/' -f 2-)/"
 echo "DEFAULT_FOLDER = $DEFAULT_FOLDER"
+
+exit 0
 
 DISK_PATH="${DEFAULT_FOLDER}/${NAME}/"
 DISK_NAME="${DEFAULT_FOLDER}/${NAME}/${NAME}.vdi"
