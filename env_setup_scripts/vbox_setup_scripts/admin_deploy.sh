@@ -37,6 +37,7 @@ then
         exit 1
 fi
 
+echo `date`
 echo "Virtual machine I am resetting now: ${VM}"
 
 # get the UID of the VM

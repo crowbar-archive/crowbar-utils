@@ -2,7 +2,18 @@
 
 # make swift proxy nodes
 
-set -x 
+# IMPORTANT: setup your network as follows
+
+ADMIN_NET="vboxnet0"   # 192.168.124.0
+PUBLIC_NET="vboxnet2" # 192.168.122.0
+PRIVATE_NET="vboxnet3" # 192.168.123.0
+STORAGE_NET="vboxnet5" # 192.168.125.0
+
+NIC1_NET=${ADMIN_NET}
+NIC2_NET=${PUBLIC_NET}
+NIC3_NET=${PRIVATE_NET}
+NIC4_NET=${STORAGE_NET}
+
 # argv
 typeset -i NUM_CPU NUM_RAM DISK_SIZE NUM_DRIVES
 NAME="swift_pxe_${1}"
@@ -36,12 +47,13 @@ echo "SATA_PORT_COUNT = ${SATA_PORT_COUNT}"
 
 VBoxManage storagectl "${NAME}" --name 'SATA' --add sata --hostiocache off --sataportcount ${SATA_PORT_COUNT}
 
-# create drive images
+# create drive image for first drive
 VBoxManage createhd --filename "$DISK_NAME" --size ${DISK_SIZE} --format VDI 
 
-# attach images
+# attach image for first drive
 VBoxManage storageattach "${NAME}" --storagectl 'SATA' --port 0 --device 0 --type hdd --medium "$DISK_NAME"
 
+# create and attach the rest of the drives
 if [ ! -z "$NUM_DRIVES" ]
 then
   I=0
@@ -57,6 +69,9 @@ then
   done 
 fi 
 
+# network stuff
+
+# hostonly networks only - no NAT, etc.
 VBoxManage modifyvm ${NAME} --nic1 hostonly
 VBoxManage modifyvm ${NAME} --nic2 hostonly
 VBoxManage modifyvm ${NAME} --nic3 hostonly
@@ -65,18 +80,21 @@ VBoxManage modifyvm ${NAME} --macaddress1 auto
 VBoxManage modifyvm ${NAME} --macaddress2 auto
 VBoxManage modifyvm ${NAME} --macaddress3 auto
 VBoxManage modifyvm ${NAME} --macaddress4 auto
+# don't bother with interface types - use default
 #VBoxManage modifyvm ${NAME} --nictype1 $IF_TYPE
 #VBoxManage modifyvm ${NAME} --nictype2 $IF_TYPE
 #VBoxManage modifyvm ${NAME} --nictype3 $IF_TYPE
 #VBoxManage modifyvm ${NAME} --nictype4 $IF_TYPE
+# don't noodle with link states, we don't care
 #VBoxManage modifyvm ${NAME} --cableconnected2 off
 #VBoxManage controlvm ${NAME} setlinkstate2 off
 #VBoxManage modifyvm ${NAME} --cableconnected3 off
 #VBoxManage controlvm ${NAME} setlinkstate3 off
-VBoxManage modifyvm ${NAME} --hostonlyadapter1 vboxnet0
-VBoxManage modifyvm ${NAME} --hostonlyadapter2 vboxnet2
-VBoxManage modifyvm ${NAME} --hostonlyadapter3 vboxnet3
-VBoxManage modifyvm ${NAME} --hostonlyadapter4 vboxnet5
+
+VBoxManage modifyvm ${NAME} --hostonlyadapter1 ${NIC1_NET}
+VBoxManage modifyvm ${NAME} --hostonlyadapter2 ${NIC2_NET}
+VBoxManage modifyvm ${NAME} --hostonlyadapter3 ${NIC3_NET}
+VBoxManage modifyvm ${NAME} --hostonlyadapter4 ${NIC4_NET}
 VBoxManage modifyvm ${NAME} --boot1 net
 
 #rm boxes/${NAME}.box
