@@ -26,7 +26,7 @@ NOTE:  Vagrant > 1.2 now supports VMWare: http://www.vagrantup.com/vmware
 How To:
 =======
 
-Three Steps:
+# Three Steps:
 ------------
 
 1. Install software requirements
@@ -34,8 +34,7 @@ Three Steps:
 3. `vagrant up`
 
 
-1) Install Software Requirements:
-=================================
+# 1) Install Software Requirements:
 
 
 ### 64 Bit
@@ -97,15 +96,10 @@ Three Steps:
 
 
 
+# 2) Editing the personal.json
 
-
-Prepare the Vagrant Environment for Installation
-------------------------------------------------
-
-### Editing the personal.json*
-
-
-  * Change directory to `crowbar-utils/vagrant_crowbar`
+  * Go to your crowbar-utils git repo and change directory to `crowbar-utils/vagrant_crowbar`
+  * Copy `personal.json.example` to `personal.json`
   * Edit the file `personal.json`
     * "guest_username" is the username on the guest you'd like to ssh as.
     * "user_sshpubkey" is the whole line from your host machine users's ~/.ssh/pubkey file, 
@@ -131,10 +125,9 @@ Prepare the Vagrant Environment for Installation
       into them. 0777
   * Drop the ISO of the OSes you're planning to build with into the ISO library.
 
-Make It So
-----------
+# 3) Make It So
 
-### You should be all ready.  Type: `vagrant up`
+### You should be all ready.  Type: `vagrant up` and watch
 
   * The box will install and the chef-solo cookbooks will run.
     * Report errors on Github, to IRC (judd7) the crowbar@lists.us.dell.com or find me on skype: juddmaltin-dell  I'm in New York, Eastern Time.
@@ -145,7 +138,7 @@ Make It So
     * ./dev switch development/master
     * ./dev build --os ubuntu-12.04 --update-cache
 
-Development Cycle
+# Typical Development Cycle
 =================
 
 ### Login
