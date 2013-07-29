@@ -77,11 +77,6 @@ How To:
   * Clone/download this repo: `git clone https://github.com/crowbar/crowbar-utils`
   * You may also use your own group's repo.
 
-## Guest Box URLs
-  * These will be important when you're editing your `personal.json`
-  * Ubuntu 12.04: https://dl.dropboxusercontent.com/u/9764728/boxes/vagrant-ubuntu12042-64.box
-  * OpenSuSE: https://googledrive.com/host/0B6uHJ6DBTZtFcmwyd0dPVVhKcUk/opensuse-12.3-chef.box
-
 ### SuSE Guest problems:
   * Setting hostnames doesn't work.  You've gotta do this:
     * https://github.com/dsesh/vagrant/commit/497ebb0f72c2a5dfe211a211348c4149830bff79
@@ -203,6 +198,10 @@ by default vagrant doesn't even try to use windows ssh, rather spits out some in
 $ ssh -vvv vagrant@127.0.0.1 -p 2222 -i /c/Users/<USERNAME>/.vagrant.d/insecure_private_key 
 
 
+## Guest Box URLs, for reference.
+  * These will be important when you're editing your `personal.json`
+  * Ubuntu 12.04: https://dl.dropboxusercontent.com/u/9764728/boxes/vagrant-ubuntu12042-64.box
+  * OpenSuSE: https://googledrive.com/host/0B6uHJ6DBTZtFcmwyd0dPVVhKcUk/opensuse-12.3-chef.box
 
 
 Epilogue
