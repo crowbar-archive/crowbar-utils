@@ -80,7 +80,7 @@ How To:
 ### SuSE Guest problems:
   * Setting hostnames doesn't work.  You've gotta do this:
     * https://github.com/dsesh/vagrant/commit/497ebb0f72c2a5dfe211a211348c4149830bff79
-    * Ubuntu Host: The file to edit referenced above if found here:
+    * Ubuntu Host: The file to edit referenced above is found here:
       * /opt/vagrant/...
     * Windows Host: The file to edit referenced above is found here:
       * C:\HashiCorp\Vagrant\embedded\gems\gems\vagrant-1.2.2\plugins\guests\suse\cap\change_host_name.rb
@@ -120,7 +120,7 @@ How To:
       into them. 0777
   * Drop the ISO of the OSes you're planning to build with into the ISO library.
 
-# 3) Make It So
+# 3) Make It So `vagrant up`
 
 ### You should be all ready.  Type: `vagrant up` and watch
 
