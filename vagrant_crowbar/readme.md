@@ -26,15 +26,17 @@ NOTE:  Vagrant > 1.2 now supports VMWare: http://www.vagrantup.com/vmware
 How To:
 =======
 
-What's You Installation Environment?
-------------------------------------
+Three Steps:
+------------
 
-I've created this Vagrantfile, box and cookbooks to support the kind of installation that support your environment.
+1. Install software requirements
+2. Edit personal.json
+3. `vagrant up`
 
 
+1) Install Software Requirements:
+=================================
 
-Host Prerequisites:
--------------------
 
 ### 64 Bit
   * You must be running all OSes at *64-bit.*  Host and all guests.  Can't build Crowbar without it.
@@ -62,7 +64,7 @@ Host Prerequisites:
       Vagrant's Ubuntu packages put vagrant in opt:
       `export PATH=/opt/vagrant/bin/:$PATH`
     * Windows:
-      You can find Vagrant in c:\HashiCorp\Vagrant\
+      Once installed, you can find Vagrant in c:\HashiCorp\Vagrant\
 
 ### Vagrant Plugins
    * Windows: Vagrant plugins are located in: C:\HashiCorp\Vagrant\embedded\gems\gems\vagrant-1.2.2\plugins
@@ -77,6 +79,7 @@ Host Prerequisites:
   * You may also use your own group's repo.
 
 ## Guest Box URLs
+  * These will be important when you're editing your `personal.json`
   * Ubuntu 12.04: https://dl.dropboxusercontent.com/u/9764728/boxes/vagrant-ubuntu12042-64.box
   * OpenSuSE: https://googledrive.com/host/0B6uHJ6DBTZtFcmwyd0dPVVhKcUk/opensuse-12.3-chef.box
 
@@ -89,26 +92,11 @@ Host Prerequisites:
       * C:\HashiCorp\Vagrant\embedded\gems\gems\vagrant-1.2.2\plugins\guests\suse\cap\change_host_name.rb
 
 ### Windows Host problems:
-  * VirtualBox app has to be running, otherwise "vagrant up" will fail with an unhepful message.
+  * VirtualBox app has to be running, otherwise "vagrant up" will fail with an unhepful message.  `vagrant up`
+  * will not start the VirtualBox app for you, like it does in Linux.
 
-Proxies are WICKED important 
-----------------------------
 
-becuase you'll be doing a lot of downloading.
 
-### HOST PROXY
-you are cool to run a proxy on your host OS (or have a good upstream proxy)
-
-*personal.json* settings:
-  *  "proxy_on": "true"
-  *  "http_proxy": "http://10.0.2.2:8123"
-  *  "https_proxy": "http://10.0.2.2:8123"
-
-### NO PROXY
-you can't be bothered to run a proxy on your host OS
-
-*personal.json* settings:
-  *  "proxy_on": "false",
 
 
 Prepare the Vagrant Environment for Installation
@@ -116,14 +104,23 @@ Prepare the Vagrant Environment for Installation
 
 ### Editing the personal.json*
 
+
   * Change directory to `crowbar-utils/vagrant_crowbar`
   * Edit the file `personal.json`
     * "guest_username" is the username on the guest you'd like to ssh as.
     * "user_sshpubkey" is the whole line from your host machine users's ~/.ssh/pubkey file, 
       so you can login as "guest_username" without a password.
     * Networking:
-        * and vagrant comes up with it's own private IP for your box - usually 10.0.2.15
-          with 10.0.2.2 for your host box.
+      * Default networking just works.  NAT is the default, and Vagrant comes up with it's own 
+        private IP for your box - usually 10.0.2.15 and you can access your host box from it on 10.0.2.2  
+    * Proxy config:  
+      * Scenario 1: you run a proxy on your host OS (or have a good upstream proxy)
+        *  "proxy_on": "true"
+        *  "http_proxy": "http://10.0.2.2:8123"
+        *  "https_proxy": "http://10.0.2.2:8123"
+      * Scenario 2: you can't be bothered to run a proxy on your host OS
+        *  "proxy_on": "false",
+    * Choose one of the "box_url"s you'd like to use, and uncomment the "box_name" to match.
     * "github_extra_remotes" Remotes are added after ./dev setup is complete. To enable,
        remove the # from the attribute name github_extra_remotes.  To disable, re-add the #. 
     * "guest_extra_packages": ["figlet","fgrep"] A place for you to add package names. 
