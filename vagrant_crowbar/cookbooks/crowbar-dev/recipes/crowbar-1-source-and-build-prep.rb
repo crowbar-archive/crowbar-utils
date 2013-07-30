@@ -14,7 +14,6 @@ end
 # grab the crowbar repo
 execute "git clone crowbar" do
 	user node.props.guest_username
-	environment node["my_env"]
 	cwd "/home/#{node.props.guest_username}/"
 	command "git clone #{node.props.github_repo}"
 	creates "/home/#{node.props.guest_username}/crowbar/"

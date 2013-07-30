@@ -1,6 +1,5 @@
 
-bash "sudo json gem install" do
-	environment node["my_env"]
+bash "gem install json" do
 	#user node.props.guest_username
 	cwd "/home/#{node.props.guest_username}"
 	code <<-EOH

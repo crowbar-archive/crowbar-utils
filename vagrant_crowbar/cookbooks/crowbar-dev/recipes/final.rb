@@ -8,7 +8,6 @@ end
 # install lots of vim stuff that Judd likes:
 execute "vim installs pathogen" do
 	user node.props.guest_username
-	environment node["my_env"]
 	command "mkdir -p ~/.vim/autoload ~/.vim/bundle; curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim"
 	creates "/home/#{node.props.guest_username}/.vim/autoload/pathogen.vim"
 	action :run
@@ -21,7 +20,6 @@ end
 }.each_pair do | name, repo |
 	execute "vim install #{name}" do
 		user node.props.guest_username
-		environment node["my_env"]
 		command "cd ~/.vim/bundle; git clone #{repo}"
 		action :run
 		creates "/home/#{node.props.guest_username}/.vim/bundle/#{name}"

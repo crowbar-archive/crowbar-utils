@@ -37,7 +37,6 @@ directory "/home/#{node.props.guest_username}/.ssh" do
 end
 
 execute "add_key" do
-	environment node["my_env"]
 	command "echo \"#{node.props.user_sshpubkey}\" >> /home/#{node.props.guest_username}/.ssh/authorized_keys"
 	creates "/home/#{node.props.guest_username}/.ssh/authorized_keys"
 	action :run
@@ -46,7 +45,6 @@ end
 
 # setup timezone
 execute "timezone setup" do
-	environment node["my_env"]
   case node[:platform]
   when "ubuntu"
     command "echo \"#{node.props.guest_timezone}\" > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata"

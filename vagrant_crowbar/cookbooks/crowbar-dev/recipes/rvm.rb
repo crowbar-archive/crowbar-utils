@@ -10,7 +10,6 @@
 end
 
 execute "install rvm" do
-	environment node["my_env"]
 	user node.props.guest_username
 	#command "curl -L https://get.rvm.io | bash -s stable --trace"
 	command "curl -L https://get.rvm.io | bash -s stable "
@@ -19,7 +18,6 @@ execute "install rvm" do
 end
 
 execute "rvm shell" do
-	environment node["my_env"]
 	user node.props.guest_username
 	command "echo \"source $HOME/.rvm/scripts/rvm\" >> ~/.bashrc"
 	action :run
@@ -28,7 +26,6 @@ end
 if node.props.attribute?('rubys_to_install') 
 node.props.rubys_to_install.split.each do |rubyversion|
 	execute "rvm install ruby #{rubyversion}" do
-		environment node["my_env"]
 		user node.props.guest_username
 		# 1. source the rvm script
 		# 2. set multi-core compile flags
@@ -45,7 +42,6 @@ end
 
 #if node.props.attribute?('ruby_default_version')
 #bash "rvm use ruby #{node.props.ruby_default_version}" do
-#	environment my_env
 #	user node.props.guest_username
 #	cwd "/home/#{node.props.guest_username}"
 #	not_if "rvm current | grep #{node.props.ruby_default_version} | grep \\* "
