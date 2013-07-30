@@ -24,7 +24,7 @@ foreach (keys %dir) {
   # print $_, " ", $dir{$_}->size,"\n";
 }
 
-#print Dumper @run_lists;
+print Dumper @global_run_lists;
 
 print "\n\n";
 
@@ -102,14 +102,14 @@ sub compare_run_lists {
   foreach my $element (@$prev_rl, @$curr_rl) { $count{$element}++ }
   foreach my $element (keys %count) {
     push @union, $element;
-    $element ~~ @$prev_rl ? undef : push @not_in_prev, $element;
-    $element ~~ @$curr_rl ? undef : push @not_in_curr, $element;
+    $element ~~ @$prev_rl ? 0 : push @not_in_prev, $element;
+    $element ~~ @$curr_rl ? 0 : push @not_in_curr, $element;
   }
   
   #print "removed:" . join(" ", @not_in_curr) . " " if @not_in_curr ;
   #print "added: " . join(" ", @not_in_prev) . " " if @not_in_prev ;
  
-  return @not_in_curr, @not_in_prev;
+  return \@not_in_curr , \@not_in_prev ;
 }
 
 
@@ -127,23 +127,27 @@ sub chef() {
       my $rl = $2;
       $rl =~ s/,//g;
       my @run_list = split(/ /, $rl);
-      my (@add, @remove);
+      my ($add, $remove) = "";
 
       if ( scalar @run_lists eq 0 ) {
-        @add = @run_list;
+        $add = \@run_list;
         #print "run_list 1: " , join " ", @run_list;
         #print "\n";
       }
       else {
         #print "run_list " . scalar @run_lists + 1 . ": ";
-        (@add, @remove) = &compare_run_lists( $run_lists[-1], \@run_list );
+        ($remove, $add) = &compare_run_lists( $run_lists[-1], \@run_list );
         #print "run list: ", $run_lists[-1][2];
         #print "\n";
       }
 
+      my (@add_this, @remove_this);
+      if (ref $add) { @add_this = @{$add} }
+      if (ref $remove) { @remove_this = @{$remove} }
+
       push @run_lists, [ @run_list ];
         #print $t->strftime("%a, %d %b %Y");
-      push @global_run_lists, [ $t->epoch, $filename =~ /^(.*?)\./, [ @run_list ], [ @add ], [ @remove] ];
+      push @global_run_lists, [ $t->epoch, $filename =~ /^(.*?)\./, [ @run_list ], [ @add_this ] , [ @remove_this ] ];
       next;
     }
   }
