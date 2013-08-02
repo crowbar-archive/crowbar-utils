@@ -4,6 +4,10 @@
 
 log-insight looks at the logs in /opt/dell/crowbar_framework/logs and reports on the time-series order of the adding and removing of roles on nodes from chef-client runs.
 
+## Sample Output
+
+http://www.opencrowbar.org/public/log-insight.html
+
 ## Use
 
 Copy this to your admin node (/home/crowbar/log-insight.pl, for example)
