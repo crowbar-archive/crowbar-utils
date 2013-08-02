@@ -24,9 +24,9 @@ foreach (keys %dir) {
   # print $_, " ", $dir{$_}->size,"\n";
 }
 
-print Dumper @global_run_lists;
+#print Dumper @global_run_lists;
 
-print "\n\n";
+#print "\n\n";
 
 #print @run_lists , "\n\n";
 my @ordered = sort { $a->[0] <=> $b->[0] } @global_run_lists;
@@ -117,10 +117,12 @@ sub chef() {
   my $filename = shift;
   my @run_lists;
   #print "reading " , $filename, "\n";
+  my $fatal_flag;
   open my $fh, "<", "${log_dir}/${filename}" or die $!;
   while (<$fh>) {
     if ( /\[(.*?)\].*?Run List expands to \[(.*)\]/ ){
 
+      $fatal_flag = 0;
       # Mon, 29 Jul 2013 21:29:32 +0000
       my $t = Time::Piece->strptime($1, "%a, %d %b %Y %T %z");
 
@@ -150,6 +152,23 @@ sub chef() {
       push @global_run_lists, [ $t->epoch, $filename =~ /^(.*?)\./, [ @run_list ], [ @add_this ] , [ @remove_this ] ];
       next;
     }
+
+    if ( /\[(.*?)\].*?FATAL:/ ){
+      next unless $fatal_flag == 0;
+      $fatal_flag = 1;
+      my $t = Time::Piece->strptime($1, "%a, %d %b %Y %T %z");
+      push @global_run_lists, [ $t->epoch, $filename =~ /^(.*?)\./, [ ['FAILED'] ], [ 'FATAL' ] , [  ] ];
+      next;
+    }
+
+    if ( /\[(.*?)\].*?Chef Run complete in (\S+?) sec/ ){
+      $fatal_flag = 0;
+      my $seconds = $2;
+      my $t = Time::Piece->strptime($1, "%a, %d %b %Y %T %z");
+      push @global_run_lists, [ $t->epoch, $filename =~ /^(.*?)\./, [ ['SUCCESS'] ], [ 'SUCCESS' ] , [  "$seconds seconds"  ] ];
+      next;
+    }
+# 
   }
 }
 
