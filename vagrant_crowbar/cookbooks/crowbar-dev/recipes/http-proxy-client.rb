@@ -1,5 +1,5 @@
 
-if node.props.proxy_on =~ /true/ then
+if node.props.proxy_on =~ /true/i then
 
   http_proxy = node.props.http_proxy
   https_proxy = node.props.https_proxy
@@ -25,15 +25,15 @@ if node.props.proxy_on =~ /true/ then
     end
   end
 
-  execute "proxy on by default root ~/.bashrc" do
-    command " echo \"export http_proxy=#{http_proxy}\nexport https_proxy=#{https_proxy}\n\" >> /root/.bashrc"
-    action :run
-  end
+#  execute "proxy on by default root ~/.bashrc" do
+#    command " echo \"export http_proxy=#{http_proxy}\nexport https_proxy=#{https_proxy}\n\" >> /root/.bashrc"
+#    action :run
+#  end
 
-  execute "proxy on by default ~/.bashrc" do
-    command " echo \"export http_proxy=#{http_proxy}\nexport https_proxy=#{https_proxy}\n\" >> /home/#{node.props.guest_username}/.bashrc"
-    action :run
-  end
+#  execute "proxy on by default ~/.bashrc" do
+#    command " echo \"export http_proxy=#{http_proxy}\nexport https_proxy=#{https_proxy}\n\" >> /home/#{node.props.guest_username}/.bashrc"
+#    action :run
+#  end
 
   execute "proxy on by default /etc/profile" do
     command " echo \"export http_proxy=#{http_proxy}\nexport https_proxy=#{https_proxy}\n\" >> /etc/profile"
