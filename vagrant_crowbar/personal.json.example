@@ -24,7 +24,7 @@
 "guest_cpus": "3",
 "guest_ram": "3096",
 "guest_timezone": "America/New_York",
-"guest_extra_packages": "rubygem-foodcritic",
+"guest_extra_packages": "",
 "#box_name": "opensuse-12.3-chef",
 "#box_name": "vagrant-ubuntu12042-64",
 "#box_url": "https://googledrive.com/host/0B6uHJ6DBTZtFcmwyd0dPVVhKcUk/opensuse-12.3-chef.box",
