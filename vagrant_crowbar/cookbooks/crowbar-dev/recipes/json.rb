@@ -1,5 +1,7 @@
+envhash = { "http_proxy" => "#{node.props.http_proxy}", 'https_proxy' => "#{node.props.http_proxy}" }
 
 bash "gem install json" do
+  environment envhash
 	#user node.props.guest_username
 	cwd "/home/#{node.props.guest_username}"
 	code <<-EOH
