@@ -5,8 +5,11 @@ node.props.attribute?('guest_extra_packages') && node.props.guest_extra_packages
 	end
 end
 
+envhash = { "LOGNAME" => "#{node.props.guest_username}", 'HOME' => "/home/#{node.props.guest_username}" }
+
 # install lots of vim stuff that Judd likes:
 execute "vim installs pathogen" do
+  environment envhash
 	user node.props.guest_username
 	command "mkdir -p ~/.vim/autoload ~/.vim/bundle; curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim"
 	creates "/home/#{node.props.guest_username}/.vim/autoload/pathogen.vim"
@@ -19,6 +22,7 @@ end
   'vim-nerdtree-tabs' => 'https://github.com/jistr/vim-nerdtree-tabs',
 }.each_pair do | name, repo |
 	execute "vim install #{name}" do
+    environment envhash
 		user node.props.guest_username
 		command "cd ~/.vim/bundle; git clone #{repo}"
 		action :run
