@@ -4,74 +4,82 @@ props = JSON.load(IO.read('personal.json'))
 
 Vagrant::configure("2") do |config|
 
-  config.vm.hostname = "#{props['guest_hostname']}"
-  config.vm.box = "#{props['box_name']}"
-  config.vm.box_url = "#{props['box_url']}"
-  #config.vm.box_url = "http://files.vagrantup.com/precise32.box"
-  
-  # Assign this VM to a host-only network IP, allowing you to access it
-  # via the IP. Host-only networks can talk to the host machine as well as
-  # any other machines on the same network, but cannot be accessed (through this
-  # network interface) by any external networks.
-  #if props.include?("guest_hostonly_ip") 
-	# config.vm.network :hostonly, props['guest_hostonly_ip']
-  #end
+  config.vm.define :cbdev1 do |cbdev1|
 
-  # Assign this VM to a bridged network, allowing you to connect directly to a
-  # network using the host's network device. This makes the VM appear as another
-  # physical device on your network.
-  #config.vm.network :bridged, :adapter => 'eth0'
+    cbdev1.vm.hostname = "#{props['guest_hostname']}1" 
+    cbdev1.vm.box = "#{props['box_name']}" 
+    cbdev1.vm.box_url = "#{props['box_url']}" 
+    cbdev1.vm.network :public_network
+    cbdev1.vm.synced_folder props['synced_dir_host'], props['synced_dir_guest']
 
-  config.vm.network :public_network
+    cbdev1.vm.provider :virtualbox do |vb|
+      vb.gui  = true
+      vb.name = "#{props['guest_hostname']}1"
+      vb.customize ["modifyvm", :id, "--cpus", props['guest_cpus']]
+      vb.customize ["modifyvm", :id, "--memory", props['guest_ram']]
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      # cool stuff!
+      # install the plugin:  vagrant plugin install vagrant-vbguest 
+      config.vbguest.auto_update = false #true by default when plugin installed
+    end
 
-  # Forward a port from the guest to the host, which allows for outside
-  # computers to access the VM, whereas host only networking does not.
-  # config.vm.forward_port 80, 8080
-
-  # Share an additional folder to the guest VM. The first argument is
-  # an identifier, the second is the path on the guest to mount the
-  # folder, and the third is the path on the host to the actual folder.
-  # config.vm.synced_folder "v-data", "/vagrant_data", "../data"
-  # config.vm.synced_folder "share", props['shared_dir_guest'], props['shared_dir_host'], :create => true, :extra => 'dmode=777,fmode=777'
-  #
-  config.vm.synced_folder props['synced_dir_host'], props['synced_dir_guest']
-
-  #config.vagrant-proxy
-
-  config.vm.provider :virtualbox do |vb|
-    vb.gui  = true
-    vb.name = props['guest_hostname']
-    vb.customize ["modifyvm", :id, "--cpus", props['guest_cpus']]
-    vb.customize ["modifyvm", :id, "--memory", props['guest_ram']]
-    #vb.customize ["modifyvm", :id, "--nic2", "bridged", "--bridgeadapter2", props['host_network_bridge_interface'] ]
-    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    # cool stuff!
-    # install the plugin:  vagrant plugin install vagrant-vbguest 
-    config.vbguest.auto_update = false #true by default when plugin installed
+    cbdev1.vm.provision :chef_solo do |chef|
+      #chef.recipe_url = "http://files.vagrantup.com/getting_started/cookbooks.tar.gz"
+      chef.data_bags_path = "data_bags"
+      chef.json = {
+        :props => props
+      }
+      chef.add_recipe "crowbar-dev::user-create"
+      chef.add_recipe "crowbar-dev::http-proxy-client"
+      chef.add_recipe "crowbar-dev::package-repo"
+      chef.add_recipe "crowbar-dev::basic-packages"
+      chef.add_recipe "crowbar-dev::ruby"
+      chef.add_recipe "crowbar-dev::json"
+      chef.add_recipe "crowbar-dev::chef-tools"
+      chef.add_recipe "crowbar-dev::crowbar-1-source-and-build-prep"
+      chef.add_recipe "crowbar-dev::crowbar-2-dev-setup-fetch-sync"
+      chef.add_recipe "crowbar-dev::crowbar-3-add-remotes"
+      chef.add_recipe "crowbar-dev::final"
+    end
   end
 
-  # Enable provisioning with chef solo, specifying a cookbooks path, roles
-  # path, and data_bags path (all relative to this Vagrantfile), and adding 
-  # some recipes and/or roles.
-  
-  config.vm.provision :chef_solo do |chef|
-    #chef.recipe_url = "http://files.vagrantup.com/getting_started/cookbooks.tar.gz"
-    chef.data_bags_path = "data_bags"
-    chef.json = {
-      :props => props
-    }
-    chef.add_recipe "crowbar-dev::user-create"
-    chef.add_recipe "crowbar-dev::http-proxy-client"
-    chef.add_recipe "crowbar-dev::package-repo"
-    chef.add_recipe "crowbar-dev::basic-packages"
-    chef.add_recipe "crowbar-dev::ruby"
-    chef.add_recipe "crowbar-dev::json"
-    chef.add_recipe "crowbar-dev::chef-tools"
-    chef.add_recipe "crowbar-dev::crowbar-1-source-and-build-prep"
-    chef.add_recipe "crowbar-dev::crowbar-2-dev-setup-fetch-sync"
-    chef.add_recipe "crowbar-dev::crowbar-3-add-remotes"
-    chef.add_recipe "crowbar-dev::final"
+  config.vm.define :cbdev2 do |cbdev2|
+
+    cbdev2.vm.hostname = "#{props['guest_hostname']}2" 
+    cbdev2.vm.box = "#{props['box_name']}" 
+    cbdev2.vm.box_url = "#{props['box_url']}" 
+    cbdev2.vm.network :public_network
+    cbdev2.vm.synced_folder props['synced_dir_host'], props['synced_dir_guest']
+    cbdev2.vm.provider :virtualbox do |vb|
+      vb.gui  = true
+      vb.name = "#{props['guest_hostname']}2"
+      vb.customize ["modifyvm", :id, "--cpus", props['guest_cpus']]
+      vb.customize ["modifyvm", :id, "--memory", props['guest_ram']]
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      # cool stuff!
+      # install the plugin:  vagrant plugin install vagrant-vbguest 
+      config.vbguest.auto_update = false #true by default when plugin installed
+    end
+
+    cbdev2.vm.provision :chef_solo do |chef|
+      chef.data_bags_path = "data_bags"
+      chef.json = {
+        :props => props
+      }
+      chef.add_recipe "crowbar-dev::user-create"
+      chef.add_recipe "crowbar-dev::http-proxy-client"
+      chef.add_recipe "crowbar-dev::package-repo"
+      chef.add_recipe "crowbar-dev::basic-packages"
+      chef.add_recipe "crowbar-dev::ruby"
+      chef.add_recipe "crowbar-dev::json"
+      chef.add_recipe "crowbar-dev::chef-tools"
+      chef.add_recipe "crowbar-dev::crowbar-1-source-and-build-prep"
+      chef.add_recipe "crowbar-dev::crowbar-2-dev-setup-fetch-sync"
+      chef.add_recipe "crowbar-dev::crowbar-3-add-remotes"
+      chef.add_recipe "crowbar-dev::final"
+    end
   end
+
 end
 
 # __END__
