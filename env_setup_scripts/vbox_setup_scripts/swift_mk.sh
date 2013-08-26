@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+#set -x
 # create three proxy nodes with 50 gb drives
 ./swift_mk_node.sh proxy1 50000 1 2 5000
 ./swift_mk_node.sh proxy2 50000 

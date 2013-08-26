@@ -82,8 +82,7 @@ Vagrant.configure("2") do |config|
     chef.cookbooks_path = "chef/cookbooks/"
     chef.roles_path = "chef/roles"
     chef.data_bags_path = "chef/data_bags"
-    chef.add_recipe "cb2-docker::create-user"
-    #chef.add_recipe "cb2-docker::default"
+    chef.add_recipe "cb2::create-user"
     #chef.add_role "cb2"
   
   #   # You may also specify custom JSON attributes:
