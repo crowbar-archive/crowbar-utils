@@ -42,8 +42,8 @@ if node.props.proxy_on =~ /true/i then
   end
 
   execute "proxy on by default /etc/environment" do
-    command " echo \"export http_proxy=#{http_proxy}\nexport https_proxy=#{https_proxy}\n\" >> /etc/profile"
+    command " echo \"HTTP_PROXY=#{http_proxy}\nHTTPS_PROXY=#{https_proxy}\n\" >> /etc/environment"
     action :run
-    not_if "grep http_proxy /etc/profile"
+    not_if "grep HTTP_PROXY /etc/environment"
   end
 end
