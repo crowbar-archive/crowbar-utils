@@ -48,8 +48,7 @@ How To:
         `apt-get install polipo`
         edit `/etc/polipo/config` to listen on 0.0.0.0 and restart polipo to pick up the changes
         verify with `netstat -lntp | grep polipo`
-      * Windows:
-        Someone please add here. :)
+      * Windows: Fiddler2 is a good proxy for Windows
 
 ### Virtual Box
   * Download and install the latest VirtualBox: https://www.virtualbox.org/wiki/Downloads  
