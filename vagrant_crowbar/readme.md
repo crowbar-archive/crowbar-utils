@@ -87,8 +87,8 @@ How To:
       * C:\HashiCorp\Vagrant\embedded\gems\gems\vagrant-1.2.2\plugins\guests\suse\cap\change_host_name.rb
 
 ### Windows Host problems:
-  * VirtualBox app has to be running, otherwise "vagrant up" will fail with an unhepful message.  `vagrant up`
-  * will not start the VirtualBox app for you, like it does in Linux.
+  * VirtualBox app has to be running, otherwise "vagrant up" will fail with an unhepful message.
+  * `vagrant up` will not start the VirtualBox app for you, like it does in Linux.
 
 
 
