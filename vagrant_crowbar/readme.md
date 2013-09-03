@@ -51,7 +51,8 @@ How To:
       * Windows: Fiddler2 is a good proxy for Windows
 
 ### Virtual Box
-  * Download and install the latest VirtualBox: https://www.virtualbox.org/wiki/Downloads  
+  * Download and install the latest VirtualBox: https://www.virtualbox.org/wiki/Downloads
+     * On Windows - Be Sure to install the networking bridge driver
   * Do not use stock Ubuntu packages, unless you use the PPA.  They're old.
 
 ### Vagrant
@@ -97,7 +98,8 @@ How To:
   * Edit the file `personal.json`
     * "guest_username" is the username on the guest you'd like to ssh as.
     * "user_sshpubkey" is the whole line from your host machine users's ~/.ssh/pubkey file, 
-      so you can login as "guest_username" without a password.
+      so you can login as "guest_username" without a password. 
+      * On Windows use the tool of your choice to generate a key. The Key needs to be compatible with your tool.(i.e. puttygen for Putty)
     * Networking:
       * Default networking just works.  NAT is the default, and Vagrant comes up with it's own 
         private IP for your box - usually 10.0.2.15 and you can access your host box from it on 10.0.2.2  
