@@ -7,7 +7,7 @@ execute "dev setup" do
 	user node.props.guest_username
 	group node.props.guest_username
 	cwd "/home/#{node.props.guest_username}/crowbar/"
-	command "env > myenv; ./dev setup"
+	command "./dev setup"
 	not_if "git config -f /home/#{node.props.guest_username}/crowbar/.git/config --get crowbar.dev.version"	
 end
 
