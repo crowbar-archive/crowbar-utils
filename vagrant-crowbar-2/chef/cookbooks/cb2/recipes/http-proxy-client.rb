@@ -3,6 +3,14 @@ if node.props.proxy_on =~ /true/i then
 
   http_proxy = node.props.http_proxy
   https_proxy = node.props.https_proxy
+  ENV['HTTP_PROXY'] = node['http_proxy']
+  node.default["gem_options"] = "--http-proxy #{http_proxy}"
+
+# run in compilation phase
+  if http_proxy
+    Chef::Config[:http_proxy] = http_proxy
+    Chef::Log.info "Setting Chef http_proxy to '#{Chef::Config[:http_proxy]}'."
+  end
 
   case node[:platform]
   when "ubuntu"

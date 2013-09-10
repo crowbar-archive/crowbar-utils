@@ -3,9 +3,9 @@ when "suse"
 
   package "rubygem-foodcritic"
 
-  execute "install berkshelf" do
-    command "gem install berkshelf -V"
-    not_if "gem list berkshelf --local | grep berkshelf"
+  gem_package "berkshelf" do
+    options(node.gem_options)
+    version ">1"
   end
 
 when "ubuntu"
@@ -14,14 +14,16 @@ when "ubuntu"
     package "#{p}"
   end
 
-  execute "install foodcritic" do
-    command "gem install foodcritic -V"
-    not_if "gem list foodcritic --local | grep foodcritic"
+  gem_package "foodcritic" do
+    gem_binary "/usr/bin/gem1.9.1"
+    options(node.gem_options)
+    version ">1"
   end
 
-  execute "install berkshelf" do
-    command "gem install berkshelf -V"
-    not_if "gem list berkshelf --local | grep berkshelf"
+  gem_package "berkshelf" do
+    gem_binary "/usr/bin/gem1.9.1"
+    options(node.gem_options)
+    version ">1"
   end
   
 end

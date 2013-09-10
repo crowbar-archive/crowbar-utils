@@ -24,8 +24,8 @@ Vagrant.configure("2") do |config|
       config.vbguest.auto_update = false #true by default when plugin installed
     end
 
-    cb2dev.ssh.timeout = 600
-    cb2dev.ssh.max_tries = 600
+    #cb2dev.ssh.timeout = 600
+    #cb2dev.ssh.max_tries = 600
 
     cb2dev.vm.provision :chef_solo do |chef|
       #chef.attempts = 10
@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "cb2::crowbar-1-source-and-build-prep"
       chef.add_recipe "cb2::crowbar-2-dev-setup-fetch-sync"
       chef.add_recipe "cb2::crowbar-3-add-remotes"
-      chef.add_recipe "cb2::final"
+      chef.add_recipe "cb2::vim_setup"
     end
   end
 end

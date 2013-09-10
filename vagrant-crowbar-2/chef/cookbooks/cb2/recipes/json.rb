@@ -1,4 +1,7 @@
-execute "gem install json" do
-  command "gem install json"
-  not_if "gem list json | grep json"
+
+gem_package "json" do
+  gem_binary "/usr/bin/gem1.9.1"
+  options(node.gem_options)
+  version ">1"
 end
+
