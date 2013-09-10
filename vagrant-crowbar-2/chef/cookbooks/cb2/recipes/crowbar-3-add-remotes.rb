@@ -1,7 +1,8 @@
 # add some remotes, if they want it
 
 node.props.attribute?('github_extra_remotes') &&
-	node.props[:github_extra_remotes].each do | remote_name, remote_settings |
+node.props[:github_extra_remotes].each do | remote_name, remote_settings |
+    log "Adding extra git remote repositories"
 		execute "set remote #{remote_name} with url #{remote_settings[0]} to priority #{remote_settings[1]}" do
 			user node.props.guest_username
 			cwd "/home/#{node.props.guest_username}/crowbar/"

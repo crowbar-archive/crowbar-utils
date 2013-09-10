@@ -1,4 +1,9 @@
-
+case node[:platform]
+when "ubuntu"
+  package "mkisofs"
+  package "rpm"
+  package "rpm2cpio"
+end
 
 # setup .netrc for github access
 template "/home/#{node.props.guest_username}/.netrc" do
@@ -11,6 +16,8 @@ template "/home/#{node.props.guest_username}/.netrc" do
 		:github_password => node.props.github_password
  	})
 end
+
+log "Cloning Crowbar repo"
 
 # grab the crowbar repo
 execute "git clone crowbar" do

@@ -10,8 +10,9 @@ Vagrant.configure("2") do |config|
     cb2dev.vm.hostname = "#{props['guest_hostname']}" 
     cb2dev.vm.box = "#{props['box_name']}" 
     cb2dev.vm.box_url = "#{props['box_url']}" 
-    cb2dev.vm.network :public_network
     cb2dev.vm.synced_folder props['synced_dir_host'], props['synced_dir_guest']
+    cb2dev.vm.synced_folder props['cache_dir_host'], props['cache_dir_guest']
+    cb2dev.vm.network :public_network
 
     cb2dev.vm.provider :virtualbox do |vb|
       vb.gui  = true
@@ -23,9 +24,6 @@ Vagrant.configure("2") do |config|
       # install the plugin:  vagrant plugin install vagrant-vbguest 
       config.vbguest.auto_update = false #true by default when plugin installed
     end
-
-    #cb2dev.ssh.timeout = 600
-    #cb2dev.ssh.max_tries = 600
 
     cb2dev.vm.provision :chef_solo do |chef|
       #chef.attempts = 10
@@ -45,4 +43,5 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "cb2::vim_setup"
     end
   end
+
 end

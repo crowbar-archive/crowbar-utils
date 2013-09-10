@@ -1,3 +1,5 @@
+Chef::Log.info("Installing chef tools from gems")
+
 case node[:platform]
 when "suse"
 

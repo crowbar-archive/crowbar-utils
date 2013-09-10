@@ -5,7 +5,7 @@ filetype plugin indent on
 autocmd BufEnter * lcd /home/<%= @username %>/crowbar/barclamps/crowbar/crowbar_framework/
 
 "/home/judd/crowbar/*
-"autocmd BufWritePost /home/judd/crowbar/* !cp <afile>:p /mnt/admin/opt/dell/crowbar_framework/<afile>:.
+"autocmd BufWritePost /home/<%= @username %>/crowbar/* !cp <afile>:p /mnt/admin/opt/dell/crowbar_framework/<afile>:.
 "
 autocmd BufWritePost /home/<%= @username %>/crowbar/barclamps/crowbar/crowbar_framework/* !cp <afile>:p /mnt/admin/opt/dell/crowbar_framework/<afile>:.
 
