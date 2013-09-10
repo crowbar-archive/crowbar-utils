@@ -3,7 +3,8 @@ if node.props.proxy_on =~ /true/i then
 
   http_proxy = node.props.http_proxy
   https_proxy = node.props.https_proxy
-  ENV['HTTP_PROXY'] = node['http_proxy']
+  ENV['http_proxy'] = http_proxy
+  ENV['https_proxy'] = http_proxy
   node.default["gem_options"] = "--http-proxy #{http_proxy}"
 
 # run in compilation phase
@@ -36,15 +37,17 @@ if node.props.proxy_on =~ /true/i then
 #  execute "proxy on by default root ~/.bashrc" do
 #  execute "proxy on by default ~/.bashrc" do
 
-  execute "proxy on by default /etc/profile" do
+  e = execute "proxy on by default /etc/profile" do
     command " echo \"export http_proxy=#{http_proxy}\nexport https_proxy=#{https_proxy}\n\" >> /etc/profile"
-    action :run
+    action :nothing
     not_if "grep http_proxy /etc/profile"
   end
+  e.run_action(:run)
 
-  execute "proxy on by default /etc/environment" do
-    command " echo \"HTTP_PROXY=#{http_proxy}\nHTTPS_PROXY=#{https_proxy}\n\" >> /etc/environment"
+  f = execute "proxy on by default /etc/environment" do
+    command " echo \"http_proxy=#{http_proxy}\nhttps_proxy=#{https_proxy}\n\" >> /etc/environment"
     action :run
     not_if "grep http_proxy /etc/environment"
   end
+  f.run_action(:run)
 end
