@@ -15,7 +15,6 @@ end
 # this can take forever - it's setting up the crowbar developemnt environment with ./dev
 %w{fetch sync}.each do |cmd|
   log "Running ./dev #{cmd}"
-  log "later than Running ./dev #{cmd}"
 	execute "dev #{cmd}" do
 	  user node.props.guest_username
 	  group node.props.guest_username
@@ -24,5 +23,5 @@ end
 		command "./dev #{cmd}"
 		not_if "git config -f /home/#{node.props.guest_username}/crowbar/.git/config --get crowbar.dev.version"	
 	end
-  log "Done ./dev #{cmd}"
+  log "Finished ./dev #{cmd}"
 end

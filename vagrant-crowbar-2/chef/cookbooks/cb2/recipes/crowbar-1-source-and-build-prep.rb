@@ -3,6 +3,11 @@ when "ubuntu"
   package "mkisofs"
   package "rpm"
   package "rpm2cpio"
+  package "dh-make"
+  package "debootstrap"
+  package "createrepo"
+  package "debhelper"
+  package "cabextract"
 end
 
 # setup .netrc for github access
