@@ -32,7 +32,9 @@ swift_start.sh
 
 admin_install_crowbar.rb needs to have completed OK.
 
-Starts up all the swift nodes.  
+Starts up all the swift nodes by looking for all node names that match
+the regex swift_*
+
 
 TODO:
 =====

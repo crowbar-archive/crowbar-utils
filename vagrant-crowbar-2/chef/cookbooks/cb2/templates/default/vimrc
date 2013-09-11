@@ -1,0 +1,22 @@
+call pathogen#infect()
+syntax on
+filetype plugin indent on
+
+autocmd BufEnter * lcd /home/<%= @username %>/crowbar/barclamps/crowbar/crowbar_framework/
+
+"/home/judd/crowbar/*
+"autocmd BufWritePost /home/<%= @username %>/crowbar/* !cp <afile>:p /mnt/admin/opt/dell/crowbar_framework/<afile>:.
+"
+autocmd BufWritePost /home/<%= @username %>/crowbar/barclamps/crowbar/crowbar_framework/* !cp <afile>:p /mnt/admin/opt/dell/crowbar_framework/<afile>:.
+
+let NERDTreeShowBookmarks=1
+let NERDTreeWinSize=50
+set softtabstop=2
+set shiftwidth=2
+set tabstop=2
+set expandtab
+set mouse=a
+
+autocmd VimEnter * NERDTree | wincmd p
+" NERD Tree
+" nmap <silent> <special> <Ctrl-5> :NERDTreeToggle

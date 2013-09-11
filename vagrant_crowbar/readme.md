@@ -53,6 +53,8 @@ How To:
 ### Virtual Box
   * Download and install the latest VirtualBox: https://www.virtualbox.org/wiki/Downloads  
   * Do not use stock Ubuntu packages, unless you use the PPA.  They're old.
+  * YOU MUST INSTALL THE VIRTUALBOX EXTENTION PACK!!  No matter what your platform.
+  * You must allow bridged interfaces.
 
 ### Vagrant
   * Download and install the latest Vagrant: http://downloads.vagrantup.com/
@@ -85,8 +87,8 @@ How To:
       * C:\HashiCorp\Vagrant\embedded\gems\gems\vagrant-1.2.2\plugins\guests\suse\cap\change_host_name.rb
 
 ### Windows Host problems:
-  * VirtualBox app has to be running, otherwise "vagrant up" will fail with an unhepful message.  `vagrant up`
-  * will not start the VirtualBox app for you, like it does in Linux.
+  * VirtualBox app has to be running, otherwise "vagrant up" will fail with an unhepful message.
+  * `vagrant up` will not start the VirtualBox app for you, like it does in Linux.
 
 
 
@@ -114,10 +116,15 @@ How To:
     * "guest_extra_packages": ["figlet","fgrep"] A place for you to add package names. 
     * "rubys_to_install": "1.9.3 1.8.7", note that they're space delimited.
 
-  * Ensure that the shared folders you're planning on using exist on the Host OS.
-    * Ensure that your shared folders have open write permissions so the build box can write
-      into them. 0777
-  * Drop the ISO of the OSes you're planning to build with into the ISO library.
+  * Synced folders:
+    * recent versions of Vagrant/VirtualBox have no trouble creating the synced folders (yay!)
+    * Drop the ISO of the OSes you're planning to build with into the ISO library.
+      * In the default config, do the following
+        * c:\VMs\VMSharedDir\ (or just /VMs/VMSharedDir/ on Linux) contains: 
+           * CentOS-6.2-x86_64-bin-DVD1.iso
+           * ubuntu-12.04.2-server-amd64.iso
+           * RHEL6.2-20111117.0-Server-x86_64-DVD1.iso  (if you'll be building Hadoop)
+
 
 # 3) Make It So `vagrant up`
 

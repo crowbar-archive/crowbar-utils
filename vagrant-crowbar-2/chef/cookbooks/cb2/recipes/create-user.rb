@@ -3,6 +3,17 @@ group node.props.guest_username do
 	action :create
 end
 
+execute "fix vagrant ssh dir perms" do
+  command "chmod 0700 /home/vagrant/.ssh/"
+  action :run
+end
+
+execute "fix vagrant ssh file perms" do
+  command "chmod 0600 /home/vagrant/.ssh/*"
+  action :run
+end
+
+
 user node.props.guest_username do
 	action :create	
 	home "/home/#{node.props.guest_username}"
@@ -20,6 +31,12 @@ when "suse"
   power_group_name = "wheel"
 end
 group "#{power_group_name}" do
+  members node.props.guest_username
+  append true
+end
+
+# this will allow you to use the shared folders
+group "vagrant" do
   members node.props.guest_username
   append true
 end

@@ -19,7 +19,14 @@ Sets up your Github account information.  Installs a proxy on the guest, can int
 
 Downloads all the stuff you need, including the Crowbar source code.
 
-## veewee_admin
+## vagrant-crowbar-2
 
-veewee is a tool to create Vagrant boxes.  Not using this right now.
+A Vagrant setup useful for creating specifically Crowbar 2 development environments.
+
+### Includes 
+
+* Ubuntu 12.04.2
+* Docker kernel extentions and app/service
+* Erlang
+* Ruby 1.9.3
 
