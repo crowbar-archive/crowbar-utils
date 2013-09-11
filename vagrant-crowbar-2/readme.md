@@ -9,7 +9,8 @@ Requires
 
 Vagrant Plugins
 ---------------
-vagrant-vbguest 0.9.0
+
+* vagrant-vbguest 0.9.0
 
 Edit personal.json.example
 --------------------------
