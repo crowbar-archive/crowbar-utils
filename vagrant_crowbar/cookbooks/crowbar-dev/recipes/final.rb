@@ -17,7 +17,7 @@ execute "vim installs pathogen" do
 end
 
 {
-	'vim-fugitive' => 'git://github.com/tpope/vim-fugitive.git',
+	'vim-fugitive' => 'https://github.com/tpope/vim-fugitive.git',
 	'nerdtree' => 'https://github.com/scrooloose/nerdtree.git',
   'vim-nerdtree-tabs' => 'https://github.com/jistr/vim-nerdtree-tabs',
 }.each_pair do | name, repo |
