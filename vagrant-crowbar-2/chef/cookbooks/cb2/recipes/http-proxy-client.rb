@@ -1,6 +1,7 @@
 
 if node.props.proxy_on =~ /true/i then
 
+  log "proxy_on set to true"
   http_proxy = node.props.http_proxy
   https_proxy = node.props.https_proxy
   ENV['http_proxy'] = http_proxy
