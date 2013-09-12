@@ -1,4 +1,6 @@
 
+node.default["gem_options"] = ""
+
 if node.props.proxy_on =~ /true/i then
 
   http_proxy = node.props.http_proxy
