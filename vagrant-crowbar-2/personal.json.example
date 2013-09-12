@@ -26,5 +26,5 @@
 "guest_timezone": "America/New_York",
 "guest_extra_packages": "",
 "box_name": "ubuntu-12.04.2-docker",
-"box_url": "http://opencrowbar.org/ubuntu-12.04.2-docker.box",
+"box_url": "http://opencrowbar.org/ubuntu-12.04.2-docker.box"
 }
