@@ -1,8 +1,3 @@
-# create a group and user on the OS:
-group node.props.guest_username do
-	action :create
-end
-
 execute "fix vagrant ssh dir perms" do
   command "chmod 0700 /home/vagrant/.ssh/"
   action :run
@@ -13,13 +8,17 @@ execute "fix vagrant ssh file perms" do
   action :run
 end
 
+# create a group and user on the OS:
+group node.props.guest_username do
+	action :create
+end
 
-user node.props.guest_username do
-	action :create	
-	home "/home/#{node.props.guest_username}"
+user node[:props][:guest_username] do
+	home "/home/#{node[:props][:guest_username]}"
 	shell "/bin/bash"
 	supports :manage_home=>true
-	gid node.props.guest_username
+	gid node[:props][:guest_username]
+	
 end
 
 # give guest user superpowers
@@ -54,7 +53,7 @@ directory "/home/#{node.props.guest_username}/.ssh" do
 end
 
 execute "add_key" do
-	command "echo \"#{node.props.user_sshpubkey}\" >> /home/#{node.props.guest_username}/.ssh/authorized_keys"
+	command "echo \"#{node.props.user_sshpubkey}\" >> /home/#{node.props.guest_username}/.ssh/authorized_keys; chown #{node.props.guest_username} /home/#{node.props.guest_username}/.ssh/authorized_keys; chmod 500 /home/#{node.props.guest_username}/.ssh/authorized_keys; "
 	creates "/home/#{node.props.guest_username}/.ssh/authorized_keys"
 	action :run
 	not_if "grep \"#{node.props.user_sshpubkey}\" /home/#{node.props.guest_username}/.ssh/authorized_keys "

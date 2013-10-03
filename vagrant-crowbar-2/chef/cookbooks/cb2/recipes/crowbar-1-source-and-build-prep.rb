@@ -8,6 +8,11 @@ when "ubuntu"
   package "createrepo"
   package "debhelper"
   package "cabextract"
+when "suse"
+  package "git"
+  package "mkisofs"
+  package "rpm"
+  package "cabextract"
 end
 
 # setup .netrc for github access
@@ -22,18 +27,9 @@ template "/home/#{node.props.guest_username}/.netrc" do
  	})
 end
 
-log "Cloning Crowbar repo"
-
-# grab the crowbar repo
-execute "git clone crowbar" do
-	user node.props.guest_username
-	group node.props.guest_username
-	cwd "/home/#{node.props.guest_username}/"
-	command "git clone #{node.props.github_repo}"
-	creates "/home/#{node.props.guest_username}/crowbar/"
-end
 
 # setup git usernames
+log ("Creating gitconfig")
 template "/home/#{node.props.guest_username}/.gitconfig" do
 	source "gitconfig.erb"
 	mode 0400
@@ -57,6 +53,19 @@ template "/home/#{node.props.guest_username}/.build-crowbar.conf" do
 		:iso_dest => node.props.crowbar_iso_dest,
 		:cache_dir => node.props.crowbar_build_cache
 	})
+end
+
+
+# grab the crowbar repo
+log ( "Cloning Crowbar repo - takes forever")
+envhash = { "LOGNAME" => "#{node.props.guest_username}", 'HOME' => "/home/#{node.props.guest_username}" }                                              
+execute "git clone crowbar" do
+	user "#{node[:props][:guest_username]}"
+	group "#{node[:props][:guest_username]}"
+	cwd "/home/#{node[:props][:guest_username]}"
+	command "git clone #{node[:props][:github_repo]}"
+	creates "/home/#{node[:props][:guest_username]}/crowbar/"
+	environment envhash
 end
 
 # setup .crowbar-build-cache
