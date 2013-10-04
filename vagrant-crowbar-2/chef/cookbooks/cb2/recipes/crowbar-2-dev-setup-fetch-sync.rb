@@ -18,7 +18,7 @@ end
 	execute "dev #{cmd}" do
 	  user node.props.guest_username
 	  group node.props.guest_username
-    environment envhash
+	  environment envhash
 		cwd "/home/#{node.props.guest_username}/crowbar/"
 		command "./dev #{cmd}"
 		not_if "git config -f /home/#{node.props.guest_username}/crowbar/.git/config --get crowbar.dev.version"	

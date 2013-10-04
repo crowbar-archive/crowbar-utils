@@ -2,7 +2,7 @@ basic_packages = %w{}
 
 case node[:platform]
 when "ubuntu"
-  basic_packages = %w{debootstrap git curl openssl build-essential mkisofs binutils rpm genisoimage erlang ssh kvm}
+  basic_packages = %w{debootstrap git curl openssl build-essential mkisofs binutils rpm genisoimage erlang ssh kvm ruby-libxml cabextract}
 when "suse"
   basic_packages = %w{ca-certificates git curl openssl mkisofs binutils genisoimage kvm}
   execute "zypper ref" do

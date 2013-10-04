@@ -6,6 +6,7 @@ bash "gem install json" do
 	cwd "/home/#{node.props.guest_username}"
 	code <<-EOH
 gem install json
+gem install kwalify
 EOH
 	not_if "gem list json | grep json"
 end	
