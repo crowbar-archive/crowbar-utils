@@ -1,10 +1,21 @@
-%w{ruby rubygems}.each do |p|
-	package "#{p}" do
-		action :install
+# install base ruby
+case node[:platform]
+when "suse"
+	%w{ruby rubygems ruby-devel}.each do |p|
+		package "#{p}" do
+			action :install
+		end
+	end
+when "ubuntu"
+	%w{ruby rubygems ruby-dev}.each do |p|
+		package "#{p}" do
+			action :install
+		end
 	end
 end
 
 
+# ubuntu needs help with ruby 1.9.x
 if node.props.crowbar_version == "2" then
   case node[:platform]
   when "ubuntu"
@@ -19,9 +30,5 @@ if node.props.crowbar_version == "2" then
     execute "/usr/sbin/update-alternatives --set gem --which one" do
       command "/usr/sbin/update-alternatives --set gem /usr/bin/gem1.9.1"
     end
-
-  when "suse"
-    # wrong, fix.
-    pkgs = "ruby1.9.1 rubygems1.9.1"
   end
 end

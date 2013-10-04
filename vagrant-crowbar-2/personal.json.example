@@ -1,4 +1,5 @@
 {
+"guest_hostname": "cb2dev1",
 "guest_username": "judd",
 "user_sshpubkey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCx2NI5S5YTIhZNsWyrglaVqEubJ4Zt14z80ge6Awa/vDq95asRzuCVqxt4nSQ+3WfSBfGaXBHCXFNx7WwX8NbfpDXrE2HPZRKaMwUVjMteEe2GQ3ycR/SjNWk6XhjUPWCRp9sgDgrs8aqJIankTCtnbKaA3dEnP9dd67la1oHHoc2n4Q6x2CU7IfqY29ZzOXBuThq49RPB6xr5Qp4bXAhddkMvaSnGpMmPduM8fO/iua/v0sNGjUstEN7yP77O5TJXcRijBD1ymW+MJs1ZbPSIMSMQo/OYkPFio7sRgmDg+AjhFSbcmyH+1pl1vR844AE/qoT/Yq+5Ot05B6D8YPPj judd@judd-m6600",
 "git_user_name": "Judd Maltin",
@@ -17,7 +18,6 @@
 "crowbar_iso_library": "/mnt/VMSharedDir/",
 "crowbar_iso_dest": "/mnt/VMSharedDir/ISOs",
 "crowbar_version": "2",
-"guest_hostname": "cb2dev1",
 "proxy_on": "true",
 "http_proxy": "http://10.0.2.2:8123/",
 "https_proxy": "http://10.0.2.2:8123/",
@@ -25,6 +25,8 @@
 "guest_ram": "3096",
 "guest_timezone": "America/New_York",
 "guest_extra_packages": "",
-"box_name": "ubuntu-12.04.2-docker",
-"box_url": "http://opencrowbar.org/ubuntu-12.04.2-docker.box"
+"box_name": "opensuse-12.3-chef-docker",
+"box_url": "http://opencrowbar.org/opensuse-12.3-chef-docker",
+"#box_name": "ubuntu-12.04.2-docker",
+"#box_url": "http://opencrowbar.org/ubuntu-12.04.2-docker.box"
 }

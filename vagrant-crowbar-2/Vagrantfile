@@ -5,13 +5,13 @@ props = JSON.load(IO.read('personal.json'))
 
 Vagrant.configure("2") do |config|
 
-  config.vm.define :cb2dev do |cb2dev|
+  config.vm.define props['guest_hostname'] do |cb2dev|
 
     cb2dev.vm.hostname = "#{props['guest_hostname']}" 
     cb2dev.vm.box = "#{props['box_name']}" 
     cb2dev.vm.box_url = "#{props['box_url']}" 
     cb2dev.vm.synced_folder props['synced_dir_host'], props['synced_dir_guest']
-    cb2dev.vm.synced_folder props['cache_dir_host'], props['cache_dir_guest']
+    #cb2dev.vm.synced_folder props['cache_dir_host'], props['cache_dir_guest']
     cb2dev.vm.network :public_network
 
     cb2dev.vm.provider :virtualbox do |vb|
