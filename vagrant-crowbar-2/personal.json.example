@@ -12,8 +12,6 @@
 },
 "synced_dir_guest": "/mnt/VMSharedDir/",
 "synced_dir_host": "/VMs/VMSharedDir/",
-"cache_dir_guest": "/export/shared-cache/",
-"cache_dir_host": "/VMs/shared-cache/",
 "crowbar_build_cache": "/opt/shared-cache/",
 "crowbar_iso_library": "/mnt/VMSharedDir/",
 "crowbar_iso_dest": "/mnt/VMSharedDir/ISOs",

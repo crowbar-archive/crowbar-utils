@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# swift_mk_node.sh expects: NAME DISK_SIZE NUM_DISKS NUM_CPU NUM_RAM(MB) 
+
 #set -x
 # create three proxy nodes with 50 gb drives
 ./swift_mk_node.sh proxy1 50000 1 2 5000
