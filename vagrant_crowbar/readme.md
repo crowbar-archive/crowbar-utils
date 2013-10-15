@@ -179,6 +179,14 @@ I'm able to use ./dev just fine.  It drops the ISOs in the ISO_LIBRARY directory
 Note that I'm using both a polipo caching web proxy on my client, and one on my host machine.  I try to get
 out to the Internet as rarely as possible.
 
+#### Microsoft Windows 7 building Sledgehammer
+VirtualBox disables the ability to create symlinks on shared folders. 
+
+You will need to setup your .build_crowbar.conf to use /home/<username>/.crowbar-build-cache for the variable CACHE_DIR and copy the file .build_crowbar.conf to /root.
+
+Run the build_sledgehammer.sh script as per the README.buildsledgehammer "sudo ./build_sledgehammer.sh" 
+
+
 
 ## Troubleshooting
 
