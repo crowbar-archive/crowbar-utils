@@ -47,3 +47,34 @@ if node.props.proxy_on =~ /true/i then
     not_if "grep HTTP_PROXY /etc/environment"
   end
 end
+if node.props.proxy_on =~ /false/i then
+
+execute "proxy off by command /etc/profile" do
+   command " sed -i\".bak\" '/http_proxy/d' /etc/profile"
+   action :run
+   end
+execute "proxy off by command /etc/profile" do
+   command " sed -i\".bak\" '/https_proxy/d' /etc/profile"
+   action :run
+   end
+   
+execute "proxy off by command /etc/environment" do
+   command "sed -i\".bak\" '/HTTP_PROXY/d' /etc/environment"
+   action :run
+   end
+execute "proxy off by command /etc/environment" do 
+   command "sed -i\".bak\" '/HTTPS_PROXY/d' /etc/environment"
+   action :run
+   end
+case node[:platform]
+   when "ubuntu"
+     execute "remove 00proxy" do 
+     command "sed -i\".bak\" '/HTTP_PROXY/d' /etc/apt/apt.conf.d/00proxy"
+     action :run
+     end
+     execute "remove 00proxy" do 
+     command "sed -i\".bak\" '/HTTPS_PROXY/d' /etc/apt/apt.conf.d/00proxy"
+     action :run
+     end
+    end  
+end
