@@ -1,0 +1,60 @@
+#!/bin/bash
+#
+# Copyright 2013, Dell
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# utility to create multiple hadoop node VM's from a template VM
+# under VMWare using vmrun
+#
+# hadoop_node is the path to the template VM
+#
+
+vmrun='/cygdrive/c//Program Files (x86)/VMware/VMware VIX/vmrun.exe'
+template_dir='D:/Documents/Virtual Machines/Templates'
+destination_dir='c://Users/NT_USER/Documents/Virtual Machines'
+
+hadoop_node='hadoop_node/hadoop_node.vmx'
+
+
+if [[ ! $1 ]] ; then
+    virtual_env='hadoop_current'
+else
+   virtual_env=$1
+fi
+
+echo "Cloning vms into " ${destination_dir}/${virtual_env}
+
+for node in hadoop-master hadoop-secondary hadoop-ha hadop-edge \
+            hadoop-data1 hadoop-data2 hadoop-data3
+do 
+    echo "Cloning " ${node}
+    dest_vmx="${destination_dir}/${virtual_env}/${node}/${node}.vmx" 
+    "${vmrun}" clone "${template_dir}/${hadoop_node}" "${dest_vmx}" full 
+
+    # update the vm name
+    # vmrun writeVariable seems easy, but you can't change the name if it's 
+    # powered off, so sed to the rescue 
+    # "${vmrun}" writeVariable  "${dest_vmx}  runtimeConfig DisplayName ${node}
+    #
+    sed "s/^displayName =.*/displayName = \"${node}\"/" "${dest_vmx}" > \
+                                                        "${destination_dir}/${virtual_env}/${node}/${node}.new_vmx" 
+    mv "${destination_dir}/${virtual_env}/${node}/${node}.new_vmx" "${dest_vmx}"
+done
+
+# would be nice to update the annotation, and include mac address in names
+# or the annotation. However, the address isn't generated until the vm is 
+# started...
+
+# annotation = "Test description field|0D|0A"
+# ethernet0.generatedAddress = "00:0c:29:da:20:46"
+#    sed 's/^ethernet0.generatedAddress.*=.*"\(.*\)"/\1addr/' "${dest_vmx}"
