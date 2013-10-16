@@ -34,29 +34,34 @@ when "ubuntu"
 
     #sudo vi /etc/postgresql/9.3/main/pg_hba.conf
       # add 'local  all   all    trust'
-    bash "add local listener" do
-      command "sudo echo 'local	all	all	trust' >> /etc/postgresql/9.3/main/pg_hba.conf"
-      not_if "grep 'local all' /etc/postgresql/9.3/main/pg_hba.conf" 
+    bash "Postgresql: add local listener" do
+      code "echo 'local	all	all	trust' >> /etc/postgresql/9.3/main/pg_hba.conf; echo 'colic' >> /tmp/test"
+      not_if "grep '^local.*trust' /etc/postgresql/9.3/main/pg_hba.conf" 
     end
 
 
     #sudo vi /etc/postgresql/9.3/main/postgresql.conf
       # change 'port = 5439'
-    bash "change Postgresql port" do
-      command 'sudo sed -i "s/port = .*/port = 5439/g" /etc/postgresql/9.3/main/postgresql.conf'
+    bash "Postgresql: change Postgresql port" do
+      code 'sed -i "s/port = .*/port = 5439/g" /etc/postgresql/9.3/main/postgresql.conf'
       not_if 'grep "port = 5439" /etc/postgresql/9.3/main/postgresql.conf'
     end
 
+    service "postgresql" do
+      action :restart
+    end
+
     #sudo createuser -s -d -U postgres crowbar
-    bash "add crowbar user to postgres" do
-      command "createuser -s -d -U postgres crowbar"
+    bash "Postgresql: add crowbar user to postgres" do
+      code "su postgres -c 'createuser -s -d -U postgres crowbar'"
+      not_if 'grep "port = 5439" /etc/postgresql/9.3/main/postgresql.conf'
     end
 
     # you can test the install by making sure the following call returns
-    bash "test postgres isntall" do
-      command "PGCLUSTER=9.3/main; psql postgresql://crowbar@:5439/template1 -c 'select true;'"
-    end
+    # you can test the install ONCE CROWBAR IS INSTALLED ON THIS BOX.
+    #bash "Postgresql: test postgres install" do
+    #  code "su postgres -c PGCLUSTER=9.3/main; psql postgresql://crowbar@:5439/template1 -c 'select true;'"
+    #  returns 0
+    #end
+
 end
-
-
-
