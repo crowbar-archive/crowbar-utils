@@ -17,7 +17,7 @@ when "ubuntu"
     #wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
     #sudo apt-get update
     
-    # add the Nginx PPA; grab key from keyserver
+    # add deb repo from postgresql upstream; grab key from keyserver
     include_recipe "apt::default"
     apt_repository "postgresql.org" do
       uri "http://apt.postgresql.org/pub/repos/apt/"
