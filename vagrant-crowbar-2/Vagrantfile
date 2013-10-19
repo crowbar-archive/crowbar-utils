@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       # cool stuff!
       # install the plugin:  vagrant plugin install vagrant-vbguest 
-      config.vbguest.auto_update = false #true by default when plugin installed
+      #config.vbguest.auto_update = false #true by default when plugin installed
     end
 
     cb2dev.vm.provision :chef_solo do |chef|
@@ -31,6 +31,9 @@ Vagrant.configure("2") do |config|
       chef.cookbooks_path = "chef/cookbooks/"
       chef.roles_path = "chef/roles"
       chef.data_bags_path = "chef/data_bags"
+      chef.log_level = ENV.fetch("CHEF_LOG", "warn").downcase.to_sym
+
+      # recipes and cookbooks
       chef.add_recipe "cb2::create-user"
       chef.add_recipe "cb2::http-proxy-client"
       chef.add_recipe "cb2::package-repo"
@@ -40,8 +43,11 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "cb2::crowbar-1-source-and-build-prep"
       chef.add_recipe "cb2::crowbar-2-dev-setup-fetch-sync"
       chef.add_recipe "cb2::crowbar-3-add-remotes"
-      chef.add_recipe "cb2::vim_setup"
+      if props['crowbar_version'] == "2" then
+        chef.add_recipe "cb2::postgresql"
+      end
+      chef.add_recipe "cb2::vim-setup"
+      chef.add_recipe "cb2::sshfs"
     end
   end
-
 end
