@@ -13,9 +13,10 @@ echo "set -o vi" >> ~/.bashrc
 
 echo ### install tmux, the better screen
 apt-get -y install tmux
-
+wait
 dpkg --configure -a
-
+wait
+dpkg --configure -a
 
 exit 0
 

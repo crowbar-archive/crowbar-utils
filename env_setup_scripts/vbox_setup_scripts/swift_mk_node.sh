@@ -54,7 +54,7 @@ SATA_PORT_COUNT=$((${NUM_DRIVES} + 1))
 
 echo "SATA_PORT_COUNT = ${SATA_PORT_COUNT}"
 
-VBoxManage storagectl "${NAME}" --name 'SATA' --add sata --hostiocache off --sataportcount ${SATA_PORT_COUNT}
+VBoxManage storagectl "${NAME}" --name 'SATA' --add sata --hostiocache off --portcount ${SATA_PORT_COUNT}
 
 # create drive image for first drive
 VBoxManage createhd --filename "$DISK_NAME" --size ${DISK_SIZE} --format VDI 

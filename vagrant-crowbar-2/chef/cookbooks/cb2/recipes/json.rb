@@ -25,3 +25,13 @@ when "suse"
 	gem_package "kwalify"
 end
 
+#sudo gem install ruby1.9.3-dev builder bluecloth
+#sudo gem install json net-http-digest_auth kwalify bundler delayed_job delayed_job_active_record rake rcov rspec pg --no-ri --no-rdoc
+w%{ builder bluecloth net-http-digest_auth kwalify bundler delayed_job delayed_job_active_record rake rcov rspec pg }.each do | pkg |
+	gem_package  "#{pkg}" do
+	  gem_binary "#{gem_binary_path}"
+	  options(node.gem_options + " --no-ri --no-rdoc ")
+	end
+end
+
+
