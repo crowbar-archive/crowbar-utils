@@ -22,7 +22,7 @@ Configuration
 
 # 2) Editing the personal.json
 
-  * Go to your crowbar-utils git repo and change directory to `crowbar-utils/vagrant_crowbar`
+  * Go to your crowbar-utils git repo and change directory to `crowbar-utils/vagrant-crowbar-2`
   * Copy `personal.json.example` to `personal.json`
   * Edit the file `personal.json`
     * "guest_username" is the username on the guest you'd like to ssh as.

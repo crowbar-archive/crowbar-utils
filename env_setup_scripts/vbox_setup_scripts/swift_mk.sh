@@ -4,9 +4,9 @@
 
 #set -x
 # create three proxy nodes with 50 gb drives
-#./swift_mk_node.sh proxy1 50000 1 2 5000
-./swift_mk_node.sh proxy2 50000 
-#./swift_mk_node.sh proxy3 50000
+./swift_mk_node.sh controller 50000 1 2 5000
+./swift_mk_node.sh vms1 50000 1 2 4000
+./swift_mk_node.sh vms2 50000 1 2 4000
 
 # create three storage nodes with 3 additional 
 #./swift_mk_node.sh storage1 50000 3 2 5000
