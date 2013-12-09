@@ -9,4 +9,4 @@ apt_repository "docker.org" do
 end
 
 # now install 
-package "docker-lxc"
+package "lxc-docker"
