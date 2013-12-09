@@ -1,19 +1,18 @@
 # install base ruby
 case node[:platform]
 when "suse"
-	%w{ruby rubygems ruby-devel}.each do |p|
+	%w{postgresql-devel ruby rubygems ruby-devel}.each do |p|
 		package "#{p}" do
 			action :install
 		end
 	end
 when "ubuntu"
-	%w{ruby rubygems ruby-dev}.each do |p|
+	%w{libpq-dev ruby rubygems ruby-dev}.each do |p|
 		package "#{p}" do
 			action :install
 		end
 	end
 end
-
 
 # ubuntu needs help with ruby 1.9.x
 if node.props.crowbar_version == "2" then
