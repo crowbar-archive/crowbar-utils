@@ -23,8 +23,12 @@
 "guest_ram": "3096",
 "guest_timezone": "America/New_York",
 "guest_extra_packages": "",
-"box_name": "opensuse-12.3-chef-docker",
-"box_url": "http://opencrowbar.org/opensuse-12.3-chef-docker",
+"#box_name": "centos64-x86_64-20131030", 
+"#box_url": "https://github.com/2creatives/vagrant-centos/releases/download/v0.1.0/centos64-x86_64-20131030.box",
 "#box_name": "ubuntu-12.04.2-docker",
 "#box_url": "http://opencrowbar.org/ubuntu-12.04.2-docker.box"
+"#box_name": "opensuse-12.3-chef-docker",
+"#box_url": "http://opencrowbar.org/opensuse-12.3-chef-docker",
+"#box_name": "opensuse-12.3-chef",
+"#box_url": "https://googledrive.com/host/0B6uHJ6DBTZtFcmwyd0dPVVhKcUk/opensuse-12.3-chef.box"
 }
