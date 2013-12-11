@@ -1,5 +1,5 @@
-Crowbar 2 + Docker + Ubuntu 12.04.02 or OpenSuse
-================================================
+Crowbar 2 Development Environment - Vagrant
+===========================================
 
 Requires
 --------
