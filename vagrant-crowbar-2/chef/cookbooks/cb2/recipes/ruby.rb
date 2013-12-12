@@ -12,6 +12,19 @@ when "ubuntu"
 			action :install
 		end
 	end
+when "centos"
+  #flush the cache the first time  
+  yum_package "ruby193" do
+    action :install
+    flush_cache [:before]
+  end
+  
+  #now get the ruby stuff we need
+  %w{ruby193 ruby193-ruby-devel ruby193-rubygems}.each do |p|
+    package "#{p}" do
+      action :install
+    end
+  end
 end
 
 # ubuntu needs help with ruby 1.9.x

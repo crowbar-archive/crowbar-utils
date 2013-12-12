@@ -27,6 +27,17 @@ when "ubuntu"
     options(node.gem_options)
     version ">1"
   end
-  
+
+when "centos"
+  %w{libxml2-devel libxml2 libxslt-devel}.each do |p|
+   package "#{p}"
+  end
+
+  %w{foodcritic berkshelf}.each do |pkg|
+    execute "install centos scl enable ruby193 \'gem install #{pkg}\'" do
+      command "scl enable ruby193 \'gem install #{pkg}\'"
+      not_if "scl enable ruby193 \'gem list --local #{pkg} | grep #{pkg}\'"
+    end
+  end
 end
 

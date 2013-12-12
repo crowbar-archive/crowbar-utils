@@ -34,6 +34,12 @@ if node.props.proxy_on =~ /true/i then
         :https_proxy => https_proxy
       })
     end
+  when "centos"
+    execute "proxy on in yum.conf" do
+      proxy_string = "proxy=\"#{http_proxy}\""
+      command "echo #{proxy_string} >> /etc/yum.conf"
+      not_if "grep #{proxy_string} /etc/yum.conf"
+    end
   end
 
 #  execute "proxy on by default root ~/.bashrc" do

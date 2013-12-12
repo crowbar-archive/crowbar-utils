@@ -7,7 +7,7 @@ when "ubuntu"
 
     #sudo apt-get remove postgresql
     package "postgresql" do
-	action :remove
+	    action :remove
     end
 
     # Additional reference, please visit [[https://wiki.postgresql.org/wiki/Apt]]
@@ -63,5 +63,4 @@ when "ubuntu"
     #  code "su postgres -c PGCLUSTER=9.3/main; psql postgresql://crowbar@:5439/template1 -c 'select true;'"
     #  returns 0
     #end
-
 end

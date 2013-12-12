@@ -13,6 +13,13 @@ when "suse"
   package "mkisofs"
   package "rpm"
   package "cabextract"
+when "centos"
+  package "genisoimage"
+  #package "debhelper"
+  #package "debootstrap"
+  package "createrepo"
+  package "livecd-tools"
+  package "cabextract"
 end
 
 # setup .netrc for github access
@@ -68,5 +75,4 @@ execute "git clone crowbar" do
 	environment envhash
 end
 
-# setup .crowbar-build-cache
 

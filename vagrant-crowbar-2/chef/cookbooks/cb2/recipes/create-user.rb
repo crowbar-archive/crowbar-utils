@@ -9,16 +9,16 @@ execute "fix vagrant ssh file perms" do
 end
 
 # create a group and user on the OS:
-group node.props.guest_username do
-	action :create
-end
-
 user node[:props][:guest_username] do
 	home "/home/#{node[:props][:guest_username]}"
 	shell "/bin/bash"
 	supports :manage_home=>true
-	gid node[:props][:guest_username]
+	#gid node[:props][:guest_username]
 	
+end
+
+group node.props.guest_username do
+	action :create
 end
 
 # give guest user superpowers
@@ -26,7 +26,7 @@ power_group_name="admin"
 case node[:platform]
 when "ubuntu"
   power_group_name = "admin"
-when "suse"
+when "suse","centos","rhel"
   power_group_name = "wheel"
 end
 group "#{power_group_name}" do
@@ -67,6 +67,9 @@ execute "timezone setup" do
   when "suse"
     command "echo \"TZ=#{node.props.guest_timezone}\" >> /home/#{node.props.guest_username}/.profile"
 	  not_if "grep \"TZ=#{node.props.guest_timezone}\" /home/#{node.props.guest_username}/.profile"
+  when "centos", "rhel"
+    command "ln -sf /usr/share/zoneinfo/#{node.props.guest_timezone} /etc/localtime"
+    not_if "ls -l /etc/localtime | grep #{node.props.guest_timezone}" 
   end
 	action :run
 end
