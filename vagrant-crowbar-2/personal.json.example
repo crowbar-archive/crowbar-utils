@@ -1,5 +1,13 @@
 {
 "guest_hostname": "cb2dev1",
+"#box_name": "centos64-x86_64-20131030", 
+"#box_url": "https://github.com/2creatives/vagrant-centos/releases/download/v0.1.0/centos64-x86_64-20131030.box",
+"#box_name": "ubuntu-12.04.2-docker",
+"#box_url": "http://opencrowbar.org/ubuntu-12.04.2-docker.box"
+"#box_name": "opensuse-12.3-chef-docker",
+"#box_url": "http://opencrowbar.org/opensuse-12.3-chef-docker",
+"#box_name": "opensuse-12.3-chef",
+"#box_url": "https://googledrive.com/host/0B6uHJ6DBTZtFcmwyd0dPVVhKcUk/opensuse-12.3-chef.box"
 "guest_username": "judd",
 "user_sshpubkey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCx2NI5S5YTIhZNsWyrglaVqEubJ4Zt14z80ge6Awa/vDq95asRzuCVqxt4nSQ+3WfSBfGaXBHCXFNx7WwX8NbfpDXrE2HPZRKaMwUVjMteEe2GQ3ycR/SjNWk6XhjUPWCRp9sgDgrs8aqJIankTCtnbKaA3dEnP9dd67la1oHHoc2n4Q6x2CU7IfqY29ZzOXBuThq49RPB6xr5Qp4bXAhddkMvaSnGpMmPduM8fO/iua/v0sNGjUstEN7yP77O5TJXcRijBD1ymW+MJs1ZbPSIMSMQo/OYkPFio7sRgmDg+AjhFSbcmyH+1pl1vR844AE/qoT/Yq+5Ot05B6D8YPPj judd@judd-m6600",
 "git_user_name": "Judd Maltin",
@@ -10,8 +18,8 @@
 "#github_extra_remotes": {
 	"dellcloudedge": [ "https://github.com/dellcloudedge/crowbar.git", "50" ]
 },
-"synced_dir_guest": "/mnt/VMSharedDir/",
 "synced_dir_host": "/VMs/VMSharedDir/",
+"synced_dir_guest": "/mnt/VMSharedDir/",
 "crowbar_build_cache": "/opt/shared-cache/",
 "crowbar_iso_library": "/mnt/VMSharedDir/",
 "crowbar_iso_dest": "/mnt/VMSharedDir/ISOs",
@@ -23,12 +31,4 @@
 "guest_ram": "3096",
 "guest_timezone": "America/New_York",
 "guest_extra_packages": "",
-"#box_name": "centos64-x86_64-20131030", 
-"#box_url": "https://github.com/2creatives/vagrant-centos/releases/download/v0.1.0/centos64-x86_64-20131030.box",
-"#box_name": "ubuntu-12.04.2-docker",
-"#box_url": "http://opencrowbar.org/ubuntu-12.04.2-docker.box"
-"#box_name": "opensuse-12.3-chef-docker",
-"#box_url": "http://opencrowbar.org/opensuse-12.3-chef-docker",
-"#box_name": "opensuse-12.3-chef",
-"#box_url": "https://googledrive.com/host/0B6uHJ6DBTZtFcmwyd0dPVVhKcUk/opensuse-12.3-chef.box"
 }
