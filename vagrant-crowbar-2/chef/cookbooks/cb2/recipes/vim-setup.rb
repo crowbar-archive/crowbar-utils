@@ -11,11 +11,13 @@ execute "vim installs pathogen" do
 	action :run
 end
 
+# with pathogen, we can install lots of nice stuff
 {
   'vim-fugitive' => 'https://github.com/tpope/vim-fugitive.git',
   'nerdtree' => 'https://github.com/scrooloose/nerdtree.git',
   'vim-nerdtree-tabs' => 'https://github.com/jistr/vim-nerdtree-tabs',
-  'syntastic'         => 'https://github.com/scrooloose/syntastic.git'
+  'syntastic'         => 'https://github.com/scrooloose/syntastic.git',
+  'vim-markdown'      => 'https://github.com/plasticboy/vim-markdown.git'
 }.each_pair do | name, repo |
 	execute "vim install #{name}" do
     environment envhash
@@ -25,6 +27,8 @@ end
 		creates "/home/#{node.props.guest_username}/.vim/bundle/#{name}"
 	end
 end
+
+
 
 template "/home/#{node.props.guest_username}/.vimrc" do
 	source "vimrc"
