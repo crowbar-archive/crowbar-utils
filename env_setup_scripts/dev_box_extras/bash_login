@@ -1,4 +1,0 @@
-
-alias crow='cd /VMs/repos/crowbar'
-alias work='cd /VMs/repos/crowbar/barclamps/crowbar/crowbar_framework/'
-export EDITOR=/usr/bin/vim
