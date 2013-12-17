@@ -6,7 +6,7 @@ Requires
 
 * Vagrant > 1.4.0
 * VirtualBox > 1.4.16
-** We are starting work on VMware support.  patches welcome.
+  * We are starting work on Vagrant VMware support.  patches welcome.
 * Cygwin (Windows, only, of course)
 
 Vagrant Plugins Required
@@ -51,9 +51,11 @@ Setup
 
 ### Proxy:
 
-Building Crowbar downloads a lot from the Internet.  It\'s a best practice to setup a proxy server on your host OS to handle this.  Here's an example squid config file that will work with this setup: http://www.github.com/crowbar/crowbar-utils/vagrant-crowbar-2/squid.conf.sample 
+Building Crowbar downloads a lot from the Internet.  It\'s a best practice to setup a proxy server on your host OS to handle this.  Here's an example squid config file that will work with this setup: 
 
-  * Proxy config:  
+  http://www.github.com/crowbar/crowbar-utils/vagrant-crowbar-2/squid.conf.sample 
+
+  * Proxy config:
     * Scenario 1: you run a proxy on your host OS (or have a good upstream proxy)
       *  "proxy_on": "true"
       *  "http_proxy": "http://10.0.2.2:8123"
@@ -64,7 +66,7 @@ Building Crowbar downloads a lot from the Internet.  It\'s a best practice to se
 Configuration
 -------------
 
-# 2) Editing the personal.json
+# Editing the personal.json
 
   * Go to your crowbar-utils git repo and change directory to `crowbar-utils/vagrant-crowbar-2`
   * Copy `personal.json.example` to `personal.json`
@@ -104,9 +106,146 @@ Configuration
     * "guest_extra_packages": ["figlet","fgrep"] A place for you to add package names. 
 
 
-### Ensure shared ISOs
+# Ensure shared ISOs
 
 Crowbar needs Ubuntu and Centos to build all its parts.  Make sure the following ISOs are
 in "crowbar_iso_library":
 * CentOS-6.2-x86_64-bin-DVD1.iso
 * ubuntu-12.04.2-server-amd64.iso
+
+Running on Windows
+------------------
+
+## invoking
+
+The vagrant code is written to make accommodations for the windows platform (paths, .exe extensions and such). The thing is that detection only works if you're using the CMD shell (i.e. no cygwin for vagrant).
+
+### ssh
+
+by default vagrant doesn't even try to use windows ssh, rather spits out some instructions you have to digest. The predigested vesion for cygwin/windows (replace <USERNAME> ) is
+
+$ ssh -vvv vagrant@127.0.0.1 -p 2222 -i /c/Users/<USERNAME>/.vagrant.d/insecure_private_key 
+
+
+
+Running Vagrant
+---------------
+
+### Launching the Box
+
+You should be all ready.  Anywhere within this git repo you should type: 
+
+ `vagrant up`
+
+  * The box OS you will install and the chef-solo cookbooks will run.
+  * If there is a problem with the provision stage, you might have to re-run provisioning:
+
+```
+  vagrant provision
+```
+
+  * Report errors on Github, to IRC (judd7) the crowbar@lists.us.dell.com or find me on skype: juddmaltin-dell  I'm in New York, Eastern Time.
+
+
+### Logging into the Box
+
+If the ssh-keys are working OK, you should be able to login this way:
+
+  ssh -p 2222 <username>@127.0.0.1
+
+note that the port may be different if you have another box(es) already running.
+
+
+Another option is to simply type the following to be logged in as the `vagrant` default user:
+
+ vagrant ssh
+
+
+  * If you logged in as user `vagrant`, `sudo -i` to root, and then `su - "your username"`
+  * You should have ~/crowbar all setup for you!  Switch to a release and branch, and have at it!
+    * ./dev switch development/master
+    * ./dev build --os ubuntu-12.04 --update-cache
+
+# Typical Development/Testing Cycle
+===================================
+
+## Login
+
+I usually ssh into the box from the host box with the public key I supplied in personal.json.
+
+http://docs.vagrantup.com/v1/docs/getting-started/ssh.html
+
+## Hacking
+
+### Your Development Environment On The Guest Linux Box
+
+I'm happy hacking over SSH CLI.  But you can use other things, like installing a GUI 
+(`apt-get install kde-desktop`, or `apt-get install xfce`) and interacting via shared desktops. 
+That might be great if you run your Vagrant Box on a server.  There are other ways too!
+
+### Your Development Environment On the Host (if Linux)
+
+You can use the VirtualBox sync_dir commands to share your directories with the host box.
+
+I also like to use SSHFS to mount directories where I like them.
+
+### Your Development Environment on the Host (if Windows)
+
+Some folks also use SSH or a Samba Mount to access the files.  They then kick off builds on the Linux guest through the command line.
+
+### Other options:
+
+If you need to, you can forward ports from your Vagrant box so they show up on the host box's network:
+
+http://docs.vagrantup.com/v1/docs/getting-started/ports.html
+
+
+## Suspending & Resuming (recommended - because it's faster)
+
+It's best to suspend your system, rather than `vagrant halt` it.  Just type `vagrant suspend` from your host machine in the Vagrantfile directory, and it'll write memory to disk and quiesce things.  `vagrant resume` does just what you think.
+
+http://docs.vagrantup.com/v1/docs/getting-started/teardown.html
+
+## Restarting
+
+`vagrant halt` will finalize the image and shut it down. To start it up again `vagrant up` will not re-run the import nor the provisioner (anymore, as of Vagrant 1.3)
+
+## Building
+
+I'm able to use ./dev just fine.  It drops the ISOs in the ISO_LIBRARY directory.
+
+Note that I'm using both a squid caching web proxy on my host machine.  I try to get out to the Internet as rarely as possible.
+
+
+Troubleshooting
+---------------
+
+### if a up goes down
+
+
+If you try `vagrant up`, and it spits some error out, you'd want to troubleshoot it.  You can run the provision step again with a simple `vagrant provision.`
+
+If that doesn't give you enought information, try `VAGRANT_LOG=info vagrant provision` and it will give copious output.
+
+
+Guest Box URLs, for reference
+-----------------------------
+
+  * These will be important when you're editing your `personal.json`
+  * Ubuntu 12.04: https://dl.dropboxusercontent.com/u/9764728/boxes/vagrant-ubuntu12042-64.box
+  * OpenSuSE: https://googledrive.com/host/0B6uHJ6DBTZtFcmwyd0dPVVhKcUk/opensuse-12.3-chef.box
+  * CentOS: 
+
+
+Epilogue
+--------
+
+Please let me know what you find: submit bug reports, email me, find me on IRC, or best of all, fork the code and submit pull-requests!
+
+I hope it helps you get up and developing Crowbar quickly.  I look forward to your pull requests.
+
+-judd
+
+
+
+
